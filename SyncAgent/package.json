@@ -1,0 +1,20 @@
+{
+  "name": "amis-sync-agent",
+  "version": "1.0.0",
+  "description": "Trợ lý đồng bộ dữ liệu AMIS Assistant chạy ngầm trên máy tính cá nhân",
+  "main": "agent.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node agent.js",
+    "setup": "node agent.js --setup",
+    "build:exe": "npx @yao-pkg/pkg agent.js --targets node18-win-x64 --output dist/amis-sync-agent.exe"
+  },
+  "keywords": [
+    "amis",
+    "sync",
+    "accounting",
+    "agent"
+  ],
+  "author": "AMIS Assistant Team",
+  "license": "MIT"
+}

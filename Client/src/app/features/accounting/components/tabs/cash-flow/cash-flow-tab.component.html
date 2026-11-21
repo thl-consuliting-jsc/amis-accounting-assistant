@@ -1,0 +1,191 @@
+<div class="page-view-generic">
+  <!-- Intro Banner -->
+  <div class="module-intro-card">
+    <div class="intro-left">
+      <div class="intro-icon-circle amber">
+        <ng-icon [svg]="chartLineIcon" size="22"></ng-icon>
+      </div>
+      <div>
+        <h3 class="intro-title">Kế hoạch Dự kiến thu chi & Phê duyệt</h3>
+        <p class="intro-desc">Quản lý dòng tiền dự thu, dự chi và phê duyệt chi tự động sinh hợp đồng.</p>
+      </div>
+    </div>
+    <button class="btn-primary-action amber" (click)="openCashFlowModal.emit()">
+      <ng-icon [svg]="plusIcon" size="15"></ng-icon>
+      <span>Thêm khoản thu / chi</span>
+    </button>
+  </div>
+
+  <!-- KPI Summary Cards -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-green">
+      <div class="kpi-card-header">
+        <span class="kpi-label">TỔNG DỰ THU</span>
+        <span class="kpi-icon-badge green">
+          <ng-icon [svg]="inIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-green">+{{ totalEstimatedRevenue() | number:'1.0-0' }} đ</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag green">Dự thu từ hóa đơn & HĐ</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-red">
+      <div class="kpi-card-header">
+        <span class="kpi-label">TỔNG DỰ CHI</span>
+        <span class="kpi-icon-badge red">
+          <ng-icon [svg]="outIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-red">-{{ totalEstimatedExpense() | number:'1.0-0' }} đ</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag red">Định kỳ & phát sinh</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-blue">
+      <div class="kpi-card-header">
+        <span class="kpi-label">DÒNG TIỀN DỰ KIẾN</span>
+        <span class="kpi-icon-badge blue">
+          <ng-icon [svg]="bankIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value" [class.text-blue]="netEstimatedCashFlow() >= 0" [class.text-red]="netEstimatedCashFlow() < 0">
+        {{ (netEstimatedCashFlow() >= 0 ? '+' : '') + (netEstimatedCashFlow() | number:'1.0-0') }} đ
+      </div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag blue">{{ netEstimatedCashFlow() >= 0 ? 'Thặng dư ngân quỹ' : 'Thiếu hụt tạm thời' }}</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-amber">
+      <div class="kpi-card-header">
+        <span class="kpi-label">KHOẢN CHỜ SẾP DUYỆT</span>
+        <span class="kpi-icon-badge amber">
+          <ng-icon [svg]="warningIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-amber">{{ pendingCashFlowCount() }} khoản</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag amber">Cần duyệt để sinh HĐ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: Danh sách Thu Chi -->
+  <div class="content-section">
+    <div class="section-title-bar">
+      <div class="section-filters-left">
+        <button class="filter-chip" [class.active]="cashFlowFilter() === 'ALL'" (click)="cashFlowFilter.set('ALL')">
+          Tất cả ({{ svc.cashFlowPlans().length }})
+        </button>
+        <button class="filter-chip" [class.active]="cashFlowFilter() === 'Pending'" (click)="cashFlowFilter.set('Pending')">
+          Chờ duyệt ({{ pendingCashFlowCount() }})
+        </button>
+        <button class="filter-chip" [class.active]="cashFlowFilter() === 'Approved'" (click)="cashFlowFilter.set('Approved')">
+          Đã duyệt
+        </button>
+        <button class="filter-chip" [class.active]="cashFlowFilter() === 'Rejected'" (click)="cashFlowFilter.set('Rejected')">
+          Từ chối
+        </button>
+      </div>
+      <div class="section-actions-right">
+        <button class="btn-primary-action amber compact" (click)="openCashFlowModal.emit()">
+          <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+          <span>Thêm khoản thu / chi</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 90px;">CHIỀU</th>
+            <th>NỘI DUNG THU CHI</th>
+            <th style="width: 140px;">HẠNG MỤC</th>
+            <th style="width: 130px;">NGUỒN</th>
+            <th class="text-right" style="width: 140px;">SỐ TIỀN</th>
+            <th style="width: 120px;">TRẠNG THÁI</th>
+            <th class="text-center" style="width: 200px;">THAO TÁC / DUYỆT</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (filteredCashFlowPlans().length === 0) {
+            <tr>
+              <td colspan="7" class="empty-cell">Không có khoản dự thu chi nào thỏa mãn điều kiện lọc.</td>
+            </tr>
+          }
+          @for (item of filteredCashFlowPlans(); track item.id) {
+            <tr>
+              <td>
+                @if (item.flowType === 'REVENUE') {
+                  <span class="badge-tag green">DỰ THU</span>
+                } @else {
+                  <span class="badge-tag red">DỰ CHI</span>
+                }
+              </td>
+              <td>
+                <div class="font-semibold">{{ item.title }}</div>
+                @if (item.note) {
+                  <div class="text-slate text-xs">{{ item.note }}</div>
+                }
+              </td>
+              <td><span class="badge-tag gray">{{ item.category }}</span></td>
+              <td>
+                <span class="source-tag" [class.amis]="item.source.includes('AMIS')">
+                  {{ item.source }}
+                </span>
+              </td>
+              <td class="text-right font-mono font-bold" [class.text-green]="item.flowType === 'REVENUE'" [class.text-red]="item.flowType === 'EXPENSE'">
+                {{ (item.flowType === 'REVENUE' ? '+' : '-') + (item.estimatedAmount | number:'1.0-0') }} đ
+              </td>
+              <td>
+                @if (item.status === 'Approved') {
+                  <span class="badge-status-pill success">
+                    <ng-icon [svg]="checkCircleIcon" size="12"></ng-icon>
+                    Đã duyệt
+                  </span>
+                } @else if (item.status === 'Rejected') {
+                  <span class="badge-status-pill danger">
+                    <ng-icon [svg]="closeIcon" size="12"></ng-icon>
+                    Từ chối
+                  </span>
+                } @else {
+                  <span class="badge-status-pill warning">
+                    <ng-icon [svg]="warningIcon" size="12"></ng-icon>
+                    Chờ duyệt
+                  </span>
+                }
+              </td>
+              <td class="text-center">
+                @if (item.status === 'Pending') {
+                  <div class="approval-btn-group">
+                    <button class="btn-approve-auto" (click)="approveItem(item, true)" title="Duyệt chi và tự động sinh tệp Hợp đồng">
+                      <ng-icon [svg]="checkCircleIcon" size="14"></ng-icon>
+                      <span>Duyệt & Sinh HĐ</span>
+                    </button>
+                    <button class="btn-approve-quick" (click)="approveItem(item, false)" title="Chỉ duyệt chi, không sinh hợp đồng">
+                      <span>Duyệt</span>
+                    </button>
+                    <button class="btn-reject" (click)="rejectItem(item)" title="Từ chối khoản chi">
+                      <ng-icon [svg]="closeIcon" size="14"></ng-icon>
+                    </button>
+                  </div>
+                } @else {
+                  <div class="approved-info-row">
+                    <span class="approved-text">Đã xử lý ({{ item.approverName || 'Ban Giám Đốc' }})</span>
+                    <button class="btn-action-icon red" (click)="deleteItem(item.id)" title="Xóa khoản này">
+                      <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+                    </button>
+                  </div>
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

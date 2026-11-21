@@ -1,0 +1,62 @@
+<div class="drawer-layer" [class.is-open]="open()" [attr.aria-hidden]="!open()">
+  <div class="drawer-backdrop" (click)="close()"></div>
+
+  <section class="menu-drawer" aria-label="Menu người dùng" (click)="$event.stopPropagation()">
+    <header class="drawer-header">
+      <div class="drawer-avatar">
+        @if (avatarUrl()) {
+          <img [src]="avatarUrl()" [alt]="displayName()" />
+        } @else {
+          <span>{{ initials() || "AM" }}</span>
+        }
+      </div>
+      <button class="icon-button" type="button" aria-label="Đóng menu" (click)="close()">
+        <ng-icon [svg]="closeIcon" size="20"></ng-icon>
+      </button>
+    </header>
+
+    <div class="drawer-user">
+      <strong>{{ displayName() }}</strong>
+      <span>@{{ username() }}</span>
+    </div>
+
+    <nav class="drawer-menu" aria-label="Chức năng tài khoản">
+      <button class="drawer-menu-item" type="button" (click)="openProfile()">
+        <ng-icon [svg]="profileIcon" size="20"></ng-icon>
+        <span>My profile</span>
+      </button>
+      <button class="drawer-menu-item" type="button" (click)="openContacts()">
+        <ng-icon [svg]="contactIcon" size="20"></ng-icon>
+        <span>Contact</span>
+      </button>
+      <button class="drawer-menu-item" type="button">
+        <ng-icon [svg]="savedMessageIcon" size="20"></ng-icon>
+        <span>Saved Message</span>
+      </button>
+      <button class="drawer-menu-item" type="button" (click)="toggleTheme()">
+        <ng-icon [svg]="isDarkMode() ? sunIcon : moonIcon" size="20"></ng-icon>
+        <span>{{ isDarkMode() ? "Light mode" : "Dark mode" }}</span>
+      </button>
+
+      <ng-container *appHasRole="'DepartmentHead'">
+        <div class="drawer-menu-divider" role="separator" aria-hidden="true"></div>
+        <button class="drawer-menu-item" type="button" (click)="openApprove()">
+          <ng-icon [svg]="approveIcon" size="20"></ng-icon>
+          <span>Phê duyệt tài khoản</span>
+        </button>
+      </ng-container>
+    </nav>
+
+    <footer class="drawer-footer">
+      <button class="drawer-menu-item danger" type="button" (click)="logout()">
+        <ng-icon [svg]="logoutIcon" size="20"></ng-icon>
+        <span>Đăng xuất</span>
+      </button>
+    </footer>
+  </section>
+</div>
+
+<app-approve-modal
+  [open]="isApproveOpen()"
+  (closed)="closeApprove()"
+/>

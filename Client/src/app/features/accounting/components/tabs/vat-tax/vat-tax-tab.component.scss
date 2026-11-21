@@ -1,0 +1,89 @@
+// =============================================================================
+// VAT TAX TAB (THUẾ GTGT) - STYLES
+// =============================================================================
+
+.page-view-generic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.content-card-box {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+}
+
+.card-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-box-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.card-box-hint {
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.amis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  background: #FFFFFF;
+
+  thead th {
+    background: #F8FAFC;
+    color: #475569;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 11px 14px;
+    border-bottom: 1px solid #E2E8F0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #F1F5F9;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: #F8FAFC;
+    }
+  }
+
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: middle;
+    color: #1E293B;
+  }
+}
+
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.text-blue { color: #2563EB; }
+.text-ink { color: #0F172A; }
+.text-mute { color: #64748B; }
+.text-right { text-align: right; }

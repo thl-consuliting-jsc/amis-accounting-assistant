@@ -1,0 +1,49 @@
+@if (svc.hasUpdate()) {
+    <div class="update-banner" [class.ready]="svc.isReady()">
+        <div class="banner-content">
+            <div class="banner-info">
+                <span class="badge">BẢN MỚI {{ svc.updateVersion() }}</span>
+                <div>
+                    <p class="title">Đã có phiên bản mới {{ svc.updateVersion() }} (Tự động bảo toàn dữ liệu)</p>
+                    <p class="notes">{{ svc.updateNotes() }}</p>
+                    @if (svc.statusStepText()) {
+                        <p class="step-status">⏳ {{ svc.statusStepText() }}</p>
+                    }
+                </div>
+            </div>
+
+            <div class="banner-actions">
+                @switch (svc.state()) {
+                    @case ('available') {
+                        <button class="btn-primary" (click)="startUpdate()">
+                            🛡️ Sao lưu & Cập nhật ngay
+                        </button>
+                        <button class="btn-ghost" (click)="svc.dismiss()">Để sau</button>
+                    }
+                    @case ('backing_up') {
+                        <div class="progress-wrap">
+                            <span class="progress-label">Đang sao lưu dữ liệu...</span>
+                        </div>
+                    }
+                    @case ('downloading') {
+                        <div class="progress-wrap">
+                            <div class="progress-bar">
+                                <div class="progress-fill" [style.width.%]="svc.progress()"></div>
+                            </div>
+                            <span class="progress-label">{{ svc.progress() }}%</span>
+                        </div>
+                    }
+                    @case ('ready') {
+                        <button class="btn-success" (click)="svc.applyAndRelaunch()">
+                            🔄 Khởi động lại & Áp dụng
+                        </button>
+                    }
+                    @case ('error') {
+                        <span class="error-msg">{{ svc.errorMsg() }}</span>
+                        <button class="btn-ghost" (click)="svc.checkUpdate()">Thử lại</button>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}

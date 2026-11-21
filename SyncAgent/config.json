@@ -1,0 +1,8 @@
+{
+  "serverUrl": "http://103.107.183.86:9093",
+  "dataFolder": "D:\\2026\\1.Work\\9.PHUONG\\5. DU LIEU",
+  "taxCode": "0111154196",
+  "autoSync": false,
+  "syncIntervalSeconds": 5,
+  "webPort": 4999
+}

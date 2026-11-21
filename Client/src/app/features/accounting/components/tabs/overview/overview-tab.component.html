@@ -1,0 +1,234 @@
+<div class="page-view-tongquan">
+  <!-- Ready Banner Alert -->
+  <div class="ready-banner">
+    <div class="banner-icon-circle">
+      <ng-icon [svg]="infoIcon" size="20"></ng-icon>
+    </div>
+    <div class="banner-body">
+      <h3 class="banner-title">Sẵn sàng lập file kỳ Tháng {{ selectedMonth() }}/{{ selectedYear() }}</h3>
+      <p class="banner-desc">
+        @if (svc.isRemoteHost) {
+          Chế độ Web: Bấm <strong>LẬP FILE</strong> để chọn thư mục dữ liệu trên máy tính (sao kê & hóa đơn) và lập 9 file AMIS trực tiếp không cần cài đặt.
+        } @else {
+          Bấm <strong>LẬP FILE</strong> để hệ thống tự động xử lý và xuất các tệp nhập MISA AMIS từ thư mục dữ liệu trên máy tính.
+        }
+      </p>
+    </div>
+    @if (svc.isRemoteHost) {
+      <button class="btn-banner-action" (click)="openUploadModal.emit()">
+        <ng-icon [svg]="folderIcon" size="16"></ng-icon>
+        <span>Chọn dữ liệu & Lập file</span>
+      </button>
+    }
+  </div>
+
+  <!-- Financial KPIs (Image 3 MISA AMIS inspired) -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-blue">
+      <div class="kpi-card-header">
+        <span class="kpi-label">TỔNG TIỀN QUỸ & NGÂN HÀNG</span>
+        <span class="kpi-icon-badge blue">
+          <ng-icon [svg]="moneyIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-blue">22.864.540 đ</div>
+      <div class="kpi-sub-row">
+        <span class="kpi-sub-item">Tiền mặt: <strong>9.321.176 đ</strong></span>
+        <span class="kpi-sub-divider">•</span>
+        <span class="kpi-sub-item">Tiền gửi: <strong>13.543.364 đ</strong></span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-green">
+      <div class="kpi-card-header">
+        <span class="kpi-label">DOANH THU PHÁT SINH</span>
+        <span class="kpi-icon-badge green">
+          <ng-icon [svg]="tagIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-green">1.001.484.224 đ</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag green">Đã xuất 3 hóa đơn GTGT</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-amber">
+      <div class="kpi-card-header">
+        <span class="kpi-label">CHI PHÍ HỢP LÝ</span>
+        <span class="kpi-icon-badge amber">
+          <ng-icon [svg]="cartIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-amber">780.240.279 đ</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag amber">Chi phí QLDN & dịch vụ</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-indigo">
+      <div class="kpi-card-header">
+        <span class="kpi-label">LỢI NHUẬN TẠM TÍNH</span>
+        <span class="kpi-icon-badge indigo">
+          <ng-icon [svg]="chartLineIcon" size="16"></ng-icon>
+        </span>
+      </div>
+      <div class="kpi-value text-indigo">221.243.945 đ</div>
+      <div class="kpi-sub-row">
+        <span class="badge-tag blue">+12% so với kỳ trước</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: TÀI KHOẢN NGÂN HÀNG -->
+  <div class="content-section">
+    <div class="section-title-bar">
+      <span class="section-heading">TÀI KHOẢN NGÂN HÀNG</span>
+      <span class="section-count">3 tài khoản đã cấu hình</span>
+    </div>
+
+    <div class="bank-cards-grid">
+      @for (acc of svc.reconciliation()?.accounts || []; track acc.bankAccountId) {
+        <div class="bank-rec-card">
+          <div class="card-top">
+            <div class="bank-title-box">
+              <div class="bank-icon-box">
+                <ng-icon [svg]="bankIcon" size="18"></ng-icon>
+              </div>
+              <div>
+                <h4 class="bank-name">{{ acc.bankName }}</h4>
+                <span class="bank-stk">STK: {{ acc.accountNumber }} • TK {{ acc.glAccount }}</span>
+              </div>
+            </div>
+            <span class="status-pill" [class.matched]="acc.isMatched">
+              <ng-icon [svg]="acc.isMatched ? checkCircleIcon : warningIcon" size="14"></ng-icon>
+              {{ acc.isMatched ? 'KHỚP' : 'LỆCH' }}
+            </span>
+          </div>
+
+          <div class="rec-lines">
+            <div class="rec-line">
+              <span class="lbl">Đầu kỳ:</span>
+              <span class="val">{{ acc.openingBalance | number:'1.0-0' }} đ</span>
+            </div>
+            <div class="rec-line in">
+              <span class="lbl">+ Thu trong kỳ:</span>
+              <span class="val">+{{ acc.totalIn | number:'1.0-0' }} đ</span>
+            </div>
+            <div class="rec-line out">
+              <span class="lbl">- Chi trong kỳ:</span>
+              <span class="val">-{{ acc.totalOut | number:'1.0-0' }} đ</span>
+            </div>
+            @if (acc.internalTransferIn) {
+              <div class="rec-line in">
+                <span class="lbl">+ Nhận nội bộ:</span>
+                <span class="val">+{{ acc.internalTransferIn | number:'1.0-0' }} đ</span>
+              </div>
+            }
+            @if (acc.internalTransferOut) {
+              <div class="rec-line out">
+                <span class="lbl">- Chuyển nội bộ:</span>
+                <span class="val">-{{ acc.internalTransferOut | number:'1.0-0' }} đ</span>
+              </div>
+            }
+            <div class="rec-line total">
+              <span class="lbl">Cuối kỳ tính ra:</span>
+              <span class="val">{{ acc.calculatedClosingBalance | number:'1.0-0' }} đ</span>
+            </div>
+            <div class="rec-line stmt">
+              <span class="lbl">Sao kê thực tế:</span>
+              <span class="val">{{ acc.statementClosingBalance | number:'1.0-0' }} đ</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Section: CHỨNG TỪ ĐÃ LẬP TRONG KỲ -->
+  <div class="content-section">
+    <div class="section-title-bar">
+      <span class="section-heading">CHỨNG TỪ ĐÃ LẬP TRONG KỲ</span>
+      <span class="section-count">Tổng hợp phân loại tự động</span>
+    </div>
+    <div class="metric-chips-row">
+      <div class="metric-chip">
+        <span class="chip-dot in"></span>
+        <span class="chip-name">Phiếu thu tiền gửi</span>
+        <span class="chip-val in">60 CT</span>
+      </div>
+      <div class="metric-chip">
+        <span class="chip-dot out"></span>
+        <span class="chip-name">Phiếu chi tiền gửi</span>
+        <span class="chip-val out">15 CT</span>
+      </div>
+      <div class="metric-chip">
+        <span class="chip-dot transfer"></span>
+        <span class="chip-name">Chuyển tiền nội bộ</span>
+        <span class="chip-val transfer">2 lệnh</span>
+      </div>
+      <div class="metric-chip">
+        <span class="chip-dot service"></span>
+        <span class="chip-name">Mua dịch vụ</span>
+        <span class="chip-val service">7 HĐ</span>
+      </div>
+      <div class="metric-chip">
+        <span class="chip-dot ccdc"></span>
+        <span class="chip-name">Ghi tăng CCDC</span>
+        <span class="chip-val ccdc">5 CCDC</span>
+      </div>
+      <div class="metric-chip">
+        <span class="chip-dot interest"></span>
+        <span class="chip-name">Lãi vay (NVK)</span>
+        <span class="chip-val interest">1 CT</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section: TỆP ĐÃ LẬP (BẤM ĐÚP ĐỂ MỞ / TẢI VỀ) -->
+  <div class="content-card-box">
+    <div class="card-box-header" style="display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <h4 class="card-box-title">Tệp kết quả AMIS</h4>
+      </div>
+      @if (svc.generatedFiles().length > 0) {
+        <button class="btn-status-action green" (click)="downloadAllZip.emit()" title="Tải toàn bộ tệp kết quả trong 1 file ZIP">
+          <ng-icon [svg]="downloadIcon" size="14"></ng-icon>
+          <span>Tải trọn bộ (.ZIP)</span>
+        </button>
+      }
+    </div>
+
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 320px;">Tệp</th>
+            <th style="width: 140px;">Kích thước</th>
+            <th>Nhập vào đâu trong AMIS</th>
+            <th style="width: 130px; text-align: center;">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (file of svc.generatedFiles(); track file.fileName) {
+            <tr class="clickable-row" (dblclick)="openFile.emit(file)">
+              <td class="file-cell">
+                <ng-icon [svg]="fileTextIcon" class="file-icon" size="16"></ng-icon>
+                <span class="file-name">{{ file.fileName }}</span>
+              </td>
+              <td class="size-cell">{{ file.formattedSize }}</td>
+              <td class="target-cell">
+                <strong>{{ file.amisTarget }}</strong>
+              </td>
+              <td style="text-align: center;">
+                <button class="btn-table-action" (click)="openFile.emit(file)" title="Tải về file này">
+                  <ng-icon [svg]="downloadIcon" size="14"></ng-icon>
+                  <span>Tải về</span>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

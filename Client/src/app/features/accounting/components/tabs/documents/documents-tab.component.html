@@ -1,0 +1,110 @@
+<div class="page-view-generic">
+  <!-- Intro Banner -->
+  <div class="module-intro-card">
+    <div class="intro-left">
+      <div class="intro-icon-circle blue">
+        <ng-icon [svg]="fileTextIcon" size="22"></ng-icon>
+      </div>
+      <div>
+        <h3 class="intro-title">Soạn thảo văn bản & Hợp đồng</h3>
+        <p class="intro-desc">Tự động lập hợp đồng và văn bản pháp lý theo mẫu chuẩn.</p>
+      </div>
+    </div>
+    <button class="btn-primary-action" (click)="openContractModal.emit(undefined)">
+      <ng-icon [svg]="plusIcon" size="15"></ng-icon>
+      <span>Soạn văn bản</span>
+    </button>
+  </div>
+
+  <!-- Section: Danh mục Biểu mẫu chuẩn -->
+  <div class="content-section">
+    <div class="section-title-bar">
+      <span class="section-heading">Biểu mẫu chuẩn</span>
+      <span class="section-count">5 mẫu</span>
+    </div>
+
+    <div class="templates-grid">
+      @for (tmpl of svc.contractTemplates(); track tmpl.code) {
+        <div class="template-card" [title]="tmpl.description">
+          <div class="tmpl-header">
+            <span class="tmpl-badge">{{ tmpl.category }}</span>
+            <span class="tmpl-code">{{ tmpl.code }}</span>
+          </div>
+          <h4 class="tmpl-name">{{ tmpl.name }}</h4>
+          <div class="tmpl-footer">
+            <button class="btn-tmpl-use" (click)="openContractModal.emit(tmpl.code)">
+              <ng-icon [svg]="editIcon" size="14"></ng-icon>
+              <span>Soạn mẫu này</span>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Section: Danh sách Hợp đồng / Văn bản đã sinh -->
+  <div class="content-section">
+    <div class="section-title-bar">
+      <span class="section-heading">Văn bản đã tạo</span>
+      <span class="section-count">{{ svc.contracts().length }}</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 170px;">MÃ VĂN BẢN</th>
+            <th>TÊN VĂN BẢN</th>
+            <th style="width: 160px;">LOẠI BIỂU MẪU</th>
+            <th>ĐỐI TÁC</th>
+            <th class="text-right" style="width: 130px;">GIÁ TRỊ (VNĐ)</th>
+            <th style="width: 110px;">NGÀY KÝ</th>
+            <th style="width: 110px;">TRẠNG THÁI</th>
+            <th class="text-center" style="min-width: 140px; width: 140px;">THAO TÁC</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (svc.contracts().length === 0) {
+            <tr>
+              <td colspan="8" class="empty-cell">Chưa có văn bản nào. Bấm "Soạn văn bản" để tạo văn bản mới.</td>
+            </tr>
+          }
+          @for (c of svc.contracts(); track c.id) {
+            <tr>
+              <td class="font-mono font-bold text-blue">{{ c.contractCode }}</td>
+              <td class="font-semibold">{{ c.title }}</td>
+              <td>
+                <span class="status-badge doc-badge">{{ c.templateName || c.templateCode || 'Hợp đồng' }}</span>
+              </td>
+              <td>
+                <div class="font-medium">{{ c.partnerName }}</div>
+                @if (c.partnerTaxCode && c.partnerTaxCode !== 'THEO_DU_TOAN') {
+                  <div class="text-slate text-xs">MST: {{ c.partnerTaxCode }}</div>
+                }
+              </td>
+              <td class="text-right font-mono font-bold">{{ c.contractValue ? (c.contractValue | number:'1.0-0') + ' đ' : '—' }}</td>
+              <td class="font-mono text-xs">{{ c.signDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <span class="badge-status-pill success">
+                  <ng-icon [svg]="checkCircleIcon" size="12"></ng-icon>
+                  {{ c.status }}
+                </span>
+              </td>
+              <td class="text-center">
+                <div class="contract-action-group">
+                  <button class="btn-table-action blue" (click)="downloadDoc.emit(c)" title="Tải tệp Word (.doc)">
+                    <ng-icon [svg]="downloadIcon" size="13"></ng-icon>
+                    <span>Tải .doc</span>
+                  </button>
+                  <button class="btn-table-action red" (click)="deleteDoc.emit(c.id)" title="Xóa">
+                    <ng-icon [svg]="trashIcon" size="13"></ng-icon>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

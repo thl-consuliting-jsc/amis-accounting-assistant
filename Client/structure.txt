@@ -1,0 +1,81 @@
+src/
+|
++-- app/
+|   |
+|   +-- core/
+|   |   +-- guards/
+|   |   +-- interceptors/
+|   |   +-- services/
+|   |   +-- layouts/
+|   |   +-- constants/
+|   |   +-- models/
+|   |   +-- core.config.ts
+|   |
+|   +-- shared/
+|   |   +-- components/
+|   |   +-- directives/
+|   |   +-- pipes/
+|   |   +-- ui/
+|   |   +-- utils/
+|   |   +-- shared.module.ts
+|   |
+|   +-- features/
+|   |   |
+|   |   +-- auth/
+|   |   |   +-- pages/
+|   |   |   +-- components/
+|   |   |   +-- services/
+|   |   |   +-- models/
+|   |   |   +-- store/
+|   |   |   +-- auth.routes.ts
+|   |   |   +-- auth.service.ts
+|   |   |
+|   |   +-- chat/
+|   |   |   +-- components/
+|   |   |   |   +-- chat-room-list/
+|   |   |   |       +-- chat-room-list.component.html
+|   |   |   |       +-- chat-room-list.component.scss
+|   |   |   |       +-- chat-room-list.component.ts
+|   |   |   |       +-- index.ts
+|   |   |   +-- models/
+|   |   |   +-- services/
+|   |   |   +-- store/
+|   |   |
+|   |   +-- dashboard/
+|   |   |   +-- pages/
+|   |   |   +-- components/
+|   |   |   +-- services/
+|   |   |   +-- store/
+|   |   |   +-- dashboard.routes.ts
+|   |   |
+|   |   +-- user/
+|   |       +-- pages/
+|   |       +-- components/
+|   |       +-- services/
+|   |       +-- models/
+|   |       +-- user.routes.ts
+|   |
+|   +-- app.routes.ts
+|   +-- app.config.ts
+|   +-- app.component.ts
+|
++-- assets/
+|   +-- images/
+|   +-- icons/
+|   +-- i18n/
+|
++-- environments/
+|   +-- environment.ts
+|   +-- environment.prod.ts
+|
++-- styles/
+|   +-- abstracts/
+|   +-- base/
+|   +-- components/
+|   +-- layouts/
+|   +-- themes/
+|   +-- main.scss
+|
++-- index.html
++-- main.ts
++-- styles.scss

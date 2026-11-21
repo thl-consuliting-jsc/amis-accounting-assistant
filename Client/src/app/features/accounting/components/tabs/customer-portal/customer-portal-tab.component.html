@@ -1,0 +1,193 @@
+<div class="page-view-generic">
+  <!-- Subtabs Navigation -->
+  <div class="subtabs-bar">
+    <button class="subtab-btn" [class.active]="customerPortalTab() === 'cong-no'" (click)="customerPortalTab.set('cong-no')">
+      <ng-icon [svg]="bankIcon" size="16"></ng-icon>
+      <span>1. Công nợ Khách hàng & NCC</span>
+    </button>
+    <button class="subtab-btn" [class.active]="customerPortalTab() === 'ton-kho'" (click)="customerPortalTab.set('ton-kho')">
+      <ng-icon [svg]="archiveIcon" size="16"></ng-icon>
+      <span>2. Tồn kho Hàng hóa</span>
+    </button>
+    <button class="subtab-btn" [class.active]="customerPortalTab() === 'tro-ly'" (click)="customerPortalTab.set('tro-ly')">
+      <ng-icon [svg]="usersIcon" size="16"></ng-icon>
+      <span>3. Hỏi đáp Trợ lý AI</span>
+    </button>
+  </div>
+
+  <!-- TAB 1: CÔNG NỢ KHÁCH HÀNG -->
+  @if (customerPortalTab() === 'cong-no') {
+    <div class="content-section">
+      <div class="section-title-bar">
+        <span class="section-heading">Tổng hợp công nợ</span>
+        <span class="section-count">{{ svc.customerDebts().length }}</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="amis-table">
+          <thead>
+            <tr>
+              <th style="width: 130px;">MÃ ĐỐI TƯỢNG</th>
+              <th>TÊN KHÁCH HÀNG / NHÀ CUNG CẤP</th>
+              <th style="width: 130px;">MST</th>
+              <th style="width: 120px;">LOẠI</th>
+              <th class="text-right" style="width: 140px;">DƯ NỢ ĐẦU KỲ</th>
+              <th class="text-right" style="width: 140px;">PS NỢ (MUA HÀNG)</th>
+              <th class="text-right" style="width: 140px;">PS CÓ (THANH TOÁN)</th>
+              <th class="text-right" style="width: 150px;">DƯ NỢ CUỐI KỲ</th>
+              <th style="width: 120px;">TRẠNG THÁI</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (svc.customerDebts().length === 0) {
+              <tr>
+                <td colspan="9" class="empty-cell">Đang tải dữ liệu công nợ...</td>
+              </tr>
+            }
+            @for (d of svc.customerDebts(); track d.customerCode) {
+              <tr>
+                <td class="font-mono font-bold text-blue">{{ d.customerCode }}</td>
+                <td class="font-semibold">{{ d.customerName }}</td>
+                <td class="font-mono text-xs">{{ d.taxCode || '—' }}</td>
+                <td>
+                  <span class="badge-tag" [class.blue]="(d.debtType || '').includes('Phải thu')" [class.amber]="(d.debtType || '').includes('Phải trả')">
+                    {{ d.debtType || 'Phải thu KH' }}
+                  </span>
+                </td>
+                <td class="text-right font-mono">{{ (d.openingBalance ?? d.beginningDebt ?? 0) | number:'1.0-0' }} đ</td>
+                <td class="text-right font-mono text-rose">+{{ (d.debitAmount ?? d.increaseDebt ?? 0) | number:'1.0-0' }} đ</td>
+                <td class="text-right font-mono text-emerald">-{{ (d.creditAmount ?? d.decreaseDebt ?? 0) | number:'1.0-0' }} đ</td>
+                <td class="text-right font-mono font-bold text-blue">{{ (d.closingBalance ?? d.endingDebt ?? 0) | number:'1.0-0' }} đ</td>
+                <td>
+                  <span class="badge-status-pill" [class.success]="d.status === 'Trong hạn'" [class.warning]="d.status !== 'Trong hạn'">
+                    {{ d.status }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+  <!-- TAB 2: TỒN KHO HÀNG HÓA -->
+  @if (customerPortalTab() === 'ton-kho') {
+    <div class="content-section">
+      <div class="section-title-bar">
+        <span class="section-heading">Tồn kho hàng hóa</span>
+        <span class="section-count">{{ svc.inventoryItems().length }}</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="amis-table">
+          <thead>
+            <tr>
+              <th style="width: 140px;">MÃ HÀNG HÓA</th>
+              <th>TÊN VẬT TƯ / SẢN PHẨM</th>
+              <th style="width: 80px;">ĐVT</th>
+              <th style="width: 150px;">KHO HÀNG</th>
+              <th class="text-right" style="width: 100px;">TỒN ĐẦU</th>
+              <th class="text-right" style="width: 100px;">NHẬP</th>
+              <th class="text-right" style="width: 100px;">XUẤT</th>
+              <th class="text-right" style="width: 110px;">TỒN CUỐI</th>
+              <th class="text-right" style="width: 130px;">ĐƠN GIÁ BQ</th>
+              <th class="text-right" style="width: 140px;">GIÁ TRỊ TỒN KHO</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (svc.inventoryItems().length === 0) {
+              <tr>
+                <td colspan="10" class="empty-cell">Đang tải dữ liệu tồn kho...</td>
+              </tr>
+            }
+            @for (item of svc.inventoryItems(); track item.itemCode) {
+              <tr>
+                <td class="font-mono font-bold text-blue">{{ item.itemCode }}</td>
+                <td class="font-semibold">{{ item.itemName }}</td>
+                <td>{{ item.unit }}</td>
+                <td><span class="badge-tag gray">{{ item.warehouse }}</span></td>
+                <td class="text-right font-mono">{{ (item.openingQuantity ?? 0) | number }}</td>
+                <td class="text-right font-mono text-emerald">+{{ (item.inQuantity ?? 0) | number }}</td>
+                <td class="text-right font-mono text-rose">-{{ (item.outQuantity ?? 0) | number }}</td>
+                <td class="text-right font-mono font-bold text-blue">{{ (item.closingQuantity ?? item.quantity ?? 0) | number }}</td>
+                <td class="text-right font-mono">{{ item.unitPrice | number:'1.0-0' }} đ</td>
+                <td class="text-right font-mono font-bold text-emerald">{{ (item.totalValue || ((item.closingQuantity ?? item.quantity ?? 0) * item.unitPrice)) | number:'1.0-0' }} đ</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+
+  <!-- TAB 3: TRỢ LÝ AI TRỰC TUYẾN -->
+  @if (customerPortalTab() === 'tro-ly') {
+    <div class="customer-ai-chat-card">
+      <div class="chat-header">
+        <div class="chat-header-info">
+          <div class="ai-avatar-pulse">
+            <ng-icon [svg]="usersIcon" size="20"></ng-icon>
+          </div>
+          <div>
+            <h4 class="chat-header-title">Trợ lý Kế toán & Giao tiếp Khách hàng Thông minh</h4>
+            <span class="chat-header-sub">Hỏi đáp trực tiếp số liệu Tồn kho, Công nợ khách hàng, Hóa đơn chứng từ</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Prompt shortcut suggestions -->
+      <div class="chat-suggestions-bar">
+        <span class="suggestions-label">Gợi ý nhanh:</span>
+        <button class="suggestion-chip" (click)="askSampleQuestion('COROCHTI hiện tại còn nợ bao nhiêu tiền?')">
+          💰 COROCHTI nợ bao nhiêu?
+        </button>
+        <button class="suggestion-chip" (click)="askSampleQuestion('Kiểm tra tồn kho bàn phím cơ Logitech K845')">
+          📦 Tồn kho bàn phím Logitech K845
+        </button>
+        <button class="suggestion-chip" (click)="askSampleQuestion('Kiểm tra tổng công nợ phải thu của toàn bộ khách hàng')">
+          📊 Tổng công nợ phải thu
+        </button>
+        <button class="suggestion-chip" (click)="askSampleQuestion('Còn bao nhiêu chiếc RAM Kingston Fury 16GB trong kho?')">
+          🔍 Tồn kho RAM Kingston
+        </button>
+      </div>
+
+      <!-- Message History Feed -->
+      <div class="chat-messages-scroll">
+        @for (msg of svc.customerChatMessages(); track $index) {
+          <div class="chat-message-row" [class.user]="msg.sender === 'user'" [class.assistant]="msg.sender === 'assistant'">
+            <div class="chat-bubble">
+              <div class="bubble-sender">{{ msg.sender === 'user' ? 'Bạn' : 'Trợ lý Kế toán AI' }}</div>
+              <div class="bubble-content" [innerHTML]="msg.text | slice:0"></div>
+              <div class="bubble-time">{{ msg.time | date:'HH:mm:ss' }}</div>
+            </div>
+          </div>
+        }
+        @if (isSendingQuery()) {
+          <div class="chat-message-row assistant">
+            <div class="chat-bubble loading">
+              <span>Đang tra cứu dữ liệu kế toán...</span>
+            </div>
+          </div>
+        }
+      </div>
+
+      <!-- Input Area -->
+      <div class="chat-input-bar">
+        <input 
+          type="text" 
+          class="chat-text-input" 
+          placeholder="Nhập câu hỏi (Ví dụ: Khách hàng XYZ còn nợ bao nhiêu? Tồn kho mã SP01?)..."
+          [ngModel]="customerChatInput()"
+          (ngModelChange)="customerChatInput.set($event)"
+          (keyup.enter)="sendCustomerMessage()"
+          [disabled]="isSendingQuery()"
+        />
+        <button class="btn-chat-send" (click)="sendCustomerMessage()" [disabled]="isSendingQuery() || !customerChatInput().trim()">
+          <span>Gửi câu hỏi</span>
+        </button>
+      </div>
+    </div>
+  }
+</div>

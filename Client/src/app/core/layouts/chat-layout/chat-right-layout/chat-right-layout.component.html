@@ -1,0 +1,246 @@
+<section class="chat-panel" aria-label="Vung hien thi hoi thoai chat">
+    @if (activeConversation(); as conversation) {
+        <header class="chat-header">
+            @if (showBackButton()) {
+                <button class="icon-button mobile-back-button" type="button" aria-label="Quay lai danh sach chat" (click)="backRequested.emit()">
+                    <ng-icon [svg]="backIcon" size="21"></ng-icon>
+                </button>
+            }
+            <div class="chat-title">
+        <button
+                type="button"
+                class="avatar avatar-button"
+                [class.is-online]="isDirectConversation(conversation) && conversation.online"
+                [attr.aria-label]="'Xem thong tin ' + conversation.name"
+                (click)="openConversationProfile(conversation, $event)"
+        >
+          @if (conversationAvatarUrl(conversation)) {
+              <img [src]="conversationAvatarUrl(conversation)" [alt]="conversation.name"/>
+          } @else {
+              <span>{{ conversationInitials(conversation) || "AM" }}</span>
+          }
+        </button>
+                <div>
+                    <strong>{{ conversation.name }}</strong>
+                    <span>{{ conversationSubtitle(conversation) }}</span>
+                </div>
+            </div>
+
+            <button class="icon-button" type="button" aria-label="Tuy chon hoi thoai">
+                <ng-icon [svg]="moreIcon" size="20"></ng-icon>
+            </button>
+        </header>
+
+        <div #messageList class="message-list app-scrollbar" aria-label="Noi dung hoi thoai" (scroll)="onMessageListScroll($event)">
+            @if (hasMore()) {
+                <div class="load-more-indicator">
+                    <span>Loading more...</span>
+                </div>
+            }
+            @for (message of messages(); track message.id) {
+                <article
+                    class="message-row"
+                    [attr.data-message-id]="message.id"
+                    [class.is-own]="isOwnMessage(message)"
+                    [class.is-selected]="message.selected"
+                    [class.is-marked]="message.marked"
+                    [class.is-highlighted]="highlightedMessageId() === message.id"
+                    [class.is-sticker]="isStickerMessage(message)"
+                >
+                    @if (!isOwnMessage(message)) {
+                        <button
+                                type="button"
+                                class="message-avatar message-avatar-button"
+                                [attr.aria-label]="'Xem thong tin ' + (message.senderName || conversation.name)"
+                                (click)="openMessageProfile(conversation, message, $event)"
+                        >
+              @if (senderAvatarUrl(message)) {
+                  <img [src]="senderAvatarUrl(message)" [alt]="message.senderName || conversation.name"/>
+              } @else {
+                  <span>{{ senderInitials(message) || "AM" }}</span>
+              }
+            </button>
+                    }
+                    <div class="message-column" [class.is-own]="isOwnMessage(message)">
+                        <div class="message-bubble" (contextmenu)="openMessageContextMenu($event, message)">
+                            <button
+                                class="message-react-button"
+                                type="button"
+                                aria-label="Them bieu cam cho tin nhan"
+                                [class.is-active]="reactionPicker()?.messageId === message.id"
+                                (click)="openReactionPicker($event, message)"
+                            >
+                                <ng-icon [svg]="reactIcon" size="16"></ng-icon>
+                            </button>
+                        @if (!isOwnMessage(message) && isGroupConversation(conversation) && message.senderName) {
+                            <strong class="message-sender">{{ message.senderName }}</strong>
+                        }
+                        @if (shouldShowReplyQuote(message)) {
+                            <button
+                                class="message-reply-quote"
+                                [class.is-sticker-reply]="isReplyToSticker(message)"
+                                type="button"
+                                (click)="scrollToReplyTarget($event, message.replyToMessageId)"
+                            >
+                                <strong>{{ message.replyToSenderName || "Tin nhan" }}</strong>
+                                @if (isReplyToSticker(message)) {
+                                    <span class="message-reply-sticker">
+                                        @if (replyStickerUrl(message)) {
+                                            <img [src]="replyStickerUrl(message)" alt="Sticker duoc tra loi"/>
+                                        }
+                                        <span>Sticker</span>
+                                    </span>
+                                } @else {
+                                    <span [innerHTML]="message.replyToContent | emojiHtml"></span>
+                                }
+                            </button>
+                        }
+                        @if (isStickerMessage(message)) {
+                            <img class="message-sticker" [src]="stickerUrl(message)" alt="Sticker"/>
+                        } @else {
+                            <p [innerHTML]="message.content | emojiHtml"></p>
+                        }
+                        <footer>
+                            @if (message.marked) {
+                                <ng-icon [svg]="markIcon" size="13"></ng-icon>
+                            }
+                            <time>{{ message.time }}</time>
+                            @if (isOwnMessage(message) && message.status) {
+                                <span>{{ message.status === "seen" ? "Đã xem" : "Đã gửi" }}</span>
+                            }
+                        </footer>
+                        </div>
+                        @if (message.reactions.length > 0) {
+                            <div class="message-reactions" aria-label="Bieu cam tin nhan">
+                                @for (reaction of message.reactions; track reaction.shortcode) {
+                                    <button
+                                        class="message-reaction-chip"
+                                        type="button"
+                                        [class.is-active]="reaction.reactedByMe"
+                                        [attr.aria-label]="reaction.shortcode"
+                                        (click)="toggleMessageReaction(message.id, reaction.shortcode)"
+                                    >
+                                        <span class="message-reaction-emoji" [innerHTML]="reaction.shortcode | emojiHtml"></span>
+                                        @if (reaction.count > 1) {
+                                            <span class="message-reaction-count">{{ reaction.count }}</span>
+                                        }
+                                    </button>
+                                }
+                            </div>
+                        }
+                    </div>
+                </article>
+            } @empty {
+                <div class="empty-conversation">
+                    <p>Gửi lời chào tới đối phương.</p>
+                </div>
+            }
+
+            @if (reactionPicker(); as picker) {
+                <app-message-reaction-picker
+                    class="message-reaction-popover"
+                    data-allow-focus
+                    [style.left.px]="picker.x"
+                    [style.top.px]="picker.y"
+                    (emojiSelected)="applyMessageReaction($event)"
+                ></app-message-reaction-picker>
+            }
+
+            <app-message-context-menu
+                [menuPosition]="messageContextMenu()"
+                (messageCopied)="copyMessageContent($event)"
+                (messageAction)="handleMessageAction($event)"
+                (menuClosed)="messageContextMenu.set(null)"
+            ></app-message-context-menu>
+
+            <app-message-box
+                [open]="pendingDeleteMessage() !== null"
+                title="Xác nhận xóa tin nhắn"
+                message="Bạn có chắc chắn muốn xóa tin nhắn này không?"
+                confirmLabel="Xóa tin nhắn"
+                cancelLabel="Hủy"
+                variant="danger"
+                (confirmed)="confirmDeleteMessage()"
+                (cancelled)="cancelDeleteMessage()"
+            ></app-message-box>
+
+            @if (hasNewer()) {
+                <button
+                    class="jump-to-latest-button"
+                    type="button"
+                    aria-label="Về tin nhắn mới nhất"
+                    (click)="jumpToLatest()"
+                >
+                    ↓ Tin nhắn mới nhất
+                </button>
+            }
+        </div>
+
+        <footer class="composer" aria-label="Soan tin nhan">
+            @if (isEmojiPickerOpen()) {
+                <app-emoji-picker
+                    class="emoji-popover"
+                    data-allow-focus
+                    (emojiSelected)="selectEmoji($event)"
+                    (stickerSelected)="selectSticker($event)"
+                ></app-emoji-picker>
+            }
+            @if (replyToMessage(); as replyMessage) {
+                <div class="reply-preview">
+                    <div class="reply-preview-content" [class.is-sticker-reply]="isStickerMessage(replyMessage)">
+                        <strong>Trả lời {{ replyAuthorLabel(replyMessage) }}</strong>
+                        @if (isStickerMessage(replyMessage)) {
+                            <span class="reply-preview-sticker">
+                                <img [src]="stickerUrl(replyMessage)" alt="Sticker dang tra loi"/>
+                                <span>Sticker</span>
+                            </span>
+                        } @else {
+                            <span [innerHTML]="messagePreviewText(replyMessage) | emojiHtml"></span>
+                        }
+                    </div>
+                    <button class="icon-button" type="button" aria-label="Bo tra loi" (click)="clearReply()">
+                        <ng-icon [svg]="closeIcon" size="17"></ng-icon>
+                    </button>
+                </div>
+            }
+            <button class="icon-button" type="button" aria-label="Dinh kem tep">
+                <ng-icon [svg]="paperclipIcon" size="20"></ng-icon>
+            </button>
+            <label class="composer-input">
+        <textarea
+            #composerInput
+            class="app-scrollbar"
+            rows="1"
+            placeholder="Nhap tin nhan..."
+            [value]="draftMessage()"
+            (focus)="handleComposerFocus()"
+            (blur)="handleComposerBlur()"
+            (input)="handleComposerInput($event)"
+            (keydown)="handleComposerKeydown($event)"
+        ></textarea>
+            </label>
+            <button
+                    class="icon-button emoji-toggle"
+                    type="button"
+                    aria-label="Bieu cam"
+                    [class.is-active]="isEmojiPickerOpen()"
+                    (click)="toggleEmojiPicker($event)"
+            >
+                <ng-icon [svg]="smileIcon" size="20"></ng-icon>
+            </button>
+            <button
+                    class="send-button"
+                    type="button"
+                    aria-label="Gui tin nhan"
+                    [disabled]="!canSendMessage()"
+                    (click)="sendMessage()"
+            >
+                <ng-icon [svg]="sendIcon" size="19"></ng-icon>
+            </button>
+        </footer>
+    } @else {
+        <div class="empty-panel">
+            <p>Chọn một cuộc hội thoại để bắt đầu.</p>
+        </div>
+    }
+</section>

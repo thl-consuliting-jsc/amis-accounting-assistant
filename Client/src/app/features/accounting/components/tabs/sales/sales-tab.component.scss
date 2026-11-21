@@ -1,0 +1,149 @@
+// =============================================================================
+// SALES TAB (BÁN HÀNG) - STYLES
+// =============================================================================
+
+.page-view-generic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.content-card-box {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+}
+
+.card-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-box-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+.card-box-hint {
+  font-size: 12.5px;
+  color: #64748B;
+}
+
+.btn-create-rule {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.amis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  background: #FFFFFF;
+
+  thead th {
+    background: #F8FAFC;
+    color: #475569;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 11px 14px;
+    border-bottom: 1px solid #E2E8F0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #F1F5F9;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: #F8FAFC;
+    }
+  }
+
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: middle;
+    color: #1E293B;
+  }
+}
+
+.font-mono { font-family: monospace; }
+.font-bold { font-weight: 700; }
+.text-ink { color: #0F172A; }
+.text-mute { color: #64748B; }
+.text-slate { color: #475569; }
+.text-green { color: #16A34A; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.badge-sub {
+  display: inline-block;
+  font-size: 10.5px;
+  color: #64748B;
+  background: #F1F5F9;
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-top: 2px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2.5px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.btn-table-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+
+  &.green {
+    background: #ECFDF5;
+    color: #15803D;
+    border-color: #A7F3D0;
+    &:hover { background: #D1FAE5; }
+  }
+}

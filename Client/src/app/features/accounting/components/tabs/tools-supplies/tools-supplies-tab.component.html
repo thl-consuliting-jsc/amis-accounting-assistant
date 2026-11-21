@@ -1,0 +1,66 @@
+<div class="page-view-generic">
+  <div class="ready-banner">
+    <div class="banner-icon-circle">
+      <ng-icon [svg]="wrenchIcon" size="20"></ng-icon>
+    </div>
+    <div class="banner-body">
+      <h3 class="banner-title">Cách nhận diện CCDC</h3>
+      <p class="banner-desc">
+        Dòng hàng hóa trên hóa đơn mua vào có tên khớp từ khóa "ccdc_tu_khoa" trong quy tắc (bàn phím, chuột, màn hình, laptop, máy in…) sẽ hạch toán vào TK 242 và đưa vào tệp 5 để ghi tăng CCDC.
+      </p>
+    </div>
+  </div>
+
+  <div class="content-card-box">
+    <div class="card-box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h4 class="card-box-title">CCDC ghi tăng trong kỳ</h4>
+        <span class="card-box-hint">Dữ liệu từ CSDL – hiển thị {{ svc.ccdcList().length }} công cụ dụng cụ</span>
+      </div>
+      <button class="btn-create-rule" (click)="createCcdc.emit()">
+        <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+        <span>Thêm CCDC</span>
+      </button>
+    </div>
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 140px;">Mã CCDC</th>
+            <th>Tên công cụ dụng cụ</th>
+            <th style="width: 140px; text-align: right;">Nguyên giá</th>
+            <th style="width: 110px; text-align: center;">Số kỳ phân bổ</th>
+            <th style="width: 180px;">Nguồn hóa đơn</th>
+            <th style="width: 80px; text-align: center;">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (c of svc.ccdcList(); track c.id) {
+            <tr>
+              <td class="font-bold text-ink">{{ c.code }}</td>
+              <td class="font-semibold">{{ c.name }}</td>
+              <td class="text-right font-bold text-ink">{{ c.originalPrice | number:'1.0-0' }} đ</td>
+              <td style="text-align: center;">{{ c.allocationPeriods }} tháng</td>
+              <td class="text-mute">{{ c.invoiceRef }}</td>
+              <td style="text-align: center;">
+                <button class="btn-icon-action" (click)="editCcdc.emit(c)" title="Sửa">
+                  <ng-icon [svg]="editIcon" size="14"></ng-icon>
+                </button>
+                <button class="btn-icon-action text-red" (click)="deleteCcdc.emit(c.id)" title="Xóa">
+                  <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+                </button>
+              </td>
+            </tr>
+          }
+          @if (svc.ccdcList().length === 0) {
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 24px; color: #94a3b8;">
+                Chưa có CCDC nào trong kỳ. Bấm <strong>"Thêm CCDC"</strong> để tạo mới.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

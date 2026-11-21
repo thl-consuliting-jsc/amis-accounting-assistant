@@ -1,0 +1,225 @@
+<div class="page-view-tiengui">
+  <!-- Control filters -->
+  <div class="tiengui-top-controls">
+    <div class="filter-tabs-row">
+      <div class="bank-pill-group">
+        <button class="pill-btn" [class.active]="bankFilter() === 'ALL'" (click)="bankFilter.set('ALL')">Tất cả ngân hàng</button>
+        <button class="pill-btn" [class.active]="bankFilter() === 'MB'" (click)="bankFilter.set('MB')">MB Bank (19932568)</button>
+        <button class="pill-btn" [class.active]="bankFilter() === 'VP'" (click)="bankFilter.set('VP')">VPBank (011115419688)</button>
+        <button class="pill-btn" [class.active]="bankFilter() === 'TCB'" (click)="bankFilter.set('TCB')">Techcombank</button>
+      </div>
+
+      <div class="status-pill-group">
+        <button class="pill-btn-small" [class.active]="statusFilter() === 'ALL'" (click)="statusFilter.set('ALL')">
+          Tất cả ({{ svc.transactions().length }})
+        </button>
+        <button class="pill-btn-small" [class.active]="statusFilter() === 'Matched'" (click)="statusFilter.set('Matched')">
+          Đã khớp ({{ svc.matchedTransactionsCount() }})
+        </button>
+        <button class="pill-btn-small warning" [class.active]="statusFilter() === 'Unclassified'" (click)="statusFilter.set('Unclassified')">
+          Cần rà soát ({{ svc.unclassifiedTransactionsCount() }})
+        </button>
+      </div>
+    </div>
+
+    <div class="chk-row" style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-top: 10px;">
+      <label class="chk-container">
+        <input type="checkbox" [ngModel]="showAllVouchers()" (ngModelChange)="showAllVouchers.set($event)">
+        <span class="chk-label">Hiện tất cả chứng từ (bỏ tích = chỉ các dòng cần xác nhận)</span>
+      </label>
+
+      <div style="display: flex; gap: 8px;">
+        <button class="btn-create-rule" style="background: #0284c7;" (click)="createBankAccount.emit()" title="Thêm tài khoản ngân hàng mới">
+          <ng-icon [svg]="plusIcon" size="13"></ng-icon>
+          <span>Thêm TK Ngân hàng</span>
+        </button>
+        <button class="btn-create-rule" (click)="createTransaction.emit()" title="Thêm chứng từ tiền gửi">
+          <ng-icon [svg]="plusIcon" size="13"></ng-icon>
+          <span>Thêm giao dịch</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Split Layout: Table (Left) + Detail Pane (Right) -->
+  <div class="split-tiengui-layout">
+    <!-- Left Data Table -->
+    <div class="tiengui-table-card">
+      <div class="card-box-header">
+        <h4 class="card-box-title">Chứng từ tiền gửi – bấm một dòng để xem chi tiết</h4>
+        <span class="card-box-hint">Hiển thị {{ filteredTransactions().length }} giao dịch</span>
+      </div>
+
+      <div class="table-scroll-wrapper">
+        <table class="amis-table">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Số CT</th>
+              <th style="width: 95px;">Ngày</th>
+              <th style="width: 70px;">Loại</th>
+              <th style="width: 130px; text-align: right;">Số tiền</th>
+              <th style="width: 110px;">Mã đối tượng</th>
+              <th style="width: 75px;">TK</th>
+              <th>Diễn giải hạch toán / Ghi chú</th>
+              <th style="width: 95px; text-align: center;">Trạng thái</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (t of filteredTransactions(); track t.id) {
+              <tr 
+                class="clickable-row" 
+                [class.selected]="selectedTransaction()?.id === t.id"
+                (click)="selectTransaction(t)"
+              >
+                <td class="font-bold text-ink">{{ t.voucherNo || t.refNo || '–' }}</td>
+                <td class="text-mute">{{ t.transactionDate | date:'dd/MM/yyyy' }}</td>
+                <td>
+                  <span class="direction-badge" [class.in]="t.direction === 'IN'">
+                    {{ t.direction === 'IN' ? 'Thu' : 'Chi' }}
+                  </span>
+                </td>
+                <td class="font-bold text-right" [class.text-green]="t.direction === 'IN'" [class.text-ink]="t.direction === 'OUT'">
+                  {{ t.amount | number:'1.0-0' }} đ
+                </td>
+                <td class="partner-cell" [class.missing]="t.partnerCode === 'KR' || !t.partnerCode">
+                  {{ t.partnerCode || 'KR' }}
+                </td>
+                <td class="text-slate">{{ t.direction === 'IN' ? t.creditAccount : t.debitAccount }}</td>
+                <td class="note-cell">
+                  <div class="main-desc">{{ t.finalDescription || t.description }}</div>
+                  @if (t.notes) {
+                    <div class="warn-note">⚠ {{ t.notes }}</div>
+                  }
+                </td>
+                <td style="text-align: center;">
+                  <span class="status-dot-badge" [class.matched]="t.status === 'Matched'">
+                    {{ t.status === 'Matched' ? 'Khớp' : 'Rà soát' }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Right Detail Pane -->
+    <div class="tiengui-detail-card">
+      <div class="card-box-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <h4 class="card-box-title">Chi tiết chứng từ</h4>
+        @if (selectedTransaction(); as sel) {
+          <div style="display: flex; gap: 6px;">
+            <button class="btn-icon-action" (click)="editTransaction.emit(sel)" title="Sửa giao dịch">
+              <ng-icon [svg]="editIcon" size="14"></ng-icon>
+            </button>
+            <button class="btn-icon-action text-red" (click)="deleteTx(sel.id)" title="Xóa giao dịch">
+              <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+            </button>
+          </div>
+        }
+      </div>
+
+      @if (selectedTransaction(); as sel) {
+        <div class="detail-body">
+          <div class="detail-item-big">
+            <span class="detail-lbl">SỐ CHỨNG TỪ</span>
+            <span class="detail-val-big">{{ sel.voucherNo || sel.refNo || '–' }} • {{ sel.direction === 'IN' ? 'Thu' : 'Chi' }} • {{ sel.transactionDate | date:'dd/MM/yyyy' }}</span>
+          </div>
+
+          <div class="detail-item-big">
+            <span class="detail-lbl">SỐ TIỀN</span>
+            <span class="detail-val-amount" [class.in]="sel.direction === 'IN'">
+              {{ sel.amount | number:'1.0-0' }} đ
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">ĐỊNH KHOẢN</span>
+            <span class="detail-val font-semibold">
+              @if (sel.direction === 'IN') {
+                Nợ {{ sel.debitAccount || '1121' }} / Có {{ sel.creditAccount || '–' }}
+              } @else {
+                Nợ {{ sel.debitAccount || '–' }} / Có {{ sel.creditAccount || '1121' }}
+              }
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">MÃ ĐỐI TƯỢNG AMIS</span>
+            <span class="detail-val text-blue font-bold">
+              {{ sel.partnerCode || 'KR (Chưa rõ)' }} – {{ sel.partnerName || 'Chưa định danh' }}
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">DIỄN GIẢI HẠCH TOÁN</span>
+            <span class="detail-val">{{ sel.finalDescription || sel.description }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">NỘI DUNG GỐC TRÊN SAO KÊ</span>
+            <span class="detail-val text-mute">{{ sel.description }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">SỐ BÚT TOÁN (FT)</span>
+            <span class="detail-val text-mute">{{ sel.refNo || '–' }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-lbl">TÊN ĐỐI ỨNG TRÊN SAO KÊ</span>
+            <span class="detail-val text-mute">{{ sel.partnerNameRaw || '–' }}</span>
+          </div>
+
+          @if (sel.notes) {
+            <div class="confirm-warning-box">
+              <div class="warn-head">VIỆC CẦN CHỊ XÁC NHẬN</div>
+              <div class="warn-body">{{ sel.notes }}</div>
+            </div>
+          }
+
+          <!-- Box: Khai mã đối tượng cho đối tác này -->
+          <div class="partner-alias-box">
+            <div class="alias-header">KHAI MÃ ĐỐI TƯỢNG CHO ĐỐI TÁC NÀY</div>
+            <div class="alias-target-name">
+              "{{ sel.partnerNameRaw || sel.description }}"
+            </div>
+
+            <div class="alias-input-row">
+              <input 
+                type="text" 
+                class="alias-input" 
+                placeholder="VD: NCC00016, KH00002, NV000012"
+                [ngModel]="aliasPartnerCode()"
+                (ngModelChange)="aliasPartnerCode.set($event)"
+              />
+            </div>
+
+            <div class="alias-btn-row">
+              <button class="btn-suggest-code" (click)="suggestNewPartnerCode()">
+                Chưa có trên AMIS – tạo mã mới
+              </button>
+              <button class="btn-save-alias" (click)="savePartnerAlias()">
+                Lưu mã – các tháng sau tự nhận
+              </button>
+            </div>
+
+            @if (aliasNoticeMessage()) {
+              <div class="alias-notice" [class]="aliasNoticeType()">
+                {{ aliasNoticeMessage() }}
+              </div>
+            } @else {
+              <div class="alias-help">
+                Gõ đúng mã đang có trên AMIS rồi bấm Lưu. Phần mềm ghi vào tệp "ANH XA DOI TUONG.xlsx" trong thư mục 5. DU LIEU – lần chạy sau và các tháng sau tự nhận mã này.
+              </div>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="empty-detail-state">
+          <p>Bấm vào một dòng bên trái để xem mã đối tượng, tài khoản hạch toán và nội dung gốc trên sao kê.</p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,90 @@
+<div class="page-view-generic">
+  <div class="content-card-box">
+    <div class="card-box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h4 class="card-box-title">Danh mục đối tượng (Khách hàng, Nhà cung cấp, Nhân viên)</h4>
+        <span class="card-box-hint">Dữ liệu kết nối trực tiếp CSDL SQL Server – hỗ trợ tự động nhận diện và xuất AMIS</span>
+      </div>
+      <button class="btn-create-rule" (click)="createPartner.emit()">
+        <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+        <span>Thêm đối tượng</span>
+      </button>
+    </div>
+
+    <!-- Toolbar: Search & Filter Tabs -->
+    <div class="rules-modal-toolbar" style="margin: 12px 0 16px 0; padding: 0;">
+      <div class="status-pill-group">
+        <button class="pill-btn-small" [class.active]="partnerTypeFilter() === 'ALL'" (click)="partnerTypeFilter.set('ALL')">
+          Tất cả ({{ svc.partners().length }})
+        </button>
+        <button class="pill-btn-small" [class.active]="partnerTypeFilter() === 'KH'" (click)="partnerTypeFilter.set('KH')">
+          Khách hàng
+        </button>
+        <button class="pill-btn-small" [class.active]="partnerTypeFilter() === 'NCC'" (click)="partnerTypeFilter.set('NCC')">
+          Nhà cung cấp
+        </button>
+        <button class="pill-btn-small" [class.active]="partnerTypeFilter() === 'NV'" (click)="partnerTypeFilter.set('NV')">
+          Nhân viên
+        </button>
+      </div>
+
+      <div class="search-input-box" style="margin-left: auto;">
+        <ng-icon [svg]="searchIcon" size="16"></ng-icon>
+        <input 
+          type="text" 
+          class="search-field" 
+          placeholder="Tìm theo mã, tên hoặc MST đối tượng..."
+          [ngModel]="partnerSearchTerm()"
+          (ngModelChange)="partnerSearchTerm.set($event)"
+        />
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 100px;">Loại</th>
+            <th style="width: 130px;">Mã đối tượng</th>
+            <th>Tên đối tượng</th>
+            <th style="width: 140px;">Mã số thuế</th>
+            <th style="width: 100px;">TK Nợ mặc định</th>
+            <th style="width: 100px;">TK Có mặc định</th>
+            <th style="width: 90px; text-align: center;">Thao tác</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (p of filteredPartners(); track p.id) {
+            <tr>
+              <td>
+                <span class="direction-badge" [class.in]="p.partnerType === 'KH'">
+                  {{ p.partnerType === 'KH' ? 'Khách hàng' : (p.partnerType === 'NCC' ? 'Nhà cung cấp' : 'Nhân viên') }}
+                </span>
+              </td>
+              <td class="text-blue font-bold">{{ p.partnerCode }}</td>
+              <td><strong>{{ p.partnerName }}</strong></td>
+              <td class="text-slate">{{ p.taxCode || '–' }}</td>
+              <td class="text-mute font-bold">{{ p.defaultDebitAccount || '–' }}</td>
+              <td class="text-mute font-bold">{{ p.defaultCreditAccount || '–' }}</td>
+              <td style="text-align: center;">
+                <button class="btn-icon-action" (click)="editPartner.emit(p)" title="Sửa">
+                  <ng-icon [svg]="editIcon" size="14"></ng-icon>
+                </button>
+                <button class="btn-icon-action text-red" (click)="deletePartner.emit(p.id)" title="Xóa">
+                  <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+                </button>
+              </td>
+            </tr>
+          }
+          @if (filteredPartners().length === 0) {
+            <tr>
+              <td colspan="7" style="text-align: center; padding: 24px; color: #94a3b8;">
+                Chưa có đối tượng nào. Bấm <strong>"Thêm đối tượng"</strong> để tạo mới.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

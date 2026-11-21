@@ -1,0 +1,105 @@
+<app-modal
+  [open]="open()"
+  [title]="modalTitle()"
+  [subtitle]="modalSubtitle()"
+  size="sm"
+  position="center"
+  (closed)="close()"
+>
+  <div class="profile-modal-content">
+    <div class="profile-hero">
+      <button
+        class="profile-avatar"
+        type="button"
+        [class.profile-avatar--editable]="isSelfProfile()"
+        [class.is-uploading]="isUploadingAvatar()"
+        [disabled]="!isSelfProfile() || isUploadingAvatar()"
+        [attr.aria-label]="isSelfProfile() ? 'Cap nhat avatar' : displayName()"
+        (click)="openAvatarPicker()"
+      >
+        @if (avatarUrl()) {
+          <img [src]="avatarUrl()" [alt]="displayName()" />
+        } @else {
+          <span>{{ initials() || "AM" }}</span>
+        }
+        @if (isSelfProfile()) {
+          <span class="profile-avatar__overlay" aria-hidden="true">
+            @if (isUploadingAvatar()) {
+              <span class="profile-avatar__spinner"></span>
+            } @else {
+              <ng-icon [svg]="cameraIcon" size="22"></ng-icon>
+              <span>Update photo</span>
+            }
+          </span>
+        }
+      </button>
+      <input
+        #avatarFileInput
+        class="profile-avatar-input"
+        type="file"
+        accept="image/*"
+        (change)="handleAvatarSelected($event)"
+      />
+      <p class="profile-username">&#64;{{ username() }}</p>
+      @if (avatarUploadError()) {
+        <p class="profile-avatar-error">{{ avatarUploadError() }}</p>
+      }
+    </div>
+
+    <dl class="profile-fields">
+      <div class="profile-field">
+        <dt>
+          <ng-icon [svg]="nameIcon" size="18"></ng-icon>
+          <span>Name</span>
+        </dt>
+        <dd>{{ displayName() }}</dd>
+      </div>
+
+      <div class="profile-field">
+        <dt>
+          <ng-icon [svg]="jobIcon" size="18"></ng-icon>
+          <span>Job Position</span>
+        </dt>
+        <dd>{{ jobPosition() }}</dd>
+      </div>
+
+      <div class="profile-field">
+        <dt>
+          <ng-icon [svg]="phoneIcon" size="18"></ng-icon>
+          <span>Phone Number</span>
+        </dt>
+        <dd>{{ phoneNumber() }}</dd>
+      </div>
+
+      @if (isSelfProfile()) {
+        <div class="profile-field profile-field--switch">
+          <dt>
+            <ng-icon [svg]="notificationIcon" size="18"></ng-icon>
+            <span>Notification</span>
+          </dt>
+          <dd>
+            <label class="profile-switch" aria-label="Bat tat thong bao">
+              <input
+                type="checkbox"
+                role="switch"
+                [attr.aria-checked]="notificationsEnabled()"
+                [checked]="notificationsEnabled()"
+                (change)="setNotificationsEnabled($any($event.target).checked)"
+              />
+              <span class="profile-switch__track" aria-hidden="true">
+                <span class="profile-switch__thumb"></span>
+              </span>
+            </label>
+          </dd>
+        </div>
+      }
+    </dl>
+
+    @if (isSelfProfile()) {
+      <button class="profile-add-account" type="button" (click)="requestAddAccount()">
+        <ng-icon [svg]="addAccountIcon" size="18"></ng-icon>
+        <span>Add Account</span>
+      </button>
+    }
+  </div>
+</app-modal>

@@ -1,0 +1,33 @@
+[data-theme="dark"] {
+  --color-chat-bg: #0E1621;
+  --color-navbar-bg: #17212B;
+  --color-incoming-bubble: #182533;
+  --color-outgoing-bubble: #2B5278;
+  --color-input-field: #2C3E4F;
+  --color-accent: #6AB3DC;
+  --color-send-button: #2B5278;
+  --color-online-status: #4FC3F7;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #6B8BA4;
+  --color-timestamp: rgba(255, 255, 255, 0.5);
+  --color-unread-badge: #F44336;
+  --color-divider: rgba(255, 255, 255, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-chat-bg: #0E1621;
+    --color-navbar-bg: #17212B;
+    --color-incoming-bubble: #182533;
+    --color-outgoing-bubble: #2B5278;
+    --color-input-field: #2C3E4F;
+    --color-accent: #6AB3DC;
+    --color-send-button: #2B5278;
+    --color-online-status: #4FC3F7;
+    --color-text-primary: #FFFFFF;
+    --color-text-secondary: #6B8BA4;
+    --color-timestamp: rgba(255, 255, 255, 0.5);
+    --color-unread-badge: #F44336;
+    --color-divider: rgba(255, 255, 255, 0.04);
+  }
+}

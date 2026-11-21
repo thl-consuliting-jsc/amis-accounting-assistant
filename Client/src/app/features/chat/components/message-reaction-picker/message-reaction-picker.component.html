@@ -1,0 +1,11 @@
+<div class="message-reaction-picker" (pointerdown)="$event.stopPropagation()">
+  @for (reaction of quickReactions; track reaction) {
+    <button
+      class="quick-reaction-button"
+      type="button"
+      (click)="emojiSelected.emit(reaction)"
+    >
+      <span [innerHTML]="reaction | emojiHtml"></span>
+    </button>
+  }
+</div>

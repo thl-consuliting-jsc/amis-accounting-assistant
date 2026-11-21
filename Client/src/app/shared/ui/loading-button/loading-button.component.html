@@ -1,0 +1,16 @@
+<button
+  class="loading-button"
+  [class.loading-button--block]="block"
+  [class.is-loading]="loading"
+  [disabled]="disabled || loading"
+  [type]="type"
+  [attr.aria-busy]="loading"
+>
+  @if (loading) {
+    <span class="loading-button__spinner" aria-hidden="true"></span>
+  }
+
+  <span class="loading-button__content">
+    <ng-content></ng-content>
+  </span>
+</button>

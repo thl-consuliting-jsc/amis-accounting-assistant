@@ -1,0 +1,650 @@
+{
+  "_huong_dan": "File quy tắc hạch toán của ZFUND. Chị sửa trực tiếp file này khi có đối tượng/quy tắc mới. Quy tắc sao kê xét theo thứ tự từ trên xuống, gặp quy tắc nào khớp trước thì dùng. Từ khóa so sánh KHÔNG phân biệt hoa/thường, 'nd' = nội dung giao dịch, 'ben' = đơn vị thụ hưởng/chuyển (chỉ MB có).",
+  "cong_ty": {
+    "ten": "CÔNG TY CỔ PHẦN ZFUND",
+    "mst": "0111154196",
+    "so_tai_khoan": "19932568"
+  },
+  "ngan_hang": {
+    "MB": {
+      "tk": "11212",
+      "ten_amis": "Ngân hàng TMCP Quân đội",
+      "ma_doi_tuong_lai": "MB",
+      "ten_doi_tuong_lai": "MB bank",
+      "so_thu": "TG",
+      "so_chi": "UN",
+      "ten_ngan": "MB",
+      "tien_to_tep": "MB",
+      "dinh_dang": "MB"
+    },
+    "VP": {
+      "tk": "11211",
+      "ten_amis": "Ngân hàng Việt Nam Thịnh Vượng",
+      "ma_doi_tuong_lai": "VP bank",
+      "ten_doi_tuong_lai": "Ngân hàng VP bank",
+      "so_thu": "VTT",
+      "so_chi": "VCT",
+      "ten_ngan": "VPBank",
+      "tien_to_tep": "VP",
+      "dinh_dang": "VP"
+    }
+  },
+  "ly_do": {
+    "thu": "Thu khác",
+    "chi": "Chi khác"
+  },
+  "ma_doi_tuong_trong": "KR",
+  "ten_doi_tuong_trong": "Không rõ",
+  "doi_tuong": {
+    "THUAN": [
+      "001093033597",
+      "Nguyễn Đắc Thuận"
+    ],
+    "COROCHTI": [
+      "1201689310",
+      "CÔNG TY CỔ PHẦN COROCHTI"
+    ],
+    "SPARKON": [
+      "0111633590",
+      "CÔNG TY CỔ PHẦN SPARKON"
+    ],
+    "TP": [
+      "0111192875",
+      "CÔNG TY CỔ PHẦN THIẾT KẾ VÀ THI CÔNG XÂY DỰNG TP"
+    ],
+    "BLACKCELL": [
+      "0111192804",
+      "CÔNG TY CỔ PHẦN BLACKCELL"
+    ],
+    "SUNLEAF": [
+      "0111199119",
+      "CÔNG TY CỔ PHẦN SUN LEAF"
+    ],
+    "LXD": [
+      "LXĐ",
+      "LÊ XUÂN ĐỊNH"
+    ],
+    "CHD": [
+      "001086046528",
+      "CHU HẢI ĐĂNG"
+    ],
+    "NDHAU": [
+      "031095002727",
+      "NGUYỄN ĐỨC HẬU"
+    ],
+    "NHK": [
+      "8122833589",
+      "NGUYỄN HỮU KHƯƠNG"
+    ],
+    "NVL": [
+      "040093031446",
+      "NGUYỄN VĂN LỰC"
+    ],
+    "DST": [
+      "052093000008",
+      "ĐỖ SƠN TÙNG"
+    ],
+    "VNMT": [
+      "082098001216",
+      "Võ Nguyễn Minh Thông"
+    ],
+    "NTD": [
+      "NTD",
+      "Nguyễn Thị Duyên"
+    ],
+    "DTH": [
+      "DTH",
+      "Đặng Thị Hiền"
+    ],
+    "DNT": [
+      "DNT",
+      "Đoàn Ngọc Tú"
+    ],
+    "NTLL": [
+      "NTLL",
+      "Nguyễn Thị Lưu Ly"
+    ],
+    "TAT": [
+      "TAT",
+      "Trần Anh Tiến"
+    ],
+    "BHXH": [
+      "BHXH",
+      "Bảo hiểm xã hội cơ sở Thanh Xuân"
+    ],
+    "THL": [
+      "0111491628",
+      "CÔNG TY CỔ PHẦN THL CONSULTING"
+    ],
+    "BTHA": [
+      "BTHA",
+      "BÙI THỊ HỒNG ANH"
+    ],
+    "NTHN": [
+      "NTHN",
+      "Nguyễn Thị Hồng Nhung"
+    ],
+    "PNH": [
+      "PNH",
+      "Phạm Ngân Hằng"
+    ],
+    "APPLE": [
+      "APPLE",
+      "APPLE COM US CUPERTINO US"
+    ],
+    "AWS": [
+      "AWS",
+      "Amazon Web Services, Inc."
+    ],
+    "GCLOUD": [
+      "GOOGLE CLOUD",
+      "GOOGLE CLOUD"
+    ],
+    "GADS": [
+      "GOOGLE ADWS",
+      "GOOGLE ADWS"
+    ],
+    "ANTHROPIC": [
+      "ANTHROPIC CLAUDE",
+      "Anthropic, PBC"
+    ],
+    "CCT": [
+      "CCT",
+      "Cơ quan thuế"
+    ],
+    "VPBANK_NCC": [
+      "0100233583",
+      "NGÂN HÀNG THƯƠNG MẠI CỔ PHẦN VIỆT NAM THỊNH VƯỢNG"
+    ],
+    "NONE": [
+      "",
+      ""
+    ]
+  },
+  "quy_tac_sao_ke": [
+    {
+      "ten": "Chuyển tiền nội bộ MB<->VP",
+      "nd": [
+        "NOI BO"
+      ],
+      "noi_bo": true
+    },
+    {
+      "ten": "Sparkon - HĐNT đi vay",
+      "nd": [
+        "SPARKON"
+      ],
+      "ben": [
+        "SPARKON"
+      ],
+      "doi_tuong": "SPARKON",
+      "tk": "3411"
+    },
+    {
+      "ten": "Corochti - HĐNT đi vay",
+      "nd": [
+        "COROCHTI"
+      ],
+      "ben": [
+        "COROCHTI"
+      ],
+      "doi_tuong": "COROCHTI",
+      "tk": "3411"
+    },
+    {
+      "ten": "TP - HĐNT đi vay",
+      "nd": [
+        "ZFUND-TP",
+        "ZFUND TP",
+        "HDNT/ZFUND-TP"
+      ],
+      "ben": [
+        "XAY DUNG TP"
+      ],
+      "doi_tuong": "TP",
+      "tk": "3411"
+    },
+    {
+      "ten": "Sun Leaf - HĐNT đi vay",
+      "nd": [
+        "SUN LEAF",
+        "SUNLEAF"
+      ],
+      "ben": [
+        "SUN LEAF"
+      ],
+      "doi_tuong": "SUNLEAF",
+      "tk": "3411"
+    },
+    {
+      "ten": "Blackcell trả gốc HĐVV 0107 (Zfund cho vay)",
+      "nd": [
+        "BLACKCELL"
+      ],
+      "ben": [
+        "BLACKCELL"
+      ],
+      "chi_khi": "thu",
+      "nd_them": [
+        "HDVV"
+      ],
+      "doi_tuong": "BLACKCELL",
+      "tk": "1288"
+    },
+    {
+      "ten": "Blackcell - HĐNT đi vay",
+      "nd": [
+        "BLACKCELL",
+        "BLACKECLL"
+      ],
+      "ben": [
+        "BLACKCELL"
+      ],
+      "doi_tuong": "BLACKCELL",
+      "tk": "3411"
+    },
+    {
+      "ten": "Lê Xuân Định - HĐNT đi vay",
+      "nd": [
+        "ZFUND-LXD",
+        "ZFUNDLXD",
+        "LXD"
+      ],
+      "ben": [
+        "LE XUAN DINH"
+      ],
+      "doi_tuong": "LXD",
+      "tk": "3411"
+    },
+    {
+      "ten": "Thuận - HĐNT 0101 Zfund cho vay",
+      "nd": [
+        "ZFUND.NDT",
+        "ZFUND NDT",
+        "ZFUND-NDT"
+      ],
+      "ben": [
+        "NGUYEN DAC THUAN"
+      ],
+      "doi_tuong": "THUAN",
+      "tk": "1288"
+    },
+    {
+      "ten": "Chu Hải Đăng trả lãi",
+      "ben": [
+        "CHU HAI DANG"
+      ],
+      "nd_them": [
+        "LAI"
+      ],
+      "doi_tuong": "CHD",
+      "tk": "1388"
+    },
+    {
+      "ten": "Chu Hải Đăng trả gốc",
+      "ben": [
+        "CHU HAI DANG"
+      ],
+      "doi_tuong": "CHD",
+      "tk": "1288"
+    },
+    {
+      "ten": "Nguyễn Đức Hậu trả lãi",
+      "ben": [
+        "NGUYEN DUC HAU"
+      ],
+      "nd_them": [
+        "LAI"
+      ],
+      "doi_tuong": "NDHAU",
+      "tk": "1388"
+    },
+    {
+      "ten": "Nguyễn Đức Hậu trả gốc",
+      "ben": [
+        "NGUYEN DUC HAU"
+      ],
+      "doi_tuong": "NDHAU",
+      "tk": "1288"
+    },
+    {
+      "ten": "Nguyễn Hữu Khương trả lãi",
+      "ben": [
+        "NGUYEN HUU KHUONG"
+      ],
+      "nd_them": [
+        "LAI"
+      ],
+      "doi_tuong": "NHK",
+      "tk": "1388"
+    },
+    {
+      "ten": "Nguyễn Hữu Khương trả gốc",
+      "ben": [
+        "NGUYEN HUU KHUONG"
+      ],
+      "doi_tuong": "NHK",
+      "tk": "1288"
+    },
+    {
+      "ten": "Nguyễn Văn Lực trả lãi",
+      "ben": [
+        "NGUYEN VAN LUC"
+      ],
+      "nd_them": [
+        "LAI"
+      ],
+      "doi_tuong": "NVL",
+      "tk": "1388"
+    },
+    {
+      "ten": "Nguyễn Văn Lực trả gốc",
+      "ben": [
+        "NGUYEN VAN LUC"
+      ],
+      "doi_tuong": "NVL",
+      "tk": "1288"
+    },
+    {
+      "ten": "Góp vốn - Nguyễn Thị Duyên",
+      "ben": [
+        "NGUYEN THI DUYEN"
+      ],
+      "doi_tuong": "NTD",
+      "tk": "3388",
+      "dien_giai": "{ten} góp vốn dự án Thầy xem"
+    },
+    {
+      "ten": "Góp vốn - Đặng Thị Hiền",
+      "nd": [
+        "GOP VON"
+      ],
+      "ben": [
+        "DANG THI HIEN"
+      ],
+      "doi_tuong": "DTH",
+      "tk": "3388",
+      "dien_giai": "{ten} góp vốn dự án Thầy xem"
+    },
+    {
+      "ten": "Góp vốn - Đoàn Ngọc Tú",
+      "nd": [
+        "GOP VON"
+      ],
+      "ben": [
+        "DOAN NGOC TU"
+      ],
+      "doi_tuong": "DNT",
+      "tk": "3388",
+      "dien_giai": "{ten} góp vốn dự án Thầy xem"
+    },
+    {
+      "ten": "Góp vốn - Nguyễn Thị Lưu Ly",
+      "nd": [
+        "GOP VON"
+      ],
+      "ben": [
+        "LUU LY"
+      ],
+      "doi_tuong": "NTLL",
+      "tk": "3388",
+      "dien_giai": "{ten} góp vốn dự án Thầy xem"
+    },
+    {
+      "ten": "Góp vốn - Trần Anh Tiến",
+      "nd": [
+        "GOP VON"
+      ],
+      "ben": [
+        "TRAN ANH TIEN"
+      ],
+      "doi_tuong": "TAT",
+      "tk": "3388",
+      "dien_giai": "{ten} góp vốn dự án Bếp Nhà Tập Thể"
+    },
+    {
+      "ten": "Góp vốn - chưa rõ người",
+      "nd": [
+        "GOP VON"
+      ],
+      "doi_tuong": "NONE",
+      "tk": "3388",
+      "ghi_chu": "GÓP VỐN nhưng chưa có quy tắc cho người này – chị bổ sung mã đối tượng"
+    },
+    {
+      "ten": "Lãi tiền gửi",
+      "nd": [
+        "TRA LAI TIEN GUI",
+        "NHAN LAI TU TAI KHOAN"
+      ],
+      "doi_tuong": "LAI_NH",
+      "tk": "5151",
+      "dien_giai": "Lãi tiền gửi tháng {thang}"
+    },
+    {
+      "ten": "Hoàn tiền CTKM thẻ",
+      "nd": [
+        "HOAN TIEN CTKM"
+      ],
+      "doi_tuong": "VPBANK",
+      "tk": "711",
+      "dien_giai": "Hoàn tiền CTKM thẻ Mastercard Business Debit",
+      "ghi_chu": "CẦN XÁC NHẬN TK (711 hay 5153)"
+    },
+    {
+      "ten": "Nộp BHXH",
+      "nd": [
+        "BHXH",
+        "BAO HIEM XA HOI"
+      ],
+      "doi_tuong": "BHXH",
+      "tk": "3383",
+      "dien_giai": "Nộp tiền BHXH tháng {thang_truoc}"
+    },
+    {
+      "ten": "Trả lương",
+      "nd": [
+        "LUONG"
+      ],
+      "doi_tuong": "NONE",
+      "tk": "334",
+      "dien_giai": "Thanh toán lương tháng {thang_truoc}",
+      "ghi_chu": "Lương: phần mềm bắt buộc mã đối tượng – tạm để KR (Không rõ), chị sửa nếu cần"
+    },
+    {
+      "ten": "Nộp thuế TNCN",
+      "nd": [
+        "NTDT+KB",
+        "TM:1001"
+      ],
+      "doi_tuong": "CCT",
+      "tk": "3335",
+      "dien_giai": "Nộp thuế TNCN {ky}"
+    },
+    {
+      "ten": "Nộp thuế khác (KBNN)",
+      "nd": [
+        "KBNN",
+        "NOP THUE"
+      ],
+      "doi_tuong": "CCT",
+      "tk": "3335",
+      "dien_giai": "Nộp thuế {ky}",
+      "ghi_chu": "CẦN XÁC NHẬN loại thuế (3335 TNCN / 3334 TNDN / 33311 GTGT / 3339 khác)"
+    },
+    {
+      "ten": "THL Consulting phí DV",
+      "ben": [
+        "THL CONSULTING"
+      ],
+      "nd": [
+        "THL CONSULTING"
+      ],
+      "doi_tuong": "THL",
+      "tk": "331",
+      "dien_giai": "Zfund thanh toán phí dịch vụ tháng {thang_truoc} cho THL Consulting"
+    },
+    {
+      "ten": "Bùi Thị Hồng Anh phí DV",
+      "ben": [
+        "BUI THI HONG ANH"
+      ],
+      "doi_tuong": "BTHA",
+      "tk": "331"
+    },
+    {
+      "ten": "Nguyễn Thị Hồng Nhung phí DV",
+      "ben": [
+        "NGUYEN THI HONG NHUNG"
+      ],
+      "doi_tuong": "NTHN",
+      "tk": "331"
+    },
+    {
+      "ten": "Phạm Ngân Hằng phí DV",
+      "ben": [
+        "PHAM NGAN HANG"
+      ],
+      "doi_tuong": "PNH",
+      "tk": "331"
+    },
+    {
+      "ten": "Thẻ - Apple",
+      "nd": [
+        "APPLE"
+      ],
+      "doi_tuong": "APPLE",
+      "tk": "331",
+      "the": true,
+      "dien_giai": "Thanh toán thẻ Apple (So the 5223xxxx2845)"
+    },
+    {
+      "ten": "Thẻ - Amazon Web Services",
+      "nd": [
+        "AMAZON"
+      ],
+      "doi_tuong": "AWS",
+      "tk": "331",
+      "the": true,
+      "dien_giai": "Thanh toán thẻ Amazon Web Services (So the 5223xxxx2845)"
+    },
+    {
+      "ten": "Thẻ - Google Cloud",
+      "nd": [
+        "GOOGLE CLOUD",
+        "GOOGLECLOUD"
+      ],
+      "doi_tuong": "GCLOUD",
+      "tk": "331",
+      "the": true,
+      "dien_giai": "Thanh toán thẻ Google Cloud (So the 5223xxxx2845)"
+    },
+    {
+      "ten": "Thẻ - Google Ads",
+      "nd": [
+        "GOOGLE ADS",
+        "GOOGLE ADWS",
+        "GOOGLE*ADS"
+      ],
+      "doi_tuong": "GADS",
+      "tk": "331",
+      "the": true,
+      "dien_giai": "Thanh toán thẻ Google Ads (So the 5223xxxx2845)"
+    },
+    {
+      "ten": "Thẻ - Anthropic/Claude",
+      "nd": [
+        "ANTHROPIC",
+        "CLAUDE"
+      ],
+      "doi_tuong": "ANTHROPIC",
+      "tk": "331",
+      "the": true,
+      "dien_giai": "Thanh toán thẻ Anthropic Claude (So the 5223xxxx2845)"
+    },
+    {
+      "ten": "Thẻ - khác",
+      "nd": [
+        "SO THE",
+        "GD THANH TOAN TAI"
+      ],
+      "doi_tuong": "NONE",
+      "tk": "331",
+      "the": true,
+      "ghi_chu": "Thanh toán thẻ – chưa có quy tắc cho nhà cung cấp này, chị bổ sung đối tượng"
+    },
+    {
+      "ten": "Chi theo lô (nhiều người)",
+      "chi_khi": "chi",
+      "doi_tuong": "NONE",
+      "tk": "331",
+      "ghi_chu": "LÔ CHI NHIỀU NGƯỜI: chị gửi bảng tách người nhận để tách dòng Nợ 331 từng đối tượng",
+      "nd_regex": "\\b\\d+\\s*GD\\b(?!\\s*THANH)"
+    }
+  ],
+  "the_ngan_hang": {
+    "mst_phi": "0100233583",
+    "dien_giai_phi": "Phí dịch vụ thẻ VPBank theo hóa đơn số {so_hd}",
+    "ghi_chu": "Phí thẻ tách dòng Nợ 331 VPBank theo đúng hóa đơn; chứng từ mua DV tương ứng ở file 4"
+  },
+  "hoa_don_mua": {
+    "ma_dich_vu": "DV001",
+    "tk_mac_dinh": "64227",
+    "tk_thue": "1331",
+    "theo_mst": {
+      "0100233583": {
+        "tk": "64225",
+        "ghi_chu": "Phí ngân hàng VPBank – 64225"
+      },
+      "0101243150": {
+        "tk": "64227",
+        "ghi_chu": "MISA – phần mềm"
+      },
+      "0111491628": {
+        "tk": "64227",
+        "ghi_chu": "THL Consulting – phí tư vấn"
+      }
+    },
+    "mst_lai_vay": [
+      "1201689310",
+      "0111192875",
+      "0111192804",
+      "0111199119",
+      "0111633590"
+    ],
+    "tk_lai_vay": "6351",
+    "mst_bo_qua": {
+      "0107139974": "Thiên Sơn (đồ thể thao) – chị chỉ đạo KHÔNG hạch toán"
+    },
+    "ccdc_tu_khoa": [
+      "BAN PHIM",
+      "KEYBOARD",
+      "CHUOT",
+      "MOUSE",
+      "MAN HINH",
+      "MONITOR",
+      "LAPTOP",
+      "MAY TINH",
+      "MAY IN",
+      "TAI NGHE",
+      "BAN ",
+      "GHE "
+    ],
+    "tk_ccdc": "242",
+    "ccdc_so_ky_pb": 12,
+    "ccdc_tk_chi_phi": "64223"
+  },
+  "hoa_don_ban": {
+    "tk_no": "1388",
+    "tk_co": "5153",
+    "ghi_chu": "HĐ lãi cho vay – lập Chứng từ nghiệp vụ khác Nợ 1388/Có 5153 (không lập Bán dịch vụ), theo cách T9"
+  },
+  "thu_muc": {
+    "du_lieu": "5. DU LIEU",
+    "ket_qua": "4. UP PHAN MEM",
+    "danh_muc": "2. DANH MUC PHAN MEM",
+    "ten_thu_muc_ket_qua": "THANG {MM}.{YYYY}"
+  },
+  "ghi_chu_nguon": "- Dữ liệu tháng {MM}/{YYYY} – lập tự động từ sao kê {NH} (tài khoản {STK})",
+  "tieu_de_ctnb": "CHUYỂN TIỀN NỘI BỘ GIỮA {NH} THÁNG {MM}/{YYYY} – nhập tay trong AMIS: Tiền gửi > Chi tiền ▾ > Chuyển tiền nội bộ (Nợ TK nhận / Có TK chuyển)"
+}

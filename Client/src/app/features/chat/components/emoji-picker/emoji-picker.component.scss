@@ -1,0 +1,106 @@
+:host {
+  display: block;
+  transform-origin: right bottom;
+}
+
+button {
+  font: inherit;
+}
+
+.emoji-picker-panel {
+  overflow: hidden;
+  width: min(27rem, calc(100vw - 2rem));
+  height: 28rem;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  border: 1px solid var(--color-divider);
+  border-radius: .95rem;
+  background: var(--color-navbar-bg);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, .18);
+}
+
+.emoji-tabs {
+  display: grid;
+  align-items: center;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  min-height: 3rem;
+  padding: 0 .65rem;
+  border-bottom: 1px solid var(--color-divider);
+  background: color-mix(in srgb, var(--color-input-field) 44%, var(--color-navbar-bg));
+}
+
+.emoji-tab {
+  height: 2.45rem;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  border: 0;
+  border-radius: .75rem;
+  color: var(--color-text-secondary);
+  background: transparent;
+  cursor: pointer;
+  font-size: .82rem;
+  font-weight: 850;
+  transition: color .16s ease;
+}
+
+.emoji-tab lucide-icon {
+  flex: 0 0 auto;
+}
+
+.emoji-tab-count {
+  font-size: .72rem;
+  opacity: .68;
+}
+
+.emoji-tab:hover,
+.emoji-tab.is-active {
+  color: var(--color-accent);
+}
+
+.emoji-tab-indicator {
+  position: absolute;
+  left: .65rem;
+  bottom: 0;
+  width: calc((100% - 1.3rem) / 2);
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  transition: transform .18s ease;
+}
+
+.emoji-tab-indicator.is-sticker {
+  transform: translateX(100%);
+}
+
+.emoji-viewport {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.emoji-viewport app-emoji-list,
+.emoji-viewport app-sticker-panel {
+  display: block;
+  height: 100%;
+}
+
+.emoji-viewport app-emoji-list[hidden],
+.emoji-viewport app-sticker-panel[hidden] {
+  display: none;
+}
+
+.emoji-viewport.is-sticker {
+  background: var(--color-navbar-bg);
+}
+
+@media (max-width: 520px) {
+  .emoji-picker-panel {
+    width: calc(100vw - 1.5rem);
+    height: 26rem;
+  }
+}

@@ -1,0 +1,49 @@
+<div class="emoji-content app-scrollbar" role="tabpanel" aria-label="Danh sach bieu cam">
+  <section class="recent-emoji-section" aria-label="Recent emoji">
+    <div class="emoji-section-heading">
+      <ng-icon [svg]="recentIcon" size="15" aria-hidden="true"></ng-icon>
+      <span>Recent emoji</span>
+    </div>
+
+    @if (recentEmojis().length > 0) {
+      <div class="recent-emoji-grid" role="list">
+        @for (emoji of recentEmojis(); track emoji.id) {
+          <button
+            class="emoji-option is-recent"
+            type="button"
+            role="listitem"
+            [attr.aria-label]="emoji.shortcode"
+            [title]="emoji.shortcode"
+            (click)="selectEmoji(emoji)"
+          >
+            <img [src]="'assets/emoji/face/' + emoji.file" [alt]="emoji.shortcode" loading="lazy"/>
+          </button>
+        }
+      </div>
+    } @else {
+      <div class="recent-emoji-empty">Chưa có emoji gần đây</div>
+    }
+  </section>
+
+  <section class="emoji-all-section" aria-label="Tat ca emoji">
+    <div class="emoji-section-heading">
+      <ng-icon [svg]="smileIcon" size="15" aria-hidden="true"></ng-icon>
+      <span>All emoji</span>
+    </div>
+
+    <div class="emoji-grid" role="list">
+      @for (emoji of emojis; track emoji.id) {
+        <button
+          class="emoji-option"
+          type="button"
+          role="listitem"
+          [attr.aria-label]="emoji.shortcode"
+          [title]="emoji.shortcode"
+          (click)="selectEmoji(emoji)"
+        >
+          <img [src]="'assets/emoji/face/' + emoji.file" [alt]="emoji.shortcode" loading="lazy"/>
+        </button>
+      }
+    </div>
+  </section>
+</div>

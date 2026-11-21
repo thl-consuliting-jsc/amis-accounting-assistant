@@ -1,0 +1,306 @@
+// =============================================================================
+// DOCUMENTS TAB (SOẠN THẢO VĂN BẢN & HỢP ĐỒNG) - STYLES
+// =============================================================================
+
+.page-view-generic {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.module-intro-card {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+
+  .intro-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .intro-icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &.blue {
+      background: #EFF6FF;
+      color: #2563EB;
+    }
+  }
+
+  .intro-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0 0 2px;
+  }
+
+  .intro-desc {
+    font-size: 12.5px;
+    color: #64748B;
+    margin: 0;
+    line-height: 1.45;
+  }
+
+  .btn-primary-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 7px;
+    background: #2563EB;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 12.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
+
+    &:hover {
+      background: #1D4ED8;
+    }
+  }
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.section-heading {
+  font-size: 11px;
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.section-count {
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+
+// -------------------------------------------------------------
+// TEMPLATES GRID
+// -------------------------------------------------------------
+.templates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+
+  .template-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border-color: #CBD5E1;
+    }
+
+    .tmpl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .tmpl-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: #F1F5F9;
+      color: #475569;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .tmpl-code {
+      font-size: 11px;
+      font-family: monospace;
+      color: #94A3B8;
+    }
+
+    .tmpl-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #1E293B;
+      margin: 0 0 12px;
+      min-height: 38px;
+      line-height: 1.35;
+    }
+
+    .tmpl-footer {
+      margin-top: auto;
+    }
+
+    .btn-tmpl-use {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 6px;
+      background: #EFF6FF;
+      color: #2563EB;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid #BFDBFE;
+      cursor: pointer;
+      transition: all 0.15s;
+
+      &:hover {
+        background: #2563EB;
+        color: #FFFFFF;
+      }
+    }
+  }
+}
+
+// -------------------------------------------------------------
+// TABLE STYLES
+// -------------------------------------------------------------
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+}
+
+.amis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  background: #FFFFFF;
+
+  thead th {
+    background: #F8FAFC;
+    color: #475569;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 11px 14px;
+    border-bottom: 1px solid #E2E8F0;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid #F1F5F9;
+    transition: background-color 0.1s ease;
+
+    &:hover {
+      background-color: #F8FAFC;
+    }
+  }
+
+  tbody td {
+    padding: 10px 14px;
+    vertical-align: middle;
+    color: #1E293B;
+  }
+}
+
+.font-mono { font-family: monospace; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+.text-blue { color: #2563EB; }
+.text-slate { color: #64748B; }
+.text-xs { font-size: 11px; }
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+
+.status-badge.doc-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  background: #F1F5F9;
+  color: #334155;
+}
+
+.badge-status-pill.success {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  background: #ECFDF5;
+  color: #15803D;
+  border: 1px solid #A7F3D0;
+}
+
+.contract-action-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.btn-table-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+
+  &.blue {
+    background: #EFF6FF;
+    color: #2563EB;
+    border-color: #BFDBFE;
+    &:hover { background: #DBEAFE; }
+  }
+
+  &.red {
+    background: #FEF2F2;
+    color: #DC2626;
+    border-color: #FECACA;
+    &:hover { background: #FEE2E2; }
+  }
+}
+
+.empty-cell {
+  text-align: center;
+  padding: 30px;
+  color: #94A3B8;
+  font-size: 13px;
+}

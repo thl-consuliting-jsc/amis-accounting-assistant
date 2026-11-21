@@ -1,0 +1,35 @@
+<nav class="conversation-list app-scrollbar" aria-label="Hoi thoai">
+  @for (conversation of filteredConversations(); track conversation.id) {
+    <button
+      class="conversation-item"
+      type="button"
+      [class.is-active]="isActive(conversation)"
+      (click)="conversationSelected.emit(conversation)"
+    >
+      <span
+        class="avatar"
+        [class.is-online]="isDirectConversation(conversation) && conversation.online"
+      >
+        @if (conversationAvatarUrl(conversation)) {
+          <img [src]="conversationAvatarUrl(conversation)" [alt]="conversation.name" />
+        } @else {
+          <span>{{ conversationInitials(conversation) || "AM" }}</span>
+        }
+      </span>
+
+      <span class="conversation-copy">
+        <span class="conversation-topline">
+          <strong>{{ conversation.name }}</strong>
+          <time>{{ conversation.time }}</time>
+        </span>
+        <span class="conversation-message" [innerHTML]="conversation.message | emojiHtml"></span>
+      </span>
+
+      @if (conversation.unread > 0) {
+        <span class="unread-badge" aria-label="Tin nhan chua doc">{{ conversation.unread }}</span>
+      }
+    </button>
+  } @empty {
+    <p class="empty-state">Khong tim thay hoi thoai.</p>
+  }
+</nav>

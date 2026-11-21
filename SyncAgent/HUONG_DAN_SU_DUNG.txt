@@ -1,0 +1,37 @@
+================================================================================
+          HƯỚNG DẪN SỬ DỤNG TRỢ LÝ ĐỒNG BỘ DỮ LIỆU AMIS (SYNC AGENT)
+================================================================================
+
+1. MỤC ĐÍCH:
+- Giúp bạn mở trang web kế toán trên Máy chủ / VPS (http://103.107.183.86:9092)
+  mà KHÔNG BỊ LỖI đường dẫn ổ đĩa máy tính.
+- Tự động theo dõi thư mục sao kê & hóa đơn trên máy bạn (VD: D:\...\5. DU LIEU)
+  và đồng bộ an toàn lên máy chủ. Bạn chỉ cần thả file vào thư mục máy mình,
+  lên web bấm "Lập file AMIS" là hoàn tất!
+
+2. CÁCH KHỞI ĐỘNG:
+- Cách 1 (Mở có giao diện trực quan):
+  Nhấp đúp chuột vào file: CHAY_DONG_BO.bat
+  Trình duyệt sẽ tự động mở trang cấu hình tại: http://localhost:4999
+
+- Cách 2 (Chạy ngầm hoàn toàn không hiện cửa sổ đen):
+  Nhấp đúp chuột vào file: CHAY_NGAM_SERVICE.vbs
+
+3. CÁCH CẤU HÌNH THƯ MỤC:
+- Mở trình duyệt vào địa chỉ: http://localhost:4999
+- Điền 3 thông tin đơn giản:
+  + Đường dẫn Thư mục trên máy bạn (VD: D:\2026\1.Work\9.PHUONG\5. DU LIEU)
+  + Địa chỉ Máy chủ VPS: http://103.107.183.86:9092
+  + Mã số thuế Công ty: 0111154196
+- Bấm "Lưu Cấu Hình" -> Bấm "Đồng Bộ Ngay".
+
+4. TỰ ĐỘNG CHẠY CÙNG WINDOWS (Tùy chọn):
+- Nhấn tổ hợp phím [Windows + R] -> gõ: shell:startup -> bấm OK.
+- Kéo thả phím tắt (Shortcut) của file "CHAY_NGAM_SERVICE.vbs" vào thư mục Startup.
+- Từ nay mỗi khi bật máy tính, Trợ lý sẽ tự động chạy ngầm và đồng bộ dữ liệu cho bạn!
+
+5. ĐÓNG GÓI THÀNH FILE .EXE ĐỘC LẬP:
+- Mở cửa sổ lệnh tại thư mục SyncAgent và gõ:
+  npm run build:exe
+- File exe sẽ được tạo ra, người dùng khác chỉ cần tải về chạy mà không cần cài Node.js.
+================================================================================

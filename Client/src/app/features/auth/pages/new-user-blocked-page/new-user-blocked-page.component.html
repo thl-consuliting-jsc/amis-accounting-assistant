@@ -1,0 +1,32 @@
+<main class="blocked-shell" aria-label="Không có quyền truy cập">
+  <div class="blocked-card">
+    <div class="blocked-icon-wrap" aria-hidden="true">
+      <svg class="blocked-icon" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="128" cy="128" r="128" class="icon-bg" />
+        <rect x="80" y="108" width="96" height="76" rx="10" class="icon-body" />
+        <path d="M100 108V84a28 28 0 0 1 56 0v24" class="icon-arc" />
+        <circle cx="128" cy="148" r="8" class="icon-dot" />
+        <rect x="125" y="148" width="6" height="18" rx="3" class="icon-dot" />
+      </svg>
+    </div>
+
+    <div class="blocked-copy">
+      <h1>Chưa có quyền truy cập</h1>
+      <p>
+        Tài khoản của bạn chưa được cấp quyền tham gia hệ thống.<br />
+        Vui lòng liên hệ với <strong>trưởng ban bộ phận</strong> của bạn để được xác nhận.
+      </p>
+    </div>
+
+    <button
+      class="logout-btn"
+      type="button"
+      (click)="logout()"
+    >
+      <svg viewBox="0 0 256 256" width="18" height="18" fill="currentColor" aria-hidden="true">
+        <path d="M120 216a8 8 0 0 1-8 8H48a16 16 0 0 1-16-16V48a16 16 0 0 1 16-16h64a8 8 0 0 1 0 16H48v160h64a8 8 0 0 1 8 8Zm109.66-93.66-40-40a8 8 0 0 0-11.32 11.32L204.69 120H112a8 8 0 0 0 0 16h92.69l-26.35 26.34a8 8 0 0 0 11.32 11.32l40-40a8 8 0 0 0 0-11.32Z"/>
+      </svg>
+      Đăng xuất
+    </button>
+  </div>
+</main>

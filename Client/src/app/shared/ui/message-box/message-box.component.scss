@@ -1,0 +1,190 @@
+:host {
+  display: contents;
+}
+
+::ng-deep app-message-box .modal {
+  width: min(100%, 25rem);
+  border: 0;
+  border-radius: .82rem;
+  background: color-mix(in srgb, var(--color-navbar-bg) 96%, var(--color-chat-bg));
+  box-shadow:
+    0 1.25rem 3rem color-mix(in srgb, #000 32%, transparent),
+    0 .08rem .16rem color-mix(in srgb, #000 18%, transparent);
+  transform-origin: center;
+  animation: message-box-dialog-in 170ms cubic-bezier(.2, .9, .2, 1.08);
+}
+
+::ng-deep app-message-box .modal-backdrop {
+  background: color-mix(in srgb, #000 34%, transparent);
+  backdrop-filter: none;
+  animation: message-box-backdrop-in 140ms ease-out;
+}
+
+::ng-deep app-message-box .modal__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 2.05rem;
+  align-items: center;
+  gap: .85rem;
+  padding: 1.24rem 1.28rem .18rem 1.55rem;
+  border-bottom: 0;
+}
+
+::ng-deep app-message-box .modal__heading {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+}
+
+::ng-deep app-message-box .modal__title {
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.04rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 2.05rem;
+}
+
+::ng-deep app-message-box .modal__close {
+  width: 2.05rem;
+  height: 2.05rem;
+  align-self: center;
+  justify-self: end;
+  border-radius: 999px;
+}
+
+::ng-deep app-message-box .modal__close:hover {
+  background: color-mix(in srgb, var(--color-text-secondary) 12%, transparent);
+}
+
+::ng-deep app-message-box .modal__body {
+  padding: .68rem 1.55rem .85rem;
+}
+
+::ng-deep app-message-box [modal-footer] {
+  border-top: 0;
+  padding: .1rem 1.05rem .95rem;
+  background: transparent;
+}
+
+.message-box {
+  min-width: 0;
+}
+
+.message-box p {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: .98rem;
+  font-weight: 600;
+  line-height: 1.52;
+}
+
+.message-box__actions {
+  width: 100%;
+  justify-content: flex-end;
+  gap: .2rem;
+}
+
+.message-box__button {
+  min-width: 4.65rem;
+  min-height: 2.4rem;
+  padding: .52rem .9rem;
+  border: 0;
+  border-radius: .55rem;
+  color: var(--color-accent);
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: .96rem;
+  font-weight: 850;
+  line-height: 1.2;
+  transition:
+    background-color .16s ease,
+    border-color .16s ease,
+    color .16s ease,
+    transform .16s ease;
+}
+
+.message-box__button:hover {
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  transform: none;
+}
+
+.message-box__button:active {
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  transform: scale(.97);
+}
+
+.message-box__button--primary {
+  color: var(--color-accent);
+  background: transparent;
+}
+
+.message-box__button--primary:hover {
+  color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+}
+
+.message-box__button--danger {
+  color: var(--color-unread-badge);
+  background: transparent;
+}
+
+.message-box__button--danger:hover {
+  color: var(--color-unread-badge);
+  background: color-mix(in srgb, var(--color-unread-badge) 11%, transparent);
+}
+
+@media (max-width: 42rem) {
+  ::ng-deep app-message-box .modal__header {
+    grid-template-columns: minmax(0, 1fr) 2.05rem;
+    padding: 1.18rem .98rem .12rem 1.22rem;
+  }
+
+  ::ng-deep app-message-box .modal__body {
+    padding: .68rem 1.22rem .85rem;
+  }
+
+  ::ng-deep app-message-box [modal-footer] {
+    padding: .1rem .75rem .88rem;
+  }
+
+  .message-box__actions {
+    display: flex;
+  }
+
+  .message-box__button {
+    min-width: 4.5rem;
+  }
+}
+
+@keyframes message-box-backdrop-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes message-box-dialog-in {
+  from {
+    opacity: 0;
+    transform: scale(.86);
+  }
+
+  70% {
+    transform: scale(1.015);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::ng-deep app-message-box .modal,
+  ::ng-deep app-message-box .modal-backdrop {
+    animation: none;
+  }
+}

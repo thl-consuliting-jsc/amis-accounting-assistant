@@ -1,0 +1,6 @@
+@AmisAssistant.Server_HostAddress = http://localhost:5022
+
+GET {{AmisAssistant.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

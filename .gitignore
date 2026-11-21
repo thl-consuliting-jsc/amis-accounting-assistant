@@ -1,0 +1,91 @@
+# ==========================================
+# THL Consulting JSC - AMIS Accounting Assistant
+# Standard .gitignore
+# ==========================================
+
+# OS & Temporary Files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+*.bak
+*.swp
+*.git_bak
+.git_bak/
+Client/~/
+~
+*.key
+
+# IDE & AI Assistant Tooling (Chặn hoàn toàn vết tích IDE / AI)
+.vscode/
+.idea/
+.vs/
+.gemini/
+.cursor/
+.cursorrules
+scratch/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Angular / Web Client Build Artifacts
+Client/node_modules/
+Client/.angular/
+Client/dist/
+Client/out-tsc/
+Client/tmp/
+Client/.vscode/
+node_modules/
+
+# Rust / Tauri Build Artifacts (Rất nặng ~3GB)
+Client/src-tauri/target/
+src-tauri/target/
+
+# .NET / C# Build Artifacts
+Server/bin/
+Server/obj/
+bin/
+obj/
+*.user
+*.suo
+
+# Publish Packages & Installers
+publish/
+Server_Publish/
+publish.zip
+*.exe
+*.msix
+Tro_Ly_Ke_Toan_Setup_*.exe
+
+# Local Data & Company Testing Samples (Bảo mật dữ liệu kế toán)
+1. DU LIEU MAU/
+2. DANH MUC PHAN MEM/
+3. TEP MAU/
+4. UP PHAN MEM/
+5. DU LIEU/
+6. APP/
+6. BAO CAO/
+BACKUP/
+extracted_images/
+0.THL-Project/
+0.FirstProject/
+
+
+# Crawler, Scraper & Scratch Testing Files (Chặn toàn bộ file test/cào ở root)
+/*.py
+/*.html
+/*.json
+/*.png
+/*.db
+/*.lock
+/*.xlsx
+/*.bat
+!/build-publish.bat
+!/cap-nhat-vps.bat
+!/tao-port-9092-9093.bat
+!/MO_TRO_LY_KE_TOAN.bat
+misa_chrome_profile/
+__pycache__/
+0.Document/
+HUONG_DAN_SU_DUNG_TOOL.md

@@ -1,0 +1,32 @@
+<div class="page-view-generic">
+  <div class="content-card-box">
+    <div class="card-box-header">
+      <h4 class="card-box-title">Số liệu tờ khai 01/GTGT (phát sinh trong tháng)</h4>
+      <span class="card-box-hint">Bảng kê đầy đủ nằm ở tệp 8. Bang_ke_VAT_T10.xlsx</span>
+    </div>
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 100px;">Chỉ tiêu</th>
+            <th>Diễn giải</th>
+            <th style="width: 160px; text-align: right;">Giá trị HHDV</th>
+            <th style="width: 160px; text-align: right;">Thuế GTGT</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (v of svc.vatIndicators(); track v.code) {
+            <tr>
+              <td class="font-bold text-blue">{{ v.code }}</td>
+              <td class="font-semibold">{{ v.description }}</td>
+              <td class="text-right">{{ v.amount ? (v.amount | number:'1.0-0') + ' đ' : '–' }}</td>
+              <td class="text-right font-bold text-ink">{{ v.taxAmount ? (v.taxAmount | number:'1.0-0') + ' đ' : '–' }}</td>
+              <td class="text-mute">{{ v.note }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

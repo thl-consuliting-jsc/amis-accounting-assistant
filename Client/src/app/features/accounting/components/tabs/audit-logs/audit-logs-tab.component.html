@@ -1,0 +1,14 @@
+<div class="page-view-generic">
+  <div class="content-card-box">
+    <div class="card-box-header">
+      <h4 class="card-box-title">Nhật ký lần chạy gần nhất</h4>
+      <button class="btn-table-action" (click)="copyLogs.emit()">
+        <ng-icon [svg]="copyIcon" size="14"></ng-icon>
+        <span>Sao chép nhật ký</span>
+      </button>
+    </div>
+    <div class="log-console-box">
+      <pre class="log-pre-text">{{ svc.executionLog() || 'Chưa có nhật ký ghi nhận.' }}</pre>
+    </div>
+  </div>
+</div>

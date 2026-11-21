@@ -1,0 +1,135 @@
+<div class="sticker-container">
+  <div class="sticker-sub-tabs" role="tablist" aria-label="Sticker">
+    <button
+      class="sticker-sub-tab"
+      type="button"
+      role="tab"
+      [class.is-active]="activeStickerTab() === 'downloaded'"
+      [attr.aria-selected]="activeStickerTab() === 'downloaded'"
+      (click)="selectStickerTab('downloaded')"
+    >
+      <ng-icon [svg]="downloadedIcon" size="16" aria-hidden="true"></ng-icon>
+      <span>Da tai</span>
+    </button>
+    <button
+      class="sticker-sub-tab"
+      type="button"
+      role="tab"
+      [class.is-active]="activeStickerTab() === 'library'"
+      [attr.aria-selected]="activeStickerTab() === 'library'"
+      (click)="selectStickerTab('library')"
+    >
+      <ng-icon [svg]="storeIcon" size="16" aria-hidden="true"></ng-icon>
+      <span>Cua hang</span>
+    </button>
+  </div>
+
+  <div class="sticker-sub-viewport app-scrollbar">
+    @if (activeStickerTab() === "downloaded") {
+      @if (downloadedStickerPacksLoading()) {
+        <div class="sticker-preview-state">Dang tai sticker...</div>
+      } @else if (downloadedStickerPacksError()) {
+        <div class="sticker-preview-state">{{ downloadedStickerPacksError() }}</div>
+      } @else if (downloadedStickerPacks().length === 0) {
+        <div class="sticker-empty">Chua co sticker pack nao duoc tai.</div>
+      } @else {
+        <div class="sticker-downloaded">
+          @for (pack of downloadedStickerPacks(); track pack.id) {
+            <section class="sticker-downloaded-pack" [attr.aria-label]="pack.name">
+              <header class="sticker-downloaded-header">
+                <span class="sticker-downloaded-cover">
+                  <img [src]="pack.thumbnailUrl" [alt]="pack.name" loading="lazy" />
+                </span>
+                <strong>{{ pack.name }}</strong>
+              </header>
+
+              <div class="sticker-downloaded-grid">
+                @for (sticker of pack.stickers; track sticker.id) {
+                  <button
+                    class="sticker-preview-item"
+                    type="button"
+                    [attr.aria-label]="sticker.name"
+                    (click)="selectSticker(sticker)"
+                  >
+                    <img [src]="sticker.url" [alt]="sticker.name" loading="eager" decoding="async" />
+                  </button>
+                }
+              </div>
+            </section>
+          }
+        </div>
+      }
+    } @else {
+      <div class="sticker-library">
+        @if (stickerPacksLoading()) {
+          <div class="sticker-preview-state">Dang tai danh sach sticker...</div>
+        } @else if (stickerPacksError()) {
+          <div class="sticker-preview-state">{{ stickerPacksError() }}</div>
+        } @else if (stickerPacks().length === 0) {
+          <div class="sticker-preview-state">Chua co sticker pack nao.</div>
+        } @else {
+          <div class="sticker-pack-grid">
+            @for (pack of stickerPacks(); track pack.id) {
+              <button class="sticker-pack-card" type="button" (click)="openStickerPreview(pack)">
+                <span class="sticker-pack-thumb">
+                  <img [src]="pack.thumbnailUrl" [alt]="pack.name" loading="lazy" />
+                </span>
+                <span class="sticker-pack-info">
+                  <span class="sticker-pack-name">{{ pack.name }}</span>
+                  <span class="sticker-pack-version">v{{ pack.version }}</span>
+                </span>
+              </button>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+
+@if (selectedStickerPack(); as pack) {
+  <div class="sticker-preview-backdrop" (pointerdown)="closeStickerPreview()">
+    <section class="sticker-preview-modal" (pointerdown)="$event.stopPropagation()" aria-label="Xem truoc sticker pack">
+      <header class="sticker-preview-header">
+        <span class="sticker-preview-cover">
+          <img [src]="pack.thumbnailUrl" [alt]="pack.name" loading="lazy" />
+        </span>
+        <div class="sticker-preview-title">
+          <span>Sticker pack</span>
+          <strong>{{ pack.name }}</strong>
+        </div>
+        <button
+          class="sticker-preview-download"
+          type="button"
+          [disabled]="downloadingPackId() === pack.id || isStickerPackDownloaded(pack)"
+          (click)="downloadSelectedStickerPack()"
+        >
+          {{ downloadButtonText(pack) }}
+        </button>
+        <button class="sticker-preview-close" type="button" aria-label="Dong" (click)="closeStickerPreview()">
+          <ng-icon [svg]="closeIcon" size="18" aria-hidden="true"></ng-icon>
+        </button>
+      </header>
+
+      <div class="sticker-preview-body app-scrollbar">
+        @if (downloadError()) {
+          <div class="sticker-download-error">{{ downloadError() }}</div>
+        }
+
+        @if (previewLoading()) {
+          <div class="sticker-preview-state">Dang tai preview...</div>
+        } @else if (previewError()) {
+          <div class="sticker-preview-state">{{ previewError() }}</div>
+        } @else {
+          <div class="sticker-preview-grid">
+            @for (sticker of pack.stickers; track sticker.id) {
+              <button class="sticker-preview-item" type="button" [attr.aria-label]="sticker.name">
+                <img [src]="sticker.url" [alt]="sticker.name" loading="eager" decoding="async" />
+              </button>
+            }
+          </div>
+        }
+      </div>
+    </section>
+  </div>
+}

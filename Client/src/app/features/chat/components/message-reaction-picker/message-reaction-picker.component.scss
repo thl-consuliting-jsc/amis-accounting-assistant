@@ -1,0 +1,44 @@
+:host {
+  display: block;
+}
+
+.message-reaction-picker {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  background: var(--color-navbar-bg);
+  border: 1px solid var(--color-divider);
+  border-radius: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quick-reaction-button {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.quick-reaction-button:hover {
+  transform: scale(1.15);
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+}
+
+::ng-deep .quick-reaction-button .message-emoji {
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+  pointer-events: none;
+}
+
+app-emoji-list {
+  display: block;
+  max-height: min(16rem, calc(100vh - 8rem));
+}

@@ -1,0 +1,96 @@
+<app-modal
+  [open]="open()"
+  title="Phê duyệt tài khoản"
+  subtitle="Danh sách người dùng đang chờ xác nhận quyền truy cập"
+  size="md"
+  [showCloseButton]="true"
+  [closeOnBackdrop]="true"
+  [closeOnEscape]="true"
+  bodyOverflow="auto"
+  bodyMaxHeight="60vh"
+  (closed)="close()"
+>
+  @if (pendingUsers().length === 0) {
+    <div class="approve-empty">
+      <ng-icon [svg]="approveIcon" size="40" class="empty-icon" />
+      <p>Không có tài khoản nào đang chờ phê duyệt.</p>
+    </div>
+  } @else {
+    <ul class="approve-list" role="list">
+      @for (user of pendingUsers(); track user.id) {
+        <li
+          class="approve-item"
+          [class.is-approved]="getState(user.id) === 'approved'"
+          [class.is-rejected]="getState(user.id) === 'rejected'"
+          [class.is-loading]="getState(user.id) === 'approving'"
+        >
+          <!-- Avatar -->
+          <div class="ai-avatar" aria-hidden="true">
+            @if (user.avatarUrl) {
+              <img [src]="user.avatarUrl" [alt]="user.fullName" />
+            } @else {
+              <span>{{ getInitials(user.fullName) }}</span>
+            }
+          </div>
+
+          <!-- Info -->
+          <div class="ai-info">
+            <strong class="ai-name">{{ user.fullName }}</strong>
+            <span class="ai-meta">
+              <ng-icon [svg]="emailIcon" size="13" />
+              {{ user.email }}
+            </span>
+            <span class="ai-job">{{ user.jobPosition || '—' }}</span>
+            <time class="ai-time" [dateTime]="user.registeredAt">
+              Đăng ký: {{ formatDate(user.registeredAt) }}
+            </time>
+          </div>
+
+          <!-- Actions -->
+          <div class="ai-actions">
+            @switch (getState(user.id)) {
+              @case ('approved') {
+                <span class="ai-badge ai-badge--approved">Đã duyệt</span>
+              }
+              @case ('rejected') {
+                <span class="ai-badge ai-badge--rejected">Đã từ chối</span>
+              }
+              @case ('approving') {
+                <span class="ai-badge ai-badge--loading">
+                  <span class="ai-spinner"></span>
+                </span>
+              }
+              @default {
+                <button
+                  class="ai-btn ai-btn--approve"
+                  type="button"
+                  title="Phê duyệt"
+                  (click)="approve(user.id)"
+                >
+                  <ng-icon [svg]="approveIcon" size="16" />
+                  Duyệt
+                </button>
+                <button
+                  class="ai-btn ai-btn--reject"
+                  type="button"
+                  title="Từ chối"
+                  (click)="reject(user.id)"
+                >
+                  <ng-icon [svg]="rejectIcon" size="16" />
+                  Từ chối
+                </button>
+              }
+            }
+          </div>
+        </li>
+      }
+    </ul>
+  }
+
+  <div modal-footer class="approve-footer">
+    <span class="approve-footer__count">
+      {{ pendingCount() }} người đang chờ duyệt
+    </span>
+    <button class="approve-footer__close" type="button" (click)="close()">Đóng</button>
+  </div>
+</app-modal>

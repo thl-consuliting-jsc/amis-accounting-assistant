@@ -1,0 +1,33 @@
+<section class="emoji-picker-panel" aria-label="Bang bieu cam" (pointerdown)="$event.stopPropagation()" (contextmenu)="$event.preventDefault()">
+  <div class="emoji-tabs" role="tablist" aria-label="Loai noi dung">
+    <button
+      class="emoji-tab"
+      type="button"
+      role="tab"
+      [class.is-active]="activeTab() === 'emoji'"
+      [attr.aria-selected]="activeTab() === 'emoji'"
+      (click)="selectTab('emoji')"
+    >
+      <ng-icon [svg]="smileIcon" size="17" aria-hidden="true"></ng-icon>
+      <span class="emoji-tab-label">Emoji</span>
+      <span class="emoji-tab-count">{{ emojiCount() }}</span>
+    </button>
+    <button
+      class="emoji-tab"
+      type="button"
+      role="tab"
+      [class.is-active]="activeTab() === 'sticker'"
+      [attr.aria-selected]="activeTab() === 'sticker'"
+      (click)="selectTab('sticker')"
+    >
+      <ng-icon [svg]="stickerIcon" size="17" aria-hidden="true"></ng-icon>
+      <span class="emoji-tab-label">Sticker</span>
+    </button>
+    <span class="emoji-tab-indicator" [class.is-sticker]="activeTab() === 'sticker'"></span>
+  </div>
+
+  <div class="emoji-viewport" [class.is-sticker]="activeTab() === 'sticker'">
+    <app-emoji-list [hidden]="activeTab() !== 'emoji'" (emojiSelected)="emitEmoji($event)"></app-emoji-list>
+    <app-sticker-panel [hidden]="activeTab() !== 'sticker'" (stickerSelected)="emitSticker($event)"></app-sticker-panel>
+  </div>
+</section>

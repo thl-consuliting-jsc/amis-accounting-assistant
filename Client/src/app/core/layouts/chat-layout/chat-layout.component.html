@@ -1,0 +1,44 @@
+<main class="chat-shell" [class.is-mobile-conversation-open]="isMobileConversationOpen()">
+  <app-chat-left-layout
+    class="left-layout"
+    [user]="user()"
+    [conversations]="conversations()"
+    [activeConversation]="activeConversation()"
+    (conversationSelected)="selectConversation($event)"
+    (contactsRequested)="openContactModal()"
+    (profileRequested)="openProfileModal()"
+    (logoutRequested)="logout()"
+  />
+
+  <app-chat-right-layout
+    class="right-layout"
+    [activeConversation]="activeConversation()"
+    [showBackButton]="true"
+    [hasMore]="hasMore()"
+    [hasNewer]="hasNewer()"
+    [anchorMessageId]="anchorMessageId()"
+    (backRequested)="closeMobileConversation()"
+    (composerFocused)="handleComposerFocus()"
+    (composerBlurred)="handleComposerBlur()"
+    (messageSent)="sendMessage($event)"
+    (profileRequested)="openChatProfile($event)"
+    (loadMoreRequested)="handleLoadMoreMessages()"
+    (loadNewerRequested)="handleLoadNewerMessages()"
+    (jumpToMessageRequested)="handleJumpToMessage($event)"
+    (jumpToLatestRequested)="handleJumpToLatest()"
+    (anchorConsumed)="handleAnchorConsumed()"
+  />
+
+  <app-contact-list-modal
+    [open]="isContactModalOpen()"
+    (directRoomReady)="openDirectRoom($event)"
+    (closed)="closeContactModal()"
+  />
+
+  <app-profile-modal
+    [open]="isProfileModalOpen()"
+    [profile]="selectedProfile()"
+    (avatarUploaded)="refreshSelectedProfile($event)"
+    (closed)="closeProfileModal()"
+  />
+</main>

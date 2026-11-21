@@ -1,0 +1,27 @@
+<div class="page-view-generic">
+  <div class="ready-banner">
+    <div class="banner-icon-circle">
+      <ng-icon [svg]="infoIcon" size="20"></ng-icon>
+    </div>
+    <div class="banner-body">
+      <h3 class="banner-title">Phân hệ {{ label() }} đang sẵn sàng tiếp nhận dữ liệu</h3>
+      <p class="banner-desc">
+        Chị bỏ tệp dữ liệu tương ứng vào thư mục dữ liệu của tháng (5. DU LIEU). Phần mềm sẽ tự động phân tích và sinh chứng từ AMIS cho phân hệ này khi bấm LẬP FILE.
+      </p>
+    </div>
+  </div>
+
+  @if (module() === 'hoa-don') {
+    <div class="content-card-box">
+      <div class="card-box-header">
+        <h4 class="card-box-title">Tệp cần bỏ vào thư mục dữ liệu</h4>
+      </div>
+      <ul class="file-guide-list">
+        <li><strong>0111154196_HDCTMuaVao…xlsx</strong> – bảng kê hóa đơn mua vào</li>
+        <li><strong>0111154196_HDCTBanRa…xlsx</strong> – bảng kê hóa đơn bán ra</li>
+        <li><strong>Chi_tiet_HD_mua_vao_theo_tung_san_pham…xlsx</strong> – chi tiết từng mặt hàng mua vào</li>
+        <li><strong>Chi_tiet_HD_ban_ra_theo_tung_san_pham…xlsx</strong> – chi tiết từng mặt hàng bán ra</li>
+      </ul>
+    </div>
+  }
+</div>

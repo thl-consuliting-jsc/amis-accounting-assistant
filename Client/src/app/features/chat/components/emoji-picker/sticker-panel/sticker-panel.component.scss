@@ -1,0 +1,411 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+.sticker-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sticker-sub-tabs {
+  display: flex;
+  gap: .5rem;
+  padding: .65rem;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.sticker-sub-tab {
+  flex: 1;
+  height: 2.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  border: 1px solid var(--color-divider);
+  border-radius: .5rem;
+  background: var(--color-navbar-bg);
+  color: var(--color-text-secondary);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+
+.sticker-sub-tab ng-icon {
+  flex: 0 0 auto;
+}
+
+.sticker-sub-tab:hover {
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.sticker-sub-tab.is-active {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: var(--color-accent);
+}
+
+.sticker-sub-viewport {
+  flex: 1;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  overflow-anchor: none;
+  position: relative;
+  /* Tắt scroll anchoring: tránh browser tự nhảy vị trí khi layout thay đổi do ảnh load */
+}
+
+.sticker-empty {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--color-text-secondary);
+  font-size: .82rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.sticker-library {
+  min-height: 100%;
+}
+
+.sticker-downloaded {
+  display: grid;
+  gap: .75rem;
+  padding: .65rem;
+}
+
+.sticker-downloaded-pack {
+  display: grid;
+  gap: .55rem;
+}
+
+.sticker-downloaded-header {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  color: var(--color-text-primary);
+}
+
+.sticker-downloaded-cover {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: .45rem;
+  background: var(--color-navbar-bg);
+  overflow: hidden;
+}
+
+.sticker-downloaded-cover img {
+  width: 1.65rem;
+  height: 1.65rem;
+  object-fit: contain;
+}
+
+.sticker-downloaded-header strong {
+  overflow: hidden;
+  font-size: .84rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticker-downloaded-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .35rem;
+  /* Tránh layout collapse khi ảnh chưa load */
+  grid-auto-rows: minmax(5rem, auto);
+}
+
+.sticker-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .55rem;
+  padding: .65rem;
+}
+
+.sticker-pack-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr);
+  align-items: center;
+  gap: .55rem;
+  padding: .55rem;
+  border: 1px solid var(--color-divider);
+  border-radius: .55rem;
+  background: color-mix(in srgb, var(--color-input-field) 46%, var(--color-navbar-bg));
+  color: var(--color-text-primary);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    border-color .15s ease,
+    background-color .15s ease,
+    transform .15s ease;
+}
+
+.sticker-pack-card:hover,
+.sticker-pack-card:focus-visible {
+  outline: 0;
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, var(--color-navbar-bg));
+  transform: translateY(-1px);
+}
+
+.sticker-pack-thumb {
+  width: 3.25rem;
+  height: 3.25rem;
+  display: grid;
+  place-items: center;
+  border-radius: .45rem;
+  background: var(--color-navbar-bg);
+  overflow: hidden;
+}
+
+.sticker-pack-thumb img {
+  width: 2.65rem;
+  height: 2.65rem;
+  object-fit: contain;
+}
+
+.sticker-pack-info {
+  min-width: 0;
+  display: grid;
+  gap: .15rem;
+}
+
+.sticker-pack-name {
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-size: .84rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticker-pack-version {
+  color: var(--color-text-secondary);
+  font-size: .72rem;
+  font-weight: 750;
+}
+
+.sticker-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(15, 23, 42, .34);
+}
+
+.sticker-preview-modal {
+  width: min(34rem, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+  border-radius: .75rem;
+  background: var(--color-navbar-bg);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, .24);
+}
+
+.sticker-preview-header {
+  min-height: 4.1rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: .65rem;
+  padding: .65rem .75rem;
+  border-bottom: 1px solid var(--color-divider);
+  background: color-mix(in srgb, var(--color-input-field) 38%, var(--color-navbar-bg));
+}
+
+.sticker-preview-cover {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border-radius: .5rem;
+  background: var(--color-navbar-bg);
+  overflow: hidden;
+}
+
+.sticker-preview-cover img {
+  width: 2.3rem;
+  height: 2.3rem;
+  object-fit: contain;
+}
+
+.sticker-preview-title {
+  min-width: 0;
+  display: grid;
+  gap: .1rem;
+  color: var(--color-text-secondary);
+  font-size: .74rem;
+  font-weight: 750;
+}
+
+.sticker-preview-title strong {
+  overflow: hidden;
+  color: var(--color-text-primary);
+  font-size: .92rem;
+  font-weight: 850;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sticker-preview-download {
+  min-width: 6.5rem;
+  height: 2.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  padding: 0 .65rem;
+  border: 1px solid var(--color-accent);
+  border-radius: .5rem;
+  background: var(--color-accent);
+  color: #fff;
+  cursor: pointer;
+  font-size: .78rem;
+  font-weight: 850;
+  transition:
+    opacity .15s ease,
+    transform .15s ease;
+}
+
+.sticker-preview-download:hover:not(:disabled),
+.sticker-preview-download:focus-visible:not(:disabled) {
+  outline: 0;
+  transform: translateY(-1px);
+}
+
+.sticker-preview-download:disabled {
+  cursor: default;
+  opacity: .68;
+}
+
+.sticker-preview-close {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: .5rem;
+  background: transparent;
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition:
+    background-color .15s ease,
+    color .15s ease;
+}
+
+.sticker-preview-close:hover,
+.sticker-preview-close:focus-visible {
+  outline: 0;
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  color: var(--color-accent);
+}
+
+.sticker-preview-body {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: .65rem;
+  overscroll-behavior: contain;
+}
+
+.sticker-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .35rem;
+}
+
+.sticker-preview-item {
+  min-width: 0;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: .55rem;
+  background: color-mix(in srgb, var(--color-input-field) 42%, transparent);
+  cursor: pointer;
+  transition:
+    border-color .15s ease,
+    background-color .15s ease,
+    transform .15s ease;
+}
+
+.sticker-preview-item:hover,
+.sticker-preview-item:focus-visible {
+  outline: 0;
+  border-color: var(--color-accent);
+  background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  transform: scale(1.04);
+}
+
+.sticker-preview-item img {
+  width: 4.5rem;
+  height: 4.5rem;
+  object-fit: contain;
+}
+
+.sticker-preview-state {
+  min-height: 8rem;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  color: var(--color-text-secondary);
+  font-size: .82rem;
+  font-weight: 850;
+  text-align: center;
+}
+
+.sticker-download-error {
+  margin-bottom: .55rem;
+  padding: .55rem .65rem;
+  border: 1px solid color-mix(in srgb, #ef4444 45%, transparent);
+  border-radius: .55rem;
+  background: color-mix(in srgb, #ef4444 9%, transparent);
+  color: #ef4444;
+  font-size: .78rem;
+  font-weight: 850;
+}
+
+@media (max-width: 520px) {
+  .sticker-pack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sticker-preview-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sticker-downloaded-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .sticker-preview-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+
+  .sticker-preview-download {
+    grid-column: 1 / -1;
+  }
+}

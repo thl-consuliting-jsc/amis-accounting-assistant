@@ -1,0 +1,51 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Trợ lý kế toán",
+  "version": "2.5.0",
+  "identifier": "com.mrk4tsu.amt-chat-internal",
+  "build": {
+    "beforeDevCommand": "pnpm start",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist/amt-chat-internal/browser"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Trợ lý kế toán",
+        "width": 1280,
+        "height": 800,
+        "minWidth": 390,
+        "minHeight": 640
+      }
+    ],
+    "security": {
+      "csp": null,
+      "capabilities": [
+        "default"
+      ]
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "nsis",
+    "createUpdaterArtifacts": false,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  },
+  "plugins": {
+    "updater": {
+      "endpoints": [
+        "http://103.107.183.86:5005/api/update/{{target}}/{{arch}}/{{current_version}}"
+      ],
+      "dangerousInsecureTransportProtocol": true,
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEE5MjU0MzQ1NEU2ODJCRDAKUldUUUsyaE9SVU1scWVROVBFcXNRWkcySU9hbHFZNzdDRGkzVUM5eFEybDFGZ00rRk96R2FOdXYK"
+    }
+  }
+}

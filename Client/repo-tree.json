@@ -1,0 +1,2015 @@
+{
+  "Repository": "AMT Chat Internal",
+  "GeneratedAt": "2026-05-18T08:56:32.5279764Z",
+  "TotalFiles": 251,
+  "Files": [
+    {
+      "Path": ".angular/dev-server-1421.err.log",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".angular/dev-server-1421.out.log",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".angular/dev-server.err.log",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".angular/dev-server.out.log",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".gitattributes",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".gitignore",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": ".vscode/extensions.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "README.md",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "angular.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "package.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "pnpm-lock.yaml",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "pnpm-workspace.yaml",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/.gitignore",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/Cargo.lock",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src-tauri/Cargo.toml",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src-tauri/build.rs",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/capabilities/default.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/128x128.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/128x128@2x.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/32x32.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square107x107Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square142x142Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square150x150Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square284x284Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square30x30Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square310x310Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square44x44Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square71x71Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/Square89x89Logo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/StoreLogo.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/icon.icns",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/icon.ico",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/icons/icon.png",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/src/lib.rs",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src-tauri/src/main.rs",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src-tauri/tauri.conf.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/app.component.css",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/app.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/app.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/app.config.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/app.routes.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/interceptors/auth.interceptor.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-layout.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-layout.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-layout.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-layout.model.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-left-layout/chat-left-layout.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-left-layout/chat-left-layout.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-left-layout/chat-left-layout.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-menu-drawer/chat-menu-drawer.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-menu-drawer/chat-menu-drawer.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-menu-drawer/chat-menu-drawer.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-right-layout/chat-right-layout.component.html",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-right-layout/chat-right-layout.component.scss",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/layouts/chat-layout/chat-right-layout/chat-right-layout.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/models/api.model.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/core/services/theme.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/core/services/token.service.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/models/auth-user.model.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/models/auth.model.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/pages/login-page/login-page.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/pages/login-page/login-page.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/pages/login-page/login-page.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/auth/services/auth.service.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/chat-room-list/chat-room-list.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/chat-room-list/chat-room-list.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/chat-room-list/chat-room-list.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/chat-room-list/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-list/emoji-list.component.html",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-list/emoji-list.component.scss",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-list/emoji-list.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-list/index.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-picker.component.html",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-picker.component.scss",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/emoji-picker.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/sticker-panel/index.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/sticker-panel/sticker-panel.component.html",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/sticker-panel/sticker-panel.component.scss",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/emoji-picker/sticker-panel/sticker-panel.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/components/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/message-context-menu/README.md",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/message-context-menu/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/message-context-menu/message-context-menu.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/message-context-menu/message-context-menu.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/components/message-context-menu/message-context-menu.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/models/room-summary.model.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/chat/models/sticker.model.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/services/chat-session.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/services/chat-signalr.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/services/direct-chat.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/services/emoji-recent.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/chat/services/sticker.service.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/contact/components/contact-list-modal/contact-list-modal.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/contact/components/contact-list-modal/contact-list-modal.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/contact/components/contact-list-modal/contact-list-modal.component.ts",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/app/features/contact/components/contact-list-modal/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/contact/models/contact.model.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/features/contact/services/contact.service.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/pipes/emoji-html/emoji-html.pipe.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/pipes/emoji-html/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/pipes/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/loading-button/loading-button.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/loading-button/loading-button.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/loading-button/loading-button.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/message-box/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/message-box/message-box.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/message-box/message-box.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/message-box/message-box.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/modal/index.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/modal/modal.component.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/modal/modal.component.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/app/shared/ui/modal/modal.component.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/angular.svg",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/000.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/001.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/002.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/003.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/004.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/005.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/006.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/007.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/008.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/009.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/010.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/011.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/012.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/013.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/014.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/015.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/016.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/017.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/018.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/019.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/020.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/021.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/022.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/023.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/024.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/025.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/026.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/027.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/028.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/029.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/030.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/031.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/032.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/033.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/034.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/035.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/036.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/037.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/038.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/039.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/040.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/041.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/042.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/043.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/044.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/045.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/046.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/047.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/048.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/049.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/050.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/051.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/052.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/053.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/054.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/055.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/056.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/057.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/058.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/059.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/060.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/061.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/062.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/063.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/064.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/065.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/066.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/067.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/068.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/069.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/070.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/071.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/072.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/073.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/074.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/075.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/076.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/077.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/078.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/079.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/080.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/081.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/082.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/083.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/084.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/085.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/086.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/087.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/088.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/089.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/090.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/091.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/092.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/093.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/094.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/095.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/096.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/097.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/098.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/099.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/100.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/101.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/102.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/103.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/104.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/105.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/106.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/107.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/108.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/109.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/110.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/111.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/112.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/113.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/114.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/115.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/116.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/118.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/119.webp",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/emoji/face/map.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/fonts/quicksand-v37-latin_vietnamese-300.woff2",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/fonts/quicksand-v37-latin_vietnamese-500.woff2",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/fonts/quicksand-v37-latin_vietnamese-600.woff2",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/fonts/quicksand-v37-latin_vietnamese-700.woff2",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/fonts/quicksand-v37-latin_vietnamese-regular.woff2",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/assets/tauri.svg",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/environments/environment.development.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/environments/environment.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/index.html",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/main.ts",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/styles/main.scss",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "src/styles/themes/_dark.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/styles/themes/_index.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "src/styles/themes/_light.scss",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "structure.txt",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    },
+    {
+      "Path": "tsconfig.app.json",
+      "Type": "blob",
+      "LastCommit": "8104649a134d9b7983fc25088bb6c6293e60ccd5",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-18 09:01:01 \u002B0700",
+      "CommitMessage": "Add emoji/sticker picker, theme and Tauri install"
+    },
+    {
+      "Path": "tsconfig.json",
+      "Type": "blob",
+      "LastCommit": "49b7f447819923258d03ff7472b2bdba2940f4d2",
+      "Author": "MrKatsu",
+      "ModifiedDate": "2026-05-17 17:31:45 \u002B0700",
+      "CommitMessage": "Initial commit"
+    }
+  ]
+}

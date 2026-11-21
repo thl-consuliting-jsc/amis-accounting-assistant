@@ -1,0 +1,52 @@
+@if (menuPosition(); as menu) {
+  <div
+    class="message-context-menu"
+    role="menu"
+    [style.left.px]="menu.x"
+    [style.top.px]="menu.y"
+  >
+    <button
+      type="button"
+      role="menuitem"
+      (click)="runAction('reply')"
+    >
+      <ng-icon [svg]="replyIcon" size="16"></ng-icon>
+      <span>Trả lời</span>
+    </button>
+    <button
+      type="button"
+      role="menuitem"
+      (click)="runAction('mark')"
+    >
+      <ng-icon [svg]="markIcon" size="16"></ng-icon>
+      <span>{{ menu.message.marked ? "Bỏ đánh dấu" : "Đánh dấu tin nhắn" }}</span>
+    </button>
+    <button
+      type="button"
+      role="menuitem"
+      (click)="runAction('select')"
+    >
+      <ng-icon [svg]="selectIcon" size="16"></ng-icon>
+      <span>{{ menu.message.selected ? "Bỏ chọn" : "Chọn tin nhắn" }}</span>
+    </button>
+    <button
+      type="button"
+      role="menuitem"
+      (click)="copyMessage()"
+    >
+      <ng-icon [svg]="copyIcon" size="16"></ng-icon>
+      <span>Sao chép</span>
+    </button>
+    @if (menu.isOwn) {
+      <button
+        class="danger"
+        type="button"
+        role="menuitem"
+        (click)="runAction('delete')"
+      >
+        <ng-icon [svg]="deleteIcon" size="16"></ng-icon>
+        <span>Xoa tin nhan</span>
+      </button>
+    }
+  </div>
+}

@@ -1,0 +1,30 @@
+<app-modal
+  [open]="open"
+  [title]="title"
+  size="sm"
+  [showCloseButton]="true"
+  [closeOnBackdrop]="true"
+  [closeOnEscape]="true"
+  bodyOverflow="visible"
+  (closed)="handleModalClosed($event)"
+>
+  <div class="message-box" [class.message-box--danger]="variant === 'danger'">
+    <p>{{ message }}</p>
+  </div>
+
+  <div modal-footer class="message-box__actions">
+    @if (showCancelButton) {
+      <button class="message-box__button" type="button" (click)="cancel()">
+        {{ cancelLabel }}
+      </button>
+    }
+    <button
+      class="message-box__button message-box__button--primary"
+      [class.message-box__button--danger]="variant === 'danger'"
+      type="button"
+      (click)="confirm()"
+    >
+      {{ confirmLabel }}
+    </button>
+  </div>
+</app-modal>

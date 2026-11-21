@@ -1,0 +1,1498 @@
+<div class="accounting-app-layout">
+  <!-- SIDEBAR (LEFT) -->
+  <aside class="app-sidebar" [class.collapsed]="isSidebarCollapsed()">
+    <!-- Top Branding block -->
+    <div class="sidebar-brand-block">
+      <div class="brand-badge">
+        <ng-icon [svg]="fileTextIcon" size="18"></ng-icon>
+      </div>
+      <div class="brand-text">
+        <div class="brand-title-row">
+          <h1 class="brand-title">Trợ lý kế toán</h1>
+          <span class="brand-version-badge">v2.5</span>
+        </div>
+        <span class="brand-sub">Lập file tự động nhập AMIS MISA</span>
+      </div>
+    </div>
+
+    <!-- Company Switcher -->
+    <div class="sidebar-company-block">
+      <div class="company-block-header">
+        <span class="section-label">CÔNG TY LÀM VIỆC</span>
+        <button class="btn-manage-company-icon" (click)="openCompanyModal()" title="Cài đặt công ty & thư mục">
+          <ng-icon [svg]="gearIcon" size="13"></ng-icon>
+          <span>Quản lý</span>
+        </button>
+      </div>
+      <div class="select-wrapper">
+        <select 
+          class="company-select" 
+          [ngModel]="svc.selectedCompany()?.id" 
+          (ngModelChange)="onCompanyChange($event)"
+        >
+          @for (c of svc.companies(); track c.id) {
+            <option [value]="c.id">{{ c.companyName }}</option>
+          }
+        </select>
+        <ng-icon [svg]="caretIcon" class="select-caret" size="14"></ng-icon>
+      </div>
+
+      <div class="company-meta-badge">
+        <span class="meta-mst"><strong>MST:</strong> {{ svc.selectedCompany()?.taxCode || '0110080367' }}</span>
+        <span class="meta-dot">•</span>
+        <span class="meta-rep">{{ svc.selectedCompany()?.name || 'THL Consulting JSC' }}</span>
+      </div>
+    </div>
+
+    <!-- Phân hệ Navigation -->
+    <div class="sidebar-nav-container">
+      @for (group of navGroups; track group.title) {
+        <div class="nav-group-section">
+          <div class="nav-header">{{ group.title }}</div>
+          <nav class="nav-list">
+            @for (item of group.items; track item.id) {
+              <button 
+                type="button"
+                class="nav-item" 
+                [class.active]="activeModule() === item.id"
+                (click)="selectModule(item.id)"
+              >
+                <span class="nav-icon-box">
+                  <ng-icon [svg]="item.icon" size="18"></ng-icon>
+                </span>
+                <span class="nav-text">{{ item.label }}</span>
+                @if (item.badge) {
+                  <span class="nav-item-badge">{{ item.badge }}</span>
+                }
+              </button>
+            }
+          </nav>
+        </div>
+      }
+    </div>
+  </aside>
+
+  <!-- MAIN WORKSPACE (RIGHT) -->
+  <div class="app-main-workspace" [class.misa-active]="activeModule() === 'link-data' || activeModule() === 'danh-muc' || activeModule() === 'bao-cao'">
+    <!-- Top Header Bar -->
+    @if (activeModule() !== 'link-data' && activeModule() !== 'danh-muc' && activeModule() !== 'bao-cao') {
+      <header class="app-topbar">
+        <div class="topbar-left">
+          <div class="topbar-header-row">
+            <button class="btn-sidebar-toggle" (click)="toggleSidebar()" title="Thu gọn / Mở rộng thanh điều hướng">
+              <ng-icon [svg]="listIcon" size="18"></ng-icon>
+            </button>
+            <div class="topbar-title-wrap">
+              <h2 class="page-title">{{ getCurrentNav().label }}</h2>
+              <span class="topbar-sub">{{ getCurrentNav().sub }}</span>
+            </div>
+          </div>
+          <div class="active-company-pill" [title]="'Thư mục dữ liệu: ' + (svc.selectedCompany()?.dataFolder || 'Chưa cài đặt')">
+            <span class="company-icon">🏢</span>
+            <span class="company-name">{{ svc.selectedCompany()?.companyName || 'Chọn công ty...' }}</span>
+            @if (svc.selectedCompany()?.taxCode) {
+              <span class="company-mst">MST: {{ svc.selectedCompany()?.taxCode }}</span>
+            }
+            <span 
+              class="agent-dot-pill" 
+              [class.connected]="svc.isLocalAgentConnected()" 
+              [title]="svc.isLocalAgentConnected() ? 'Đã kết nối máy tính' : 'Chưa kết nối máy tính'"
+              (click)="svc.checkLocalAgent()"
+              style="cursor: pointer; display: inline-flex; align-items: center; margin-left: 4px;"
+            >
+              <span 
+                [style.background]="svc.isLocalAgentConnected() ? '#10B981' : '#CBD5E1'" 
+                style="width: 8px; height: 8px; border-radius: 50%; display: inline-block;"
+              ></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="topbar-right">
+          <div class="period-control-card">
+            <div class="period-header">
+              <span class="period-label">KỲ KẾ TOÁN</span>
+              <label class="chk-container">
+                <input type="checkbox" [ngModel]="isAutoPeriod()" (ngModelChange)="isAutoPeriod.set($event)">
+                <span class="chk-label">Tự động</span>
+              </label>
+            </div>
+            <div class="period-selects-row">
+              <select class="period-select" [disabled]="isAutoPeriod()" [ngModel]="selectedMonth()" (ngModelChange)="onMonthChange(+$event)">
+                @for (m of months; track m) {
+                  <option [value]="m">Tháng {{ m }}</option>
+                }
+              </select>
+              <select class="period-select year-select" [disabled]="isAutoPeriod()" [ngModel]="selectedYear()" (ngModelChange)="onYearChange(+$event)">
+                @for (y of years; track y) {
+                  <option [value]="y">{{ y }}</option>
+                }
+              </select>
+            </div>
+          </div>
+
+          <button 
+            class="btn-download-app" 
+            (click)="isDownloadModalOpen.set(true)" 
+            title="Tải Trợ lý kế toán cho máy tính Windows"
+          >
+            <ng-icon [svg]="windowsIcon" size="16"></ng-icon>
+            <span>Tải Trợ lý kế toán</span>
+          </button>
+
+          <button 
+            class="btn-run-engine" 
+            [disabled]="svc.isRunningEngine()" 
+            (click)="onRunEngine()"
+          >
+            @if (svc.isRunningEngine()) {
+              <ng-icon [svg]="syncIcon" class="spin-icon" size="18"></ng-icon>
+              <span>ĐANG XỬ LÝ...</span>
+            } @else {
+              <ng-icon [svg]="playIcon" size="18"></ng-icon>
+              <span>LẬP FILE</span>
+            }
+          </button>
+        </div>
+      </header>
+    }
+
+    <!-- Scrollable Page Content -->
+    <main class="page-body-container" [class.no-padding]="activeModule() === 'link-data' || activeModule() === 'danh-muc' || activeModule() === 'bao-cao'">
+      <!-- 0. TỔNG QUAN -->
+      @if (activeModule() === 'tong-quan') {
+        <app-overview-tab
+          [selectedMonth]="selectedMonth()"
+          [selectedYear]="selectedYear()"
+          (openUploadModal)="isUploadModalOpen.set(true)"
+          (downloadAllZip)="downloadAllResultsZip()"
+          (openFile)="openFile($event)"
+        />
+      }
+
+      <!-- 2. TIỀN GỬI (Bank Statements & Reconciliation & Details) -->
+      @if (activeModule() === 'tien-gui') {
+        <app-banking-tab
+          (createBankAccount)="openCreateBankAccount()"
+          (createTransaction)="openCreateTransaction()"
+          (editTransaction)="openEditTransaction($event)"
+          (deleteTransaction)="showToast('Đã xóa giao dịch thành công!')"
+        />
+      }
+
+      <!-- 3. MUA HÀNG (BẢNG KÊ HÓA ĐƠN MUA VÀO & HÓA ĐƠN GỐC) -->
+      @if (activeModule() === 'mua-hang') {
+        <app-purchases-tab
+          [selectedMonth]="selectedMonth()"
+          [selectedYear]="selectedYear()"
+          (refreshInvoices)="selectModule('mua-hang')"
+          (createInvoice)="openCreateInvoice($event)"
+          (downloadPdf)="downloadInvoicePdf($event)"
+        />
+      }
+
+      <!-- 4. BÁN HÀNG (BẢNG KÊ HÓA ĐƠN BÁN RA) -->
+      @if (activeModule() === 'ban-hang') {
+        <app-sales-tab
+          [selectedMonth]="selectedMonth()"
+          [selectedYear]="selectedYear()"
+          (refreshInvoices)="selectModule('ban-hang')"
+          (createInvoice)="openCreateInvoice($event)"
+          (downloadPdf)="downloadInvoicePdf($event)"
+        />
+      }
+
+      <!-- 5. QUẢN LÝ HÓA ĐƠN -->
+      @if (activeModule() === 'hoa-don') {
+        <app-placeholder-tab module="hoa-don" label="Quản lý Hóa đơn" />
+      }
+
+      <!-- 7. CÔNG CỤ DỤNG CỤ (CCDC) -->
+      @if (activeModule() === 'ccdc') {
+        <app-tools-supplies-tab
+          (createCcdc)="openCreateCcdc()"
+          (editCcdc)="openEditCcdc($event)"
+          (deleteCcdc)="deleteCcdc($event)"
+        />
+      }
+
+      <!-- 10. THUẾ -->
+      @if (activeModule() === 'thue') {
+        <app-vat-tax-tab />
+      }
+
+      <!-- 12. DANH MỤC (CHUẨN MISA AMIS 100%) -->
+      @if (activeModule() === 'danh-muc') {
+        <app-link-data-tab [initialModule]="'Danh mục'" />
+      }
+
+      <!-- 13. NHẬT KÝ -->
+      @if (activeModule() === 'nhat-ky') {
+        <app-audit-logs-tab (copyLogs)="copyLogs()" />
+      }
+
+      <!-- 14. SOẠN THẢO VĂN BẢN & HỢP ĐỒNG TỰ ĐỘNG -->
+      @if (activeModule() === 'soan-thao') {
+        <app-documents-tab
+          (openContractModal)="openContractModal($event)"
+          (downloadDoc)="downloadContractDoc($event)"
+          (deleteDoc)="deleteContractDoc($event)"
+        />
+      }
+
+      <!-- 15. DỰ KIẾN THU CHI & PHÊ DUYỆT TRÌNH SẾP -->
+      @if (activeModule() === 'du-kien-thu-chi') {
+        <app-cash-flow-tab
+          (openCashFlowModal)="openCashFlowModal()"
+        />
+      }
+
+      <!-- 16. CỔNG GIAO TIẾP KHÁCH HÀNG & TRỢ LÝ AI -->
+      @if (activeModule() === 'khach-hang') {
+        <app-customer-portal-tab />
+      }
+
+      <!-- 17. LINK DATA & BÁO CÁO MISA AMIS -->
+      @if (activeModule() === 'link-data' || activeModule() === 'bao-cao') {
+        <app-link-data-tab [initialModule]="'Báo cáo'" />
+      }
+
+      <!-- OTHER FUTURE MODULES (Tiền mặt, Kho, TSCĐ, Tiền lương) -->
+      @if (['tien-mat', 'kho', 'tscd', 'luong'].includes(activeModule())) {
+        <app-placeholder-tab [module]="activeModule()" [label]="getCurrentNav().label" />
+      }
+    </main>
+
+    <!-- Bottom Status Bar -->
+    @if (activeModule() !== 'link-data' && activeModule() !== 'danh-muc' && activeModule() !== 'bao-cao') {
+      <footer class="app-statusbar">
+        <div class="statusbar-left">
+          @if (svc.isRunningEngine()) {
+            <div class="status-progress-bar"></div>
+          }
+          <span class="status-indicator-dot"></span>
+          <span class="status-msg">{{ svc.statusMessage() }}</span>
+        </div>
+
+        <div class="statusbar-right">
+          <button class="btn-status-action" (click)="openRulesModal()">
+            <ng-icon [svg]="gearIcon" size="14"></ng-icon>
+            <span>Sửa quy tắc</span>
+          </button>
+          <button class="btn-status-action" (click)="openNoteFile()" title="Mở tệp Excel 0. Ghi_chu_doi_chieu">
+            <ng-icon [svg]="fileTextIcon" size="14"></ng-icon>
+            <span>Mở bảng ghi chú</span>
+          </button>
+          <button class="btn-status-action green" (click)="openResultsFolder()" title="Mở thư mục kết quả và tải gói ZIP">
+            <ng-icon [svg]="folderIcon" size="14"></ng-icon>
+            <span>Mở thư mục kết quả</span>
+          </button>
+          <button class="btn-status-action btn-folder-config" (click)="openDownloadFolderConfigModal()" title="Cài đặt thư mục lưu tệp tải về & mở Explorer">
+            <ng-icon [svg]="gearIcon" size="14"></ng-icon>
+            <span>Đổi nơi lưu</span>
+          </button>
+        </div>
+      </footer>
+    }
+  </div>
+</div>
+
+<!-- MODAL: QUẢN LÝ CÔNG TY -->
+@if (isCompanyModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog large">
+      <div class="modal-header">
+        <h3 class="modal-title">Quản lý danh sách công ty & Thư mục dữ liệu</h3>
+        <button class="modal-close-btn" (click)="closeCompanyModal()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="rules-modal-toolbar">
+          <div>
+            <span class="card-box-hint">Danh sách các công ty được cấu hình trong hệ thống</span>
+          </div>
+          <button class="btn-create-rule" (click)="openCreateCompany()">
+            <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+            <span>Thêm công ty mới</span>
+          </button>
+        </div>
+
+        <div class="table-responsive" style="margin-bottom: 16px;">
+          <table class="amis-table">
+            <thead>
+              <tr>
+                <th>Tên công ty</th>
+                <th style="width: 120px;">MST</th>
+                <th>Thư mục dữ liệu</th>
+                <th style="width: 70px; text-align: center;">Năm</th>
+                <th style="width: 140px; text-align: center;">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (c of svc.companies(); track c.id) {
+                <tr [class.selected]="svc.selectedCompany()?.id === c.id">
+                  <td>
+                    <strong>{{ c.companyName }}</strong>
+                    @if (svc.selectedCompany()?.id === c.id) {
+                      <span class="badge-tag green" style="margin-left: 6px;">Đang chọn</span>
+                    }
+                  </td>
+                  <td class="font-mono text-ink">{{ c.taxCode }}</td>
+                  <td class="text-slate font-mono" style="font-size: 11px;">{{ c.dataFolder || '–' }}</td>
+                  <td style="text-align: center;">{{ c.fiscalYear }}</td>
+                  <td style="text-align: center;">
+                    <button class="btn-table-action" style="margin-right: 4px;" (click)="onCompanyChange(c.id); closeCompanyModal()" title="Làm việc với công ty này">
+                      <span>Chọn</span>
+                    </button>
+                    <button class="btn-icon-action" (click)="openEditCompany(c)" title="Sửa">
+                      <ng-icon [svg]="editIcon" size="14"></ng-icon>
+                    </button>
+                    <button class="btn-icon-action text-red" (click)="deleteCompany(c.id)" title="Xóa">
+                      <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sub Form: Thêm / Sửa công ty -->
+        @if (isCompanyFormOpen()) {
+          <div class="rule-edit-subpanel" style="margin-top: 16px;">
+            <h4 class="subpanel-title">{{ companyFormData.id ? 'Sửa thông tin công ty' : 'Thêm công ty mới' }}</h4>
+            <div class="subpanel-grid">
+              <div class="form-group" style="grid-column: span 2;">
+                <label>TÊN CÔNG TY</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="VD: CÔNG TY CỔ PHẦN CÔNG NGHỆ ONDI"
+                  [(ngModel)]="companyFormData.companyName"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>MÃ SỐ THUẾ (MST)</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="VD: 0110080367"
+                  [(ngModel)]="companyFormData.taxCode"
+                />
+              </div>
+
+              <div class="form-group">
+                <label>NĂM TÀI CHÍNH</label>
+                <input 
+                  type="number" 
+                  class="form-control" 
+                  [(ngModel)]="companyFormData.fiscalYear"
+                />
+              </div>
+
+              <div class="form-group" style="grid-column: span 2;">
+                <label>THƯ MỤC DỮ LIỆU CÔNG TY (Chứa 5. DU LIEU và 4. UP PHAN MEM)</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="D:\2026\1.Work\9.PHUONG\5. DU LIEU"
+                  [(ngModel)]="companyFormData.dataFolder"
+                />
+              </div>
+
+              <div class="form-group" style="grid-column: span 2;">
+                <label>FILE / THƯ MỤC QUY TẮC RIÊNG (Nếu có)</label>
+                <input 
+                  type="text" 
+                  class="form-control" 
+                  placeholder="Để trống nếu dùng mặc định"
+                  [(ngModel)]="companyFormData.rulesPath"
+                />
+              </div>
+
+              <div class="form-group" style="grid-column: span 2;">
+                <label class="chk-container">
+                  <input 
+                    type="checkbox" 
+                    [(ngModel)]="companyFormData.autoFindPartner"
+                  />
+                  <span class="chk-label">Tự động tìm kiếm mã đối tượng theo tên đối tác nếu chưa khai</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="subpanel-actions">
+              <button class="btn-modal-cancel" (click)="isCompanyFormOpen.set(false)" [disabled]="isSaving()">Đóng form</button>
+              <button class="btn-modal-save" (click)="saveCompany()" [disabled]="isSaving()">
+                {{ isSaving() ? 'Đang lưu...' : 'Lưu công ty' }}
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-save" (click)="closeCompanyModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: QUY TẮC HẠCH TOÁN -->
+@if (isRulesModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog large">
+      <div class="modal-header">
+        <h3 class="modal-title">Cấu hình quy tắc hạch toán sao kê ngân hàng</h3>
+        <button class="modal-close-btn" (click)="closeRulesModal()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="rules-modal-toolbar">
+          <div class="search-input-box">
+            <ng-icon [svg]="searchIcon" size="16"></ng-icon>
+            <input 
+              type="text" 
+              class="search-field" 
+              placeholder="Tìm theo tên quy tắc, từ khóa, TK nợ/có..."
+              [ngModel]="ruleSearchTerm()"
+              (ngModelChange)="ruleSearchTerm.set($event)"
+            />
+          </div>
+          <button class="btn-create-rule" (click)="openCreateRule()">
+            <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+            <span>Thêm quy tắc</span>
+          </button>
+        </div>
+
+        <div class="table-responsive rules-table-wrapper">
+          <table class="amis-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Ưu tiên</th>
+                <th style="width: 170px;">Tên quy tắc</th>
+                <th style="width: 60px;">Chiều</th>
+                <th>Từ khóa nhận diện</th>
+                <th style="width: 80px;">TK Nợ</th>
+                <th style="width: 80px;">TK Có</th>
+                <th style="width: 110px;">Mã ĐT</th>
+                <th style="width: 80px; text-align: center;">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (r of filteredRules(); track r.id) {
+                <tr>
+                  <td class="text-mute font-bold">{{ r.priority }}</td>
+                  <td class="font-bold text-ink">{{ r.ruleName }}</td>
+                  <td>
+                    <span class="direction-badge" [class.in]="r.transactionDirection === 'IN'">
+                      {{ r.transactionDirection }}
+                    </span>
+                  </td>
+                  <td class="text-slate">{{ r.keywords }}</td>
+                  <td class="font-bold text-blue">{{ r.debitAccount }}</td>
+                  <td class="font-bold text-blue">{{ r.creditAccount }}</td>
+                  <td class="text-slate">{{ r.partnerCode || '–' }}</td>
+                  <td style="text-align: center;">
+                    <button class="btn-icon-action" (click)="openEditRule(r)" title="Sửa">
+                      <ng-icon [svg]="editIcon" size="14"></ng-icon>
+                    </button>
+                    <button class="btn-icon-action text-red" (click)="deleteRule(r.id)" title="Xóa">
+                      <ng-icon [svg]="trashIcon" size="14"></ng-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Sub-Modal: Add / Edit Rule Form -->
+        @if (isEditRuleSubModalOpen()) {
+          <div class="rule-edit-subpanel">
+            <h4 class="subpanel-title">{{ ruleFormData.id ? 'Sửa quy tắc' : 'Thêm quy tắc mới' }}</h4>
+            <div class="subpanel-grid">
+              <div class="form-group">
+                <label>TÊN QUY TẮC</label>
+                <input type="text" class="form-control" [(ngModel)]="ruleFormData.ruleName">
+              </div>
+              <div class="form-group">
+                <label>CHIỀU GIAO DỊCH</label>
+                <select class="form-control" [(ngModel)]="ruleFormData.transactionDirection">
+                  <option value="ALL">Tất cả (Thu & Chi)</option>
+                  <option value="IN">Tiền vào (Thu)</option>
+                  <option value="OUT">Tiền ra (Chi)</option>
+                </select>
+              </div>
+              <div class="form-group full-width">
+                <label>TỪ KHÓA NHẬN DIỆN (cách nhau bởi dấu phẩy)</label>
+                <input type="text" class="form-control" placeholder="VD: AWS, AMAZON, HA TANG" [(ngModel)]="ruleFormData.keywords">
+              </div>
+              <div class="form-group">
+                <label>TÀI KHOẢN NỢ</label>
+                <input type="text" class="form-control" placeholder="6427" [(ngModel)]="ruleFormData.debitAccount">
+              </div>
+              <div class="form-group">
+                <label>TÀI KHOẢN CÓ</label>
+                <input type="text" class="form-control" placeholder="1121" [(ngModel)]="ruleFormData.creditAccount">
+              </div>
+              <div class="form-group">
+                <label>MÃ ĐỐI TƯỢNG GÁN SẴN</label>
+                <input type="text" class="form-control" placeholder="VD: NCC00016" [(ngModel)]="ruleFormData.partnerCode">
+              </div>
+              <div class="form-group">
+                <label>THỨ TỰ ƯU TIÊN</label>
+                <input type="number" class="form-control" [(ngModel)]="ruleFormData.priority">
+              </div>
+            </div>
+            <div class="subpanel-actions">
+              <button class="btn-modal-cancel" (click)="isEditRuleSubModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+              <button class="btn-modal-save" (click)="saveRule()" [disabled]="isSaving()">
+                {{ isSaving() ? 'Đang lưu...' : 'Lưu quy tắc' }}
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-save" (click)="closeRulesModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM / SỬA ĐỐI TƯỢNG (PARTNER) -->
+@if (isPartnerModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ partnerFormData.id ? 'Sửa đối tượng' : 'Thêm đối tượng mới' }}</h3>
+        <button class="modal-close-btn" (click)="isPartnerModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="subpanel-grid">
+          <div class="form-group">
+            <label>LOẠI ĐỐI TƯỢNG</label>
+            <select class="form-control" [(ngModel)]="partnerFormData.partnerType">
+              <option value="KH">Khách hàng (KH)</option>
+              <option value="NCC">Nhà cung cấp (NCC)</option>
+              <option value="NV">Nhân viên (NV)</option>
+              <option value="KH_NCC">Vừa là KH vừa là NCC</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>MÃ ĐỐI TƯỢNG</label>
+            <input type="text" class="form-control" placeholder="VD: NCC00016, KH00001" [(ngModel)]="partnerFormData.partnerCode">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>TÊN ĐỐI TƯỢNG</label>
+            <input type="text" class="form-control" placeholder="Tên công ty hoặc họ tên cá nhân" [(ngModel)]="partnerFormData.partnerName">
+          </div>
+
+          <div class="form-group">
+            <label>MÃ SỐ THUẾ (MST / CCCD)</label>
+            <input type="text" class="form-control" placeholder="VD: 0101248141" [(ngModel)]="partnerFormData.taxCode">
+          </div>
+
+          <div class="form-group">
+            <label>TK NỢ NGẦM ĐỊNH</label>
+            <input type="text" class="form-control" placeholder="VD: 131, 331" [(ngModel)]="partnerFormData.defaultDebitAccount">
+          </div>
+
+          <div class="form-group">
+            <label>TK CÓ NGẦM ĐỊNH</label>
+            <input type="text" class="form-control" placeholder="VD: 511, 1121" [(ngModel)]="partnerFormData.defaultCreditAccount">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isPartnerModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+        <button class="btn-modal-save" (click)="savePartner()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Đang lưu...' : 'Lưu đối tượng' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM / SỬA TÀI KHOẢN NGÂN HÀNG (BANK ACCOUNT) -->
+@if (isBankAccountModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ bankAccountFormData.id ? 'Sửa tài khoản ngân hàng' : 'Thêm tài khoản ngân hàng mới' }}</h3>
+        <button class="modal-close-btn" (click)="isBankAccountModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="subpanel-grid">
+          <div class="form-group">
+            <label>TÊN NGÂN HÀNG</label>
+            <input type="text" class="form-control" placeholder="VD: MB Bank, VPBank, Techcombank" [(ngModel)]="bankAccountFormData.bankName">
+          </div>
+
+          <div class="form-group">
+            <label>MÃ NGÂN HÀNG VIẾT TẮT</label>
+            <input type="text" class="form-control" placeholder="VD: MB, VP, TCB, VCB" [(ngModel)]="bankAccountFormData.bankCode">
+          </div>
+
+          <div class="form-group">
+            <label>SỐ TÀI KHOẢN</label>
+            <input type="text" class="form-control" placeholder="VD: 19932568, 011115419688" [(ngModel)]="bankAccountFormData.accountNumber">
+          </div>
+
+          <div class="form-group">
+            <label>TÀI KHOẢN KẾ TOÁN (GL ACCOUNT)</label>
+            <input type="text" class="form-control" placeholder="VD: 1121, 11211, 11212" [(ngModel)]="bankAccountFormData.glAccount">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>TÊN CHỦ TÀI KHOẢN</label>
+            <input type="text" class="form-control" [(ngModel)]="bankAccountFormData.accountName">
+          </div>
+
+          <div class="form-group">
+            <label>TIỀN TỐ PHIẾU THU</label>
+            <input type="text" class="form-control" placeholder="PTNH" [(ngModel)]="bankAccountFormData.voucherPrefixReceipt">
+          </div>
+
+          <div class="form-group">
+            <label>TIỀN TỐ PHIẾU CHI</label>
+            <input type="text" class="form-control" placeholder="PCNH" [(ngModel)]="bankAccountFormData.voucherPrefixPayment">
+          </div>
+
+          <div class="form-group">
+            <label>SỐ DƯ ĐẦU KỲ (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="bankAccountFormData.initialBalance">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isBankAccountModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+        <button class="btn-modal-save" (click)="saveBankAccount()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Đang lưu...' : 'Lưu tài khoản' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM / SỬA GIAO DỊCH TIỀN GỬI (TRANSACTION) -->
+@if (isTransactionModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ transactionFormData.id ? 'Sửa giao dịch tiền gửi' : 'Thêm giao dịch tiền gửi mới' }}</h3>
+        <button class="modal-close-btn" (click)="isTransactionModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="subpanel-grid">
+          <div class="form-group">
+            <label>NGÀY GIAO DỊCH</label>
+            <input type="date" class="form-control" [(ngModel)]="transactionFormData.transactionDate">
+          </div>
+
+          <div class="form-group">
+            <label>CHIỀU GIAO DỊCH</label>
+            <select class="form-control" [(ngModel)]="transactionFormData.direction">
+              <option value="IN">Thu tiền (Tiền vào - IN)</option>
+              <option value="OUT">Chi tiền (Tiền ra - OUT)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>SỐ TIỀN (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="transactionFormData.amount">
+          </div>
+
+          <div class="form-group">
+            <label>SỐ CHỨNG TỪ / FT</label>
+            <input type="text" class="form-control" placeholder="VD: PTNH001, FT26284..." [(ngModel)]="transactionFormData.voucherNo">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>DIỄN GIẢI / NỘI DUNG GIAO DỊCH</label>
+            <input type="text" class="form-control" placeholder="Nội dung trên sao kê hoặc diễn giải hạch toán" [(ngModel)]="transactionFormData.description">
+          </div>
+
+          <div class="form-group">
+            <label>MÃ ĐỐI TƯỢNG</label>
+            <input type="text" class="form-control" placeholder="VD: NCC00016, KH00001" [(ngModel)]="transactionFormData.partnerCode">
+          </div>
+
+          <div class="form-group">
+            <label>TÊN ĐỐI TÁC</label>
+            <input type="text" class="form-control" placeholder="Tên đối tác" [(ngModel)]="transactionFormData.partnerName">
+          </div>
+
+          <div class="form-group">
+            <label>TK NỢ</label>
+            <input type="text" class="form-control" placeholder="1121 / 6427 / 331..." [(ngModel)]="transactionFormData.debitAccount">
+          </div>
+
+          <div class="form-group">
+            <label>TK CÓ</label>
+            <input type="text" class="form-control" placeholder="1121 / 511 / 131..." [(ngModel)]="transactionFormData.creditAccount">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isTransactionModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+        <button class="btn-modal-save" (click)="saveTransaction()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Đang lưu...' : 'Lưu giao dịch' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM / SỬA HÓA ĐƠN (INVOICE) -->
+@if (isInvoiceModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ invoiceFormData.id ? 'Sửa hóa đơn' : (invoiceFormData.invoiceType === 'IN' ? 'Thêm HĐ mua vào' : 'Thêm HĐ bán ra') }}</h3>
+        <button class="modal-close-btn" (click)="isInvoiceModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="subpanel-grid">
+          <div class="form-group">
+            <label>LOẠI HÓA ĐƠN</label>
+            <select class="form-control" [(ngModel)]="invoiceFormData.invoiceType">
+              <option value="IN">Hóa đơn mua vào (IN)</option>
+              <option value="OUT">Hóa đơn bán ra (OUT)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>SỐ HÓA ĐƠN</label>
+            <input type="text" class="form-control" placeholder="VD: 0000088, 0001234" [(ngModel)]="invoiceFormData.invoiceNo">
+          </div>
+
+          <div class="form-group">
+            <label>NGÀY HÓA ĐƠN</label>
+            <input type="date" class="form-control" [(ngModel)]="invoiceFormData.invoiceDate">
+          </div>
+
+          <div class="form-group">
+            <label>MÃ SỐ THUẾ ĐỐI TÁC</label>
+            <input type="text" class="form-control" placeholder="VD: 0101248141" [(ngModel)]="invoiceFormData.taxCode">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>TÊN KHÁCH HÀNG / NHÀ CUNG CẤP</label>
+            <input type="text" class="form-control" [(ngModel)]="invoiceFormData.partnerName">
+          </div>
+
+          <div class="form-group">
+            <label>TIỀN CHƯA THUẾ (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="invoiceFormData.preTaxAmount">
+          </div>
+
+          <div class="form-group">
+            <label>TIỀN THUẾ GTGT (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="invoiceFormData.taxAmount">
+          </div>
+
+          <div class="form-group">
+            <label>TK NỢ</label>
+            <input type="text" class="form-control" placeholder="VD: 1561, 642, 131" [(ngModel)]="invoiceFormData.debitAccount">
+          </div>
+
+          <div class="form-group">
+            <label>TK CÓ</label>
+            <input type="text" class="form-control" placeholder="VD: 331, 511, 3331" [(ngModel)]="invoiceFormData.creditAccount">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>DIỄN GIẢI / CHI TIẾT DỊCH VỤ HÀNG HÓA</label>
+            <input type="text" class="form-control" placeholder="VD: Mua bản quyền phần mềm, Phí dịch vụ cloud..." [(ngModel)]="invoiceFormData.note">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isInvoiceModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+        <button class="btn-modal-save" (click)="saveInvoice()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Đang lưu...' : 'Lưu hóa đơn' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM / SỬA CÔNG CỤ DỤNG CỤ (CCDC) -->
+@if (isCcdcModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">{{ ccdcFormData.id ? 'Sửa công cụ dụng cụ' : 'Thêm CCDC mới' }}</h3>
+        <button class="modal-close-btn" (click)="isCcdcModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="subpanel-grid">
+          <div class="form-group">
+            <label>MÃ CCDC</label>
+            <input type="text" class="form-control" placeholder="VD: CCDC26-001" [(ngModel)]="ccdcFormData.code">
+          </div>
+
+          <div class="form-group">
+            <label>ĐƠN VỊ TÍNH</label>
+            <input type="text" class="form-control" placeholder="Cái / Chiếc / Bộ" [(ngModel)]="ccdcFormData.unit">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>TÊN CÔNG CỤ DỤNG CỤ</label>
+            <input type="text" class="form-control" placeholder="VD: Màn hình Dell UltraSharp 27 inch" [(ngModel)]="ccdcFormData.name">
+          </div>
+
+          <div class="form-group">
+            <label>NGUYÊN GIÁ (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="ccdcFormData.originalPrice">
+          </div>
+
+          <div class="form-group">
+            <label>SỐ KỲ PHÂN BỔ (THÁNG)</label>
+            <input type="number" class="form-control" placeholder="12, 24, 36" [(ngModel)]="ccdcFormData.allocationPeriods">
+          </div>
+
+          <div class="form-group" style="grid-column: span 2;">
+            <label>NGUỒN HÓA ĐƠN</label>
+            <input type="text" class="form-control" placeholder="VD: HĐ số 0001569 - Phong Vũ" [(ngModel)]="ccdcFormData.invoiceRef">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isCcdcModalOpen.set(false)" [disabled]="isSaving()">Hủy</button>
+        <button class="btn-modal-save" (click)="saveCcdc()" [disabled]="isSaving()">
+          {{ isSaving() ? 'Đang lưu...' : 'Lưu CCDC' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: FILE PREVIEW -->
+@if (previewFile(); as f) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Thông tin tệp kết quả AMIS</h3>
+        <button class="modal-close-btn" (click)="closeFilePreview()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="file-preview-card">
+          <div class="file-header-row">
+            <ng-icon [svg]="fileTextIcon" size="24" class="text-blue"></ng-icon>
+            <div>
+              <h4 class="preview-filename">{{ f.fileName }}</h4>
+              <span class="preview-meta">{{ f.formattedSize }} • Sẵn sàng nhập AMIS</span>
+            </div>
+          </div>
+          
+          <div class="preview-detail-row">
+            <span class="lbl">Vị trí nhập trong AMIS:</span>
+            <span class="val text-blue font-bold">{{ f.amisTarget }}</span>
+          </div>
+
+          <div class="preview-detail-row">
+            <span class="lbl">Hướng dẫn chi tiết:</span>
+            <span class="val">{{ f.description }}</span>
+          </div>
+
+          @if (!svc.isRemoteHost && f.filePath) {
+            <div class="preview-detail-row">
+              <span class="lbl">Đường dẫn tệp:</span>
+              <span class="val text-slate font-mono">{{ f.filePath }}</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer" style="display: flex; justify-content: space-between; align-items: center;">
+        <button class="btn-status-action green" (click)="downloadCurrentPreviewFile()" title="Tải tệp về máy">
+          <ng-icon [svg]="downloadIcon" size="14"></ng-icon>
+          <span>Tải tệp Excel</span>
+        </button>
+        <button class="btn-modal-save" (click)="closeFilePreview()">Đóng</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- HIDDEN INPUTS ĐỂ CHỌN THƯ MỤC HOẶC TỆP QUA TRÌNH DUYỆT -->
+<input #folderInput type="file" webkitdirectory directory multiple style="display: none" (change)="onFolderFilesSelected($event)">
+<input #fileInput type="file" multiple accept=".xlsx,.xls,.pdf,.xml" style="display: none" (change)="onLooseFilesSelected($event)">
+
+<!-- MODAL: LẬP FILE QUA TRÌNH DUYỆT (ZERO-INSTALL) -->
+@if (isUploadModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog upload-dialog">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">Lập file AMIS qua trình duyệt</h3>
+          <p class="modal-subtitle">
+            Kỳ kế toán: <strong>Tháng {{ selectedMonth() }}/{{ selectedYear() }}</strong> • {{ svc.selectedCompany()?.companyName }}
+          </p>
+        </div>
+        <button class="modal-close-btn" (click)="isUploadModalOpen.set(false)" [disabled]="svc.isRunningEngine()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- 3 Nhóm dữ liệu đầu vào cần thiết -->
+        <div class="data-checklist-card">
+          <div class="checklist-list">
+            <div class="checklist-item">
+              <span class="item-badge required">1. SAO KE</span>
+              <div class="item-head">
+                <strong>Sao kê ngân hàng (.xlsx)</strong>
+                <span class="item-tag required">Bắt buộc</span>
+              </div>
+            </div>
+
+            <div class="checklist-item">
+              <span class="item-badge optional">2. MUA HANG</span>
+              <div class="item-head">
+                <strong>Bảng kê chi tiết HĐ mua vào (.xlsx)</strong>
+              </div>
+            </div>
+
+            <div class="checklist-item">
+              <span class="item-badge optional">3. BAN HANG</span>
+              <div class="item-head">
+                <strong>Bảng kê chi tiết HĐ bán ra (.xlsx)</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trạng thái đang xử lý -->
+        @if (svc.isRunningEngine()) {
+          <div class="running-status-box">
+            <ng-icon [svg]="syncIcon" class="spin-icon" size="32"></ng-icon>
+            <h4 class="running-title">{{ svc.statusMessage() }}</h4>
+            <p class="running-desc">Hệ thống đang xử lý, vui lòng chờ trong giây lát...</p>
+          </div>
+        }
+
+        <!-- Trạng thái hoàn tất thành công -->
+        @if (!svc.isRunningEngine() && svc.generatedFiles().length > 0) {
+          <div class="success-status-box">
+            <div class="success-header-row">
+              <ng-icon [svg]="checkCircleIcon" class="success-icon" size="24"></ng-icon>
+              <div>
+                <h4 class="success-title">LẬP FILE AMIS HOÀN TẤT!</h4>
+                <p class="success-desc">Đã tạo thành công <strong>{{ svc.generatedFiles().length }} tệp AMIS</strong></p>
+              </div>
+            </div>
+            <div class="success-actions-row">
+              <button 
+                class="btn-download-all-zip" 
+                (click)="downloadAllResultsZip()"
+                title="Tải trọn bộ kết quả trong 1 file ZIP"
+              >
+                <ng-icon [svg]="downloadIcon" size="18"></ng-icon>
+                <span>TẢI VỀ TOÀN BỘ FILE (ZIP)</span>
+              </button>
+            </div>
+          </div>
+        }
+
+        <!-- Nút thao tác chọn thư mục khi chưa chạy -->
+        @if (!svc.isRunningEngine()) {
+          <div class="upload-action-box">
+            <button 
+              type="button"
+              class="btn-pick-folder-primary" 
+              (click)="onPickDirectoryAndRun(folderInput)"
+            >
+              <ng-icon [svg]="folderIcon" size="20"></ng-icon>
+              <span>CHỌN THƯ MỤC VÀ LẬP FILE</span>
+            </button>
+
+            <button 
+              type="button"
+              class="btn-pick-files-secondary" 
+              (click)="fileInput.click()"
+            >
+              <ng-icon [svg]="fileTextIcon" size="15"></ng-icon>
+              <span>Hoặc chọn từng file Excel lẻ (.xlsx)</span>
+            </button>
+          </div>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button 
+          class="btn-modal-close" 
+          (click)="isUploadModalOpen.set(false)"
+          [disabled]="svc.isRunningEngine()"
+        >
+          {{ svc.generatedFiles().length > 0 ? 'Xem bảng kết quả' : 'Đóng' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: TẢI PHẦN MỀM DESKTOP -->
+@if (isDownloadModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Trợ lý kế toán</h3>
+        <button class="modal-close-btn" (click)="isDownloadModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="download-app-card">
+          <div class="download-header-row">
+            <div class="app-icon-circle">
+              <ng-icon [svg]="windowsIcon" size="28"></ng-icon>
+            </div>
+            <div>
+              <h4 class="download-title">Trợ lý kế toán</h4>
+              <p class="download-desc">Phần mềm dành cho máy tính Windows</p>
+            </div>
+          </div>
+
+          <div class="download-actions-box">
+            <a 
+              href="assets/downloads/TroLyKeToan_Setup.exe" 
+              download="TroLyKeToan_Setup.exe"
+              class="btn-download-primary"
+            >
+              <ng-icon [svg]="downloadSimpleIcon" size="22"></ng-icon>
+              <div class="btn-text-wrap">
+                <span class="btn-main-text">TẢI BỘ CÀI ĐẶT WINDOWS (Setup .EXE)</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-save" (click)="isDownloadModalOpen.set(false)">Đóng</button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: SOẠN THẢO VĂN BẢN & HỢP ĐỒNG -->
+@if (isContractModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog large">
+      <div class="modal-header">
+        <h3 class="modal-title">Soạn thảo văn bản & Hợp đồng tự động theo mẫu</h3>
+        <button class="modal-close-btn" (click)="closeContractModal()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-form-grid">
+          <div class="form-group full-width">
+            <label>MẪU VĂN BẢN / BIỂU MẪU ÁP DỤNG <span class="req">*</span></label>
+            <select class="form-control" [(ngModel)]="contractFormData.templateCode">
+              @for (t of svc.contractTemplates(); track t.code) {
+                <option [value]="t.code">{{ t.name }} ({{ t.code }})</option>
+              }
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>TIÊU ĐỀ VĂN BẢN / TRÍCH YẾU (ĐỂ TRỐNG SẼ TỰ SINH THEO MẪU)</label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.title" placeholder="VD: Hợp đồng cung cấp dịch vụ máy chủ..." />
+          </div>
+
+          <div class="form-group full-width">
+            <label>TÊN ĐỐI TÁC / NGƯỜI LAO ĐỘNG / BÊN B <span class="req">*</span></label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.partnerName" placeholder="Tên công ty hoặc họ tên cá nhân..." />
+          </div>
+
+          <div class="form-group">
+            <label>MÃ SỐ THUẾ / SỐ CCCD ĐỐI TÁC</label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.partnerTaxCode" placeholder="MST hoặc số định danh cá nhân..." />
+          </div>
+
+          <div class="form-group">
+            <label>NGƯỜI ĐẠI DIỆN KÝ TÊN</label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.representative" placeholder="Họ tên người đại diện..." />
+          </div>
+
+          <div class="form-group full-width">
+            <label>ĐỊA CHỈ ĐỐI TÁC</label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.partnerAddress" placeholder="Địa chỉ trụ sở hoặc nơi ở..." />
+          </div>
+
+          <div class="form-group">
+            <label>CHỨC VỤ ĐẠI DIỆN</label>
+            <input type="text" class="form-control" [(ngModel)]="contractFormData.position" placeholder="VD: Giám đốc, Kế toán trưởng..." />
+          </div>
+
+          <div class="form-group">
+            <label>GIÁ TRỊ HỢP ĐỒNG (VNĐ)</label>
+            <input type="number" class="form-control" [(ngModel)]="contractFormData.contractValue" placeholder="Số tiền thanh toán..." />
+          </div>
+
+          <div class="form-group">
+            <label>NGÀY KÝ HỢP ĐỒNG</label>
+            <input type="date" class="form-control" [(ngModel)]="contractFormData.signDate" />
+          </div>
+
+          <div class="form-group">
+            <label>NGÀY HIỆU LỰC</label>
+            <input type="date" class="form-control" [(ngModel)]="contractFormData.effectiveDate" />
+          </div>
+
+          <div class="form-group full-width">
+            <label>CHI TIẾT NỘI DUNG / ĐIỀU KHOẢN BỔ SUNG</label>
+            <textarea class="form-control" rows="3" [(ngModel)]="contractFormData.details" placeholder="Nhập thêm các điều khoản cụ thể hoặc mô tả công việc..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="closeContractModal()">Hủy</button>
+        <button class="btn-modal-save" (click)="submitGenerateContract()">
+          <ng-icon [svg]="downloadIcon" size="14"></ng-icon>
+          <span>Sinh văn bản & Tải file Word (.doc)</span>
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: THÊM KHOẢN DỰ KIẾN THU CHI -->
+@if (isCashFlowModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Thêm khoản dự kiến thu / chi trong kỳ</h3>
+        <button class="modal-close-btn" (click)="closeCashFlowModal()">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-form-grid">
+          <div class="form-group full-width">
+            <label>LOẠI DÒNG TIỀN <span class="req">*</span></label>
+            <select class="form-control" [(ngModel)]="cashFlowFormData.flowType">
+              <option value="EXPENSE">Dự chi (Chi phí / Mua sắm / Thanh toán NCC)</option>
+              <option value="REVENUE">Dự thu (Doanh thu / Thu hồi công nợ khách hàng)</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>TÊN KHOẢN THU / CHI <span class="req">*</span></label>
+            <input type="text" class="form-control" [(ngModel)]="cashFlowFormData.title" placeholder="VD: Chi phí thuê máy chủ Cloud, Thu tiền hợp đồng ABC..." />
+          </div>
+
+          <div class="form-group">
+            <label>HẠNG MỤC CHI PHÍ</label>
+            <input type="text" class="form-control" [(ngModel)]="cashFlowFormData.category" placeholder="VD: Chi phí CNTT, Thuê ngoài, Nhân công..." />
+          </div>
+
+          <div class="form-group">
+            <label>SỐ TIỀN DỰ KIẾN (VNĐ) <span class="req">*</span></label>
+            <input type="number" class="form-control" [(ngModel)]="cashFlowFormData.estimatedAmount" placeholder="VD: 15000000" />
+          </div>
+
+          <div class="form-group full-width">
+            <label>NGUỒN DỮ LIỆU</label>
+            <select class="form-control" [(ngModel)]="cashFlowFormData.source">
+              <option value="Phát sinh mới">Phát sinh mới trong kỳ</option>
+              <option value="Báo cáo AMIS">Từ báo cáo AMIS</option>
+              <option value="Đề xuất phòng ban">Đề xuất phòng ban gửi sếp</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label>GHI CHÚ CHI TIẾT CHO SẾP DUYỆT</label>
+            <textarea class="form-control" rows="2" [(ngModel)]="cashFlowFormData.note" placeholder="Diễn giải lý do chi hoặc tiến độ thu..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="closeCashFlowModal()">Hủy</button>
+        <button class="btn-modal-save" (click)="saveCashFlowItem()">
+          <ng-icon [svg]="checkCircleIcon" size="14"></ng-icon>
+          <span>Lưu khoản dự kiến</span>
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: HỎI THƯ MỤC LƯU KHI TẢI XUỐNG -->
+@if (isFolderPromptModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog folder-modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <ng-icon [svg]="folderIcon" size="20"></ng-icon>
+          <span>Chọn thư mục lưu tệp tải về</span>
+        </h3>
+        <button class="modal-close-btn" (click)="isFolderPromptModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="download-prompt-box">
+          <div class="download-file-badge">
+            <ng-icon [svg]="fileTextIcon" size="16"></ng-icon>
+            <span class="lbl-file">Tệp đang tải:</span>
+            <span class="file-name-highlight">{{ pendingDownloadBlob()?.fileName }}</span>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="field-label-bold">THƯ MỤC LƯU TRÊN MÁY TÍNH CỦA BẠN</label>
+            <div class="folder-input-group">
+              <input 
+                type="text" 
+                class="form-control folder-path-input" 
+                [ngModel]="targetDownloadFolder()" 
+                (ngModelChange)="targetDownloadFolder.set($event)"
+                placeholder="VD: D:\2026\1.Work\9.PHUONG\4. UP PHAN MEM\THANG 10.2026"
+              />
+              <button 
+                type="button" 
+                class="btn-browse-folder" 
+                (click)="browseFolderForDownload()" 
+                [disabled]="isBrowsingFolder()"
+                title="Mở hộp thoại chọn thư mục"
+              >
+                <ng-icon [svg]="folderIcon" size="16"></ng-icon>
+                <span>{{ isBrowsingFolder() ? 'Đang chọn...' : 'Chọn thư mục' }}</span>
+              </button>
+            </div>
+            <span class="form-hint">Dán đường dẫn hoặc bấm <strong>Chọn thư mục</strong> để duyệt vị trí lưu.</span>
+          </div>
+
+          <!-- GỢI Ý NHANH -->
+          <div class="quick-folder-section">
+            <span class="quick-title">Gợi ý nhanh:</span>
+            <div class="quick-folder-pills">
+              @if (suggestedResultsFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedResultsFolder()" (click)="setQuickFolder(suggestedResultsFolder())" title="{{ suggestedResultsFolder() }}">
+                  🎯 4. UP PHAN MEM kỳ này
+                </button>
+              }
+              @if (suggestedDownloadsFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedDownloadsFolder()" (click)="setQuickFolder(suggestedDownloadsFolder())" title="{{ suggestedDownloadsFolder() }}">
+                  📥 Thư mục Downloads
+                </button>
+              }
+              @if (suggestedDesktopFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedDesktopFolder()" (click)="setQuickFolder(suggestedDesktopFolder())" title="{{ suggestedDesktopFolder() }}">
+                  🖥 Desktop
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- TÙY CHỌN TICK CHỌN -->
+          <div class="download-options-group">
+            <label class="option-card" [class.checked]="autoSavePreference()">
+              <input 
+                type="checkbox" 
+                [ngModel]="autoSavePreference()" 
+                (ngModelChange)="autoSavePreference.set($event)" 
+              />
+              <div class="option-text">
+                <strong>Lần sau không hỏi lại nơi lưu</strong>
+                <span>Tự động lưu vào thư mục này cho các lần tải sau</span>
+              </div>
+            </label>
+
+            <label class="option-card" [class.checked]="openExplorerAfterDownload()">
+              <input 
+                type="checkbox" 
+                [ngModel]="openExplorerAfterDownload()" 
+                (ngModelChange)="openExplorerAfterDownload.set($event)" 
+              />
+              <div class="option-text">
+                <strong>Tự động mở thư mục trong Windows Explorer ngay sau khi tải xong</strong>
+                <span>Bật cửa sổ thư mục và chọn đúng tệp vừa tải xong</span>
+              </div>
+            </label>
+          </div>
+
+          @if (svc.isRemoteHost && !svc.isLocalAgentConnected()) {
+            <div class="remote-notice-banner">
+              <ng-icon [svg]="infoIcon" size="16"></ng-icon>
+              <span>Trên Web từ xa, tệp sẽ tải vào thư mục <strong>Downloads</strong> của trình duyệt. Để tự động mở Windows Explorer, hãy chạy trên <a href="http://localhost:9092" target="_blank">http://localhost:9092</a> hoặc Desktop App.</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" (click)="isFolderPromptModalOpen.set(false)">Hủy</button>
+        <button class="btn-modal-save green" (click)="confirmDownloadSave()" [disabled]="isSavingDownload()">
+          <ng-icon [svg]="downloadIcon" size="15"></ng-icon>
+          <span>{{ isSavingDownload() ? 'Đang lưu & mở thư mục...' : 'Tải xuống & Mở thư mục' }}</span>
+        </button>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- MODAL: CẤU HÌNH NƠI LƯU TỆP TẢI VỀ -->
+@if (isFolderConfigModalOpen()) {
+  <div class="modal-backdrop">
+    <div class="modal-dialog folder-modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <ng-icon [svg]="gearIcon" size="20"></ng-icon>
+          <span>Cấu hình thư mục lưu tệp tải về</span>
+        </h3>
+        <button class="modal-close-btn" (click)="isFolderConfigModalOpen.set(false)">
+          <ng-icon [svg]="closeIcon" size="18"></ng-icon>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="download-prompt-box">
+          <div class="form-group full-width">
+            <label class="field-label-bold">THƯ MỤC LƯU MẶC ĐỊNH</label>
+            <div class="folder-input-group">
+              <input 
+                type="text" 
+                class="form-control folder-path-input" 
+                [ngModel]="targetDownloadFolder()" 
+                (ngModelChange)="targetDownloadFolder.set($event)"
+                placeholder="VD: D:\2026\1.Work\9.PHUONG\4. UP PHAN MEM\THANG 10.2026"
+              />
+              <button 
+                type="button" 
+                class="btn-browse-folder" 
+                (click)="browseFolderForDownload()" 
+                [disabled]="isBrowsingFolder()"
+                title="Mở hộp thoại chọn thư mục"
+              >
+                <ng-icon [svg]="folderIcon" size="16"></ng-icon>
+                <span>{{ isBrowsingFolder() ? 'Đang chọn...' : 'Chọn thư mục' }}</span>
+              </button>
+            </div>
+            <span class="form-hint">Mọi tệp kết quả tải xuống sẽ được lưu tự động hoặc gợi ý vào đường dẫn này.</span>
+          </div>
+
+          <!-- GỢI Ý NHANH -->
+          <div class="quick-folder-section">
+            <span class="quick-title">Gợi ý nhanh:</span>
+            <div class="quick-folder-pills">
+              @if (suggestedResultsFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedResultsFolder()" (click)="setQuickFolder(suggestedResultsFolder())" title="{{ suggestedResultsFolder() }}">
+                  🎯 4. UP PHAN MEM kỳ này
+                </button>
+              }
+              @if (suggestedDownloadsFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedDownloadsFolder()" (click)="setQuickFolder(suggestedDownloadsFolder())" title="{{ suggestedDownloadsFolder() }}">
+                  📥 Thư mục Downloads
+                </button>
+              }
+              @if (suggestedDesktopFolder()) {
+                <button type="button" class="folder-pill" [class.active]="targetDownloadFolder() === suggestedDesktopFolder()" (click)="setQuickFolder(suggestedDesktopFolder())" title="{{ suggestedDesktopFolder() }}">
+                  🖥 Desktop
+                </button>
+              }
+            </div>
+          </div>
+
+          <!-- TÙY CHỌN TICK CHỌN -->
+          <div class="download-options-group">
+            <label class="option-card" [class.checked]="autoSavePreference()">
+              <input 
+                type="checkbox" 
+                [ngModel]="autoSavePreference()" 
+                (ngModelChange)="autoSavePreference.set($event)" 
+              />
+              <div class="option-text">
+                <strong>Tự động lưu vào thư mục này (không hỏi lại khi tải)</strong>
+                <span>Hệ thống tự động lưu thẳng tệp tải xuống vào đường dẫn trên</span>
+              </div>
+            </label>
+
+            <label class="option-card" [class.checked]="openExplorerAfterDownload()">
+              <input 
+                type="checkbox" 
+                [ngModel]="openExplorerAfterDownload()" 
+                (ngModelChange)="openExplorerAfterDownload.set($event)" 
+              />
+              <div class="option-text">
+                <strong>Tự động mở thư mục trong Windows Explorer ngay sau khi tải</strong>
+                <span>Tự động bật cửa sổ thư mục và chọn đúng tệp vừa tải xong</span>
+              </div>
+            </label>
+          </div>
+
+          @if (svc.isRemoteHost && !svc.isLocalAgentConnected()) {
+            <div class="remote-notice-banner">
+              <ng-icon [svg]="infoIcon" size="16"></ng-icon>
+              <span>Trên Web từ xa, tệp sẽ tải vào thư mục <strong>Downloads</strong> của trình duyệt. Để tự động mở Windows Explorer, hãy chạy trên <a href="http://localhost:9092" target="_blank">http://localhost:9092</a> hoặc Desktop App.</span>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-open-explorer-action" (click)="openCurrentConfiguredFolder()" title="Mở thư mục hiện tại trong Windows Explorer">
+          <ng-icon [svg]="folderIcon" size="15"></ng-icon>
+          <span>Mở thư mục này ngay</span>
+        </button>
+        <div class="footer-right-buttons">
+          <button class="btn-modal-cancel" (click)="isFolderConfigModalOpen.set(false)">Đóng</button>
+          <button class="btn-modal-save" (click)="saveDownloadFolderConfig()">
+            <ng-icon [svg]="checkCircleIcon" size="15"></ng-icon>
+            <span>Lưu cấu hình</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+<!-- TOAST ALERT -->
+@if (toastMessage()) {
+  <div class="toast-popup">
+    <ng-icon [svg]="checkCircleIcon" size="18"></ng-icon>
+    <span>{{ toastMessage() }}</span>
+  </div>
+}

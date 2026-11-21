@@ -1,0 +1,75 @@
+<aside class="conversation-panel" aria-label="Danh sach hoi thoai">
+  <app-chat-menu-drawer
+    [user]="user()"
+    [open]="isMenuOpen()"
+    (closed)="closeMenu()"
+    (contactsRequested)="openContacts()"
+    (profileRequested)="openProfile()"
+    (logoutRequested)="logout()"
+  />
+  <header class="panel-header">
+    <button class="icon-button" type="button" aria-label="Mo menu" (click)="toggleMenu()">
+      <ng-icon [svg]="menuIcon" size="22"></ng-icon>
+    </button>
+
+    <label class="search-box" aria-label="Tim kiem hoi thoai">
+      <ng-icon [svg]="searchIcon" size="18"></ng-icon>
+      <input
+        type="search"
+        placeholder="Tim kiem"
+        [value]="searchTerm()"
+        (input)="searchTerm.set($any($event.target).value)"
+      />
+    </label>
+  </header>
+
+  <section class="profile-strip" aria-label="Nguoi dung hien tai">
+    <div class="avatar current-user">
+      @if (avatarUrl()) {
+        <img [src]="avatarUrl()" [alt]="displayName()" />
+      } @else {
+        <span>{{ initials() || "AM" }}</span>
+      }
+    </div>
+    <div class="profile-copy">
+      <strong>{{ displayName() }}</strong>
+      <span>{{ userSubtitle() }}</span>
+    </div>
+    <button class="icon-button muted desktop-only" type="button" aria-label="Thong bao" (click)="toggleNotification()">
+      <ng-icon [svg]="bellIcon" size="18"></ng-icon>
+    </button>
+  </section>
+
+  <app-chat-notification-popover
+    [open]="isNotificationOpen()"
+    (closed)="closeNotification()"
+  />
+
+  <app-chat-room-list
+    [conversations]="conversations()"
+    [activeConversation]="activeConversation()"
+    [searchTerm]="searchTerm()"
+    (conversationSelected)="conversationSelected.emit($event)"
+  />
+
+  <footer class="panel-footer desktop-only">
+    <button class="utility-button" type="button">
+      <ng-icon [svg]="settingsIcon" size="18"></ng-icon>
+      <span>Cài đặt</span>
+    </button>
+    <button class="icon-button" type="button" aria-label="Dang xuat" (click)="logout()">
+      <ng-icon [svg]="logoutIcon" size="18"></ng-icon>
+    </button>
+  </footer>
+
+  <app-message-box
+    [open]="isLogoutConfirmOpen()"
+    title="Xác nhận đăng xuất"
+    message="Bạn có muốn đăng xuất khỏi tài khoản này không?"
+    confirmLabel="Đăng xuất"
+    cancelLabel="Hủy"
+    variant="danger"
+    (confirmed)="confirmLogout()"
+    (cancelled)="cancelLogout()"
+  ></app-message-box>
+</aside>

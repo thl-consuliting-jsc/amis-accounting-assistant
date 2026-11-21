@@ -1,0 +1,74 @@
+<app-modal
+  [open]="open()"
+  title="Danh bạ"
+  subtitle="Tìm kiếm và bắt đầu hội thoại"
+  size="lg"
+  position="center"
+  bodyHeight="clamp(20rem, 62vh, 35rem)"
+  bodyOverflow="hidden"
+  (closed)="close()"
+>
+  <div class="contact-modal-content">
+    <label class="contact-search" aria-label="Tim kiem contact">
+      <ng-icon [svg]="searchIcon" size="18"></ng-icon>
+      <input
+        type="search"
+        name="contactSearch"
+        autocomplete="off"
+        placeholder="Tìm tên, vị trí..."
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+      />
+    </label>
+
+    <section class="contact-list app-scrollbar" aria-label="Danh sach contact">
+      @if (isLoading()) {
+        <div class="empty-state">
+          <p>Đang tải danh sách liên hệ...</p>
+        </div>
+      } @else if (errorMessage()) {
+        <div class="empty-state">
+          <ng-icon [svg]="addUserIcon" size="24"></ng-icon>
+          <p>{{ errorMessage() }}</p>
+        </div>
+      } @else {
+        @for (contact of filteredContacts(); track contact.id) {
+          <button
+            class="contact-item"
+            type="button"
+            [disabled]="openingRoomContactId() !== null"
+            (click)="selectContact(contact)"
+          >
+            <span class="contact-avatar" [class.is-online]="contact.online">
+              @if (avatarUrl(contact)) {
+                <img [src]="avatarUrl(contact)" [alt]="contact.fullName" />
+              } @else {
+                {{ initials(contact) || "AM" }}
+              }
+            </span>
+
+            <span class="contact-copy">
+              <span class="contact-topline">
+                <strong>{{ contact.fullName }}</strong>
+              </span>
+              <span class="contact-meta">&#64;{{ contact.username }} &middot; {{ contact.jobPosition }}</span>
+            </span>
+
+            <span class="contact-action" aria-hidden="true">
+              @if (openingRoomContactId() === contact.id) {
+                <span class="opening-room-text">...</span>
+              } @else {
+                <ng-icon [svg]="messageIcon" size="18"></ng-icon>
+              }
+            </span>
+          </button>
+        } @empty {
+          <div class="empty-state">
+            <ng-icon [svg]="addUserIcon" size="24"></ng-icon>
+            <p>Khong tim thay lien he nao.</p>
+          </div>
+        }
+      }
+    </section>
+  </div>
+</app-modal>

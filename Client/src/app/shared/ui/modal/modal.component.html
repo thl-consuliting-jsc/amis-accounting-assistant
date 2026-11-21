@@ -1,0 +1,60 @@
+@if (open) {
+  <div
+    class="modal-backdrop"
+    [class.modal-backdrop--top]="position === 'top'"
+    [class.modal-backdrop--center]="position === 'center'"
+    [class.modal-backdrop--bottom]="position === 'bottom'"
+    (click)="handleBackdropClick()"
+  >
+    <section
+      class="modal"
+      [class.modal--sm]="size === 'sm'"
+      [class.modal--md]="size === 'md'"
+      [class.modal--lg]="size === 'lg'"
+      [class.modal--xl]="size === 'xl'"
+      [class.modal--full]="size === 'full'"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="title ? labelledById : null"
+      [attr.aria-describedby]="subtitle ? describedById : null"
+      (click)="$event.stopPropagation()"
+    >
+      @if (title || subtitle || showCloseButton) {
+        <header class="modal__header">
+          <div class="modal__heading">
+            @if (title) {
+              <h2 class="modal__title" [id]="labelledById">{{ title }}</h2>
+            }
+
+            @if (subtitle) {
+              <p class="modal__subtitle" [id]="describedById">{{ subtitle }}</p>
+            }
+          </div>
+
+          @if (showCloseButton) {
+            <button
+              class="modal__close"
+              type="button"
+              aria-label="Dong modal"
+              (click)="requestClose('close-button')"
+            >
+              <ng-icon [svg]="closeIcon" size="19"></ng-icon>
+            </button>
+          }
+        </header>
+      }
+
+      <div
+        class="modal__body"
+        [style.height]="bodyHeight || null"
+        [style.min-height]="bodyMinHeight || null"
+        [style.max-height]="bodyMaxHeight || null"
+        [style.overflow]="bodyOverflow"
+      >
+        <ng-content></ng-content>
+      </div>
+
+      <ng-content select="[modal-footer]"></ng-content>
+    </section>
+  </div>
+}

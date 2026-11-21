@@ -1,0 +1,40 @@
+{
+  "name": "amt-chat-internal",
+  "version": "0.1.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "build:ci": "ng build --configuration production",
+    "watch": "ng build --watch --configuration development",
+    "tauri": "tauri"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^20.1.4",
+    "@angular/compiler": "^20.1.4",
+    "@angular/core": "^20.1.4",
+    "@angular/forms": "^20.1.4",
+    "@angular/platform-browser": "^20.1.4",
+    "@angular/router": "^20.1.4",
+    "@fontsource/quicksand": "^5.2.10",
+    "@microsoft/signalr": "^10.0.0",
+    "@ng-icons/core": "^32.5.0",
+    "@ng-icons/phosphor-icons": "^32.5.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-notification": "^2.3.3",
+    "@tauri-apps/plugin-opener": "^2",
+    "@tauri-apps/plugin-process": "^2.3.1",
+    "@tauri-apps/plugin-updater": "^2.10.1",
+    "rxjs": "~7.8.2",
+    "tslib": "^2.8.1",
+    "zone.js": "~0.15.1"
+  },
+  "devDependencies": {
+    "@angular/build": "^20.1.4",
+    "@angular/cli": "^20.1.4",
+    "@angular/compiler-cli": "^20.1.4",
+    "@tauri-apps/cli": "^2.11.1",
+    "typescript": "~5.8.3"
+  }
+}

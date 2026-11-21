@@ -1,0 +1,95 @@
+<div class="page-view-generic">
+  <div class="content-card-box">
+    <div class="card-box-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+      <div>
+        <h4 class="card-box-title">Bảng kê hóa đơn mua vào trong kỳ</h4>
+        <span class="card-box-hint">
+          Đọc trực tiếp từ tệp bảng kê (5. DU LIEU\THANG {{ selectedMonth() }}.{{ selectedYear() }}\2. MUA HANG) – Hiển thị {{ svc.invoices().length }} hóa đơn
+        </span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-create-rule" (click)="refreshInvoices.emit()">
+          <ng-icon [svg]="syncIcon" size="14"></ng-icon>
+          <span>Làm mới bảng kê</span>
+        </button>
+        <button class="btn-create-rule" (click)="createInvoice.emit('IN')">
+          <ng-icon [svg]="plusIcon" size="14"></ng-icon>
+          <span>Thêm HĐ thủ công</span>
+        </button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="amis-table">
+        <thead>
+          <tr>
+            <th style="width: 120px;">Số HĐ & Ký hiệu</th>
+            <th style="width: 95px;">Ngày HĐ</th>
+            <th>Nhà cung cấp / Bên bán</th>
+            <th style="width: 110px;">Mã số thuế</th>
+            <th>Hàng hóa, dịch vụ / Diễn giải</th>
+            <th style="width: 125px; text-align: right;">Tiền chưa thuế</th>
+            <th style="width: 80px; text-align: center;">Thuế suất</th>
+            <th style="width: 110px; text-align: right;">Tiền thuế</th>
+            <th style="width: 130px; text-align: right;">Tổng thanh toán</th>
+            <th style="width: 130px; text-align: center;">Trạng thái CQT</th>
+            <th style="width: 100px; text-align: center;">Hóa đơn gốc</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (inv of svc.invoices(); track inv.id) {
+            <tr>
+              <td class="font-bold text-ink">
+                <div>{{ inv.invoiceNo }}</div>
+                @if (inv.invoiceSymbol) {
+                  <span class="badge-sub font-mono">{{ inv.invoiceSymbol }}</span>
+                }
+              </td>
+              <td class="text-mute">{{ inv.invoiceDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <strong>{{ inv.partnerName }}</strong>
+                @if (inv.rawFileSource) {
+                  <div class="desc-text" style="font-size: 11px; color: #64748b;">Nguồn: {{ inv.rawFileSource }}</div>
+                }
+              </td>
+              <td class="text-slate font-mono">{{ inv.taxCode }}</td>
+              <td>
+                <span class="text-ink">{{ inv.itemName || inv.note || 'Hàng hóa / Dịch vụ mua vào' }}</span>
+              </td>
+              <td class="text-right">{{ inv.preTaxAmount | number:'1.0-0' }} đ</td>
+              <td class="text-center">
+                <span class="badge" style="background: #eff6ff; color: #2563eb; border: 1px solid #bfdbfe; font-size: 11px;">
+                  {{ inv.taxRate || '10%' }}
+                </span>
+              </td>
+              <td class="text-right text-mute">{{ inv.taxAmount | number:'1.0-0' }} đ</td>
+              <td class="text-right font-bold text-ink">{{ inv.totalAmount | number:'1.0-0' }} đ</td>
+              <td class="text-center">
+                <span class="badge" [style.background]="inv.status.includes('không mã') ? '#fef3c7' : '#ecfdf5'" [style.color]="inv.status.includes('không mã') ? '#b45309' : '#047857'">
+                  {{ inv.status }}
+                </span>
+              </td>
+              <td style="text-align: center;">
+                @if (inv.hasPdf) {
+                  <button class="btn-table-action green" (click)="downloadPdf.emit(inv)" title="Tải tệp PDF hóa đơn gốc">
+                    <ng-icon [svg]="downloadIcon" size="14"></ng-icon>
+                    <span>Tải PDF</span>
+                  </button>
+                } @else {
+                  <span style="color: #94a3b8; font-size: 11px;">(Chưa có PDF)</span>
+                }
+              </td>
+            </tr>
+          }
+          @if (svc.invoices().length === 0) {
+            <tr>
+              <td colspan="11" style="text-align: center; padding: 30px; color: #64748b;">
+                Không tìm thấy tệp bảng kê mua vào (HDCTMuaVao) trong thư mục <strong>5. DU LIEU\THANG {{ selectedMonth() }}.{{ selectedYear() }}\2. MUA HANG</strong>.<br>
+                Vui lòng kiểm tra lại cấu hình thư mục hoặc bấm nút <strong>"Thêm HĐ thủ công"</strong>.
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

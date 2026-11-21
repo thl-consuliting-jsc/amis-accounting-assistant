@@ -1,0 +1,954 @@
+[
+    {
+        "id": "000",
+        "file": "000.webp",
+        "ascii": [
+            ":)"
+        ],
+        "shortcode": ":smile:"
+    },
+    {
+        "id": "001",
+        "file": "001.webp",
+        "ascii": [
+            ":D"
+        ],
+        "shortcode": ":big_grin:"
+    },
+    {
+        "id": "002",
+        "file": "002.webp",
+        "ascii": [
+            "*-*"
+        ],
+        "shortcode": ":star_eyes:"
+    },
+    {
+        "id": "003",
+        "file": "003.webp",
+        "ascii": [
+            "^^\""
+        ],
+        "shortcode": ":happy_sweat:"
+    },
+    {
+        "id": "004",
+        "file": "004.webp",
+        "ascii": [
+            "=))"
+        ],
+        "shortcode": ":rofl:"
+    },
+    {
+        "id": "005",
+        "file": "005.webp",
+        "ascii": [
+            ";))"
+        ],
+        "shortcode": ":wink_laugh:"
+    },
+    {
+        "id": "006",
+        "file": "006.webp",
+        "ascii": [
+            ":sweat:"
+        ],
+        "shortcode": ":sweat:"
+    },
+    {
+        "id": "007",
+        "file": "007.webp",
+        "ascii": [
+            ":$"
+        ],
+        "shortcode": ":embarrassed:"
+    },
+    {
+        "id": "008",
+        "file": "008.webp",
+        "ascii": [
+            "_ _\""
+        ],
+        "shortcode": ":speechless:"
+    },
+    {
+        "id": "009",
+        "file": "009.webp",
+        "ascii": [
+            "|-)"
+        ],
+        "shortcode": ":sleepy:"
+    },
+    {
+        "id": "010",
+        "file": "010.webp",
+        "ascii": [
+            ":P"
+        ],
+        "shortcode": ":tongue:"
+    },
+    {
+        "id": "011",
+        "file": "011.webp",
+        "ascii": [
+            ";)"
+        ],
+        "shortcode": ":wink:"
+    },
+    {
+        "id": "012",
+        "file": "012.webp",
+        "ascii": [
+            ";P"
+        ],
+        "shortcode": ":wink_tongue:"
+    },
+    {
+        "id": "013",
+        "file": "013.webp",
+        "ascii": [
+            "(love)"
+        ],
+        "shortcode": ":love:"
+    },
+    {
+        "id": "014",
+        "file": "014.webp",
+        "ascii": [
+            ":-*"
+        ],
+        "shortcode": ":kiss:"
+    },
+    {
+        "id": "015",
+        "file": "015.webp",
+        "ascii": [
+            ">:-("
+        ],
+        "shortcode": ":angry_devil:"
+    },
+    {
+        "id": "016",
+        "file": "016.webp",
+        "ascii": [
+            ":kiss:"
+        ],
+        "shortcode": ":kiss_face:"
+    },
+    {
+        "id": "017",
+        "file": "017.webp",
+        "ascii": [
+            ":mustache:"
+        ],
+        "shortcode": ":mustache:"
+    },
+    {
+        "id": "018",
+        "file": "018.webp",
+        "ascii": [
+            ":smirk:"
+        ],
+        "shortcode": ":smirk:"
+    },
+    {
+        "id": "019",
+        "file": "019.webp",
+        "ascii": [
+            ":p"
+        ],
+        "shortcode": ":tongue_small:"
+    },
+    {
+        "id": "020",
+        "file": "020.webp",
+        "ascii": [
+            ":-?"
+        ],
+        "shortcode": ":confused:"
+    },
+    {
+        "id": "021",
+        "file": "021.webp",
+        "ascii": [
+            ":crazy:"
+        ],
+        "shortcode": ":crazy:"
+    },
+    {
+        "id": "022",
+        "file": "022.webp",
+        "ascii": [
+            "%)"
+        ],
+        "shortcode": ":dizzy:"
+    },
+    {
+        "id": "023",
+        "file": "023.webp",
+        "ascii": [
+            ">:-@"
+        ],
+        "shortcode": ":furious:"
+    },
+    {
+        "id": "024",
+        "file": "024.webp",
+        "ascii": [
+            ":-?"
+        ],
+        "shortcode": ":confused_2:"
+    },
+    {
+        "id": "025",
+        "file": "025.webp",
+        "ascii": [
+            ":monocle:"
+        ],
+        "shortcode": ":monocle:"
+    },
+    {
+        "id": "026",
+        "file": "026.webp",
+        "ascii": [
+            "B-)"
+        ],
+        "shortcode": ":cool:"
+    },
+    {
+        "id": "027",
+        "file": "027.webp",
+        "ascii": [
+            "B-)"
+        ],
+        "shortcode": ":cool_2:"
+    },
+    {
+        "id": "028",
+        "file": "028.webp",
+        "ascii": [
+            ":-O"
+        ],
+        "shortcode": ":surprised:"
+    },
+    {
+        "id": "029",
+        "file": "029.webp",
+        "ascii": [
+            "*-*"
+        ],
+        "shortcode": ":star_struck:"
+    },
+    {
+        "id": "030",
+        "file": "030.webp",
+        "ascii": [
+            ":sad:"
+        ],
+        "shortcode": ":sad:"
+    },
+    {
+        "id": "031",
+        "file": "031.webp",
+        "ascii": [
+            ";("
+        ],
+        "shortcode": ":cry_wink:"
+    },
+    {
+        "id": "032",
+        "file": "032.webp",
+        "ascii": [
+            ":("
+        ],
+        "shortcode": ":sad_face:"
+    },
+    {
+        "id": "033",
+        "file": "033.webp",
+        "ascii": [
+            ":-S"
+        ],
+        "shortcode": ":worried:"
+    },
+    {
+        "id": "034",
+        "file": "034.webp",
+        "ascii": [
+            ":-O"
+        ],
+        "shortcode": ":shock:"
+    },
+    {
+        "id": "035",
+        "file": "035.webp",
+        "ascii": [
+            ":'("
+        ],
+        "shortcode": ":cry:"
+    },
+    {
+        "id": "036",
+        "file": "036.webp",
+        "ascii": [
+            ":angry:"
+        ],
+        "shortcode": ":angry:"
+    },
+    {
+        "id": "037",
+        "file": "037.webp",
+        "ascii": [
+            ">_<"
+        ],
+        "shortcode": ":frustrated:"
+    },
+    {
+        "id": "038",
+        "file": "038.webp",
+        "ascii": [
+            ":'-("
+        ],
+        "shortcode": ":sob:"
+    },
+    {
+        "id": "039",
+        "file": "039.webp",
+        "ascii": [
+            ":yawn:"
+        ],
+        "shortcode": ":yawn:"
+    },
+    {
+        "id": "040",
+        "file": "040.webp",
+        "ascii": [
+            ":-O"
+        ],
+        "shortcode": ":gasp:"
+    },
+    {
+        "id": "041",
+        "file": "041.webp",
+        "ascii": [
+            ":-S"
+        ],
+        "shortcode": ":nervous:"
+    },
+    {
+        "id": "042",
+        "file": "042.webp",
+        "ascii": [
+            ";-("
+        ],
+        "shortcode": ":sad_wink:"
+    },
+    {
+        "id": "043",
+        "file": "043.webp",
+        "ascii": [
+            "^:)^"
+        ],
+        "shortcode": ":angel:"
+    },
+    {
+        "id": "044",
+        "file": "044.webp",
+        "ascii": [
+            "*:O*"
+        ],
+        "shortcode": ":mind_blown:"
+    },
+    {
+        "id": "045",
+        "file": "045.webp",
+        "ascii": [
+            "8-O"
+        ],
+        "shortcode": ":shocked:"
+    },
+    {
+        "id": "046",
+        "file": "046.webp",
+        "ascii": [
+            ":~("
+        ],
+        "shortcode": ":sick_cry:"
+    },
+    {
+        "id": "047",
+        "file": "047.webp",
+        "ascii": [
+            ":cold:"
+        ],
+        "shortcode": ":cold:"
+    },
+    {
+        "id": "048",
+        "file": "048.webp",
+        "ascii": [
+            ":shiver:"
+        ],
+        "shortcode": ":shiver:"
+    },
+    {
+        "id": "049",
+        "file": "049.webp",
+        "ascii": [
+            ":-O"
+        ],
+        "shortcode": ":panic:"
+    },
+    {
+        "id": "050",
+        "file": "050.webp",
+        "ascii": [
+            ":-|"
+        ],
+        "shortcode": ":neutral:"
+    },
+    {
+        "id": "051",
+        "file": "051.webp",
+        "ascii": [
+            ":-/"
+        ],
+        "shortcode": ":unsure:"
+    },
+    {
+        "id": "052",
+        "file": "052.webp",
+        "ascii": [
+            ":wipe:"
+        ],
+        "shortcode": ":wipe_tears:"
+    },
+    {
+        "id": "053",
+        "file": "053.webp",
+        "ascii": [
+            "=D>"
+        ],
+        "shortcode": ":clap_hands:"
+    },
+    {
+        "id": "054",
+        "file": "054.webp",
+        "ascii": [
+            ":-?"
+        ],
+        "shortcode": ":thinking:"
+    },
+    {
+        "id": "055",
+        "file": "055.webp",
+        "ascii": [
+            ":peek:"
+        ],
+        "shortcode": ":peek:"
+    },
+    {
+        "id": "056",
+        "file": "056.webp",
+        "ascii": [
+            ":hide:"
+        ],
+        "shortcode": ":hide:"
+    },
+    {
+        "id": "057",
+        "file": "057.webp",
+        "ascii": [
+            ":shh:"
+        ],
+        "shortcode": ":shh:"
+    },
+    {
+        "id": "058",
+        "file": "058.webp",
+        "ascii": [
+            ":whisper:"
+        ],
+        "shortcode": ":whisper:"
+    },
+    {
+        "id": "059",
+        "file": "059.webp",
+        "ascii": [
+            ":pout:"
+        ],
+        "shortcode": ":pout:"
+    },
+    {
+        "id": "060",
+        "file": "060.webp",
+        "ascii": [
+            "X_X"
+        ],
+        "shortcode": ":dead:"
+    },
+    {
+        "id": "061",
+        "file": "061.webp",
+        "ascii": [
+            ":alien:"
+        ],
+        "shortcode": ":alien:"
+    },
+    {
+        "id": "062",
+        "file": "062.webp",
+        "ascii": [
+            ":-|"
+        ],
+        "shortcode": ":blank:"
+    },
+    {
+        "id": "063",
+        "file": "063.webp",
+        "ascii": [
+            ":smirk2:"
+        ],
+        "shortcode": ":smirk_2:"
+    },
+    {
+        "id": "064",
+        "file": "064.webp",
+        "ascii": [
+            ":sigh:"
+        ],
+        "shortcode": ":sigh:"
+    },
+    {
+        "id": "065",
+        "file": "065.webp",
+        "ascii": [
+            ":sus:"
+        ],
+        "shortcode": ":sus:"
+    },
+    {
+        "id": "066",
+        "file": "066.webp",
+        "ascii": [
+            "O:)"
+        ],
+        "shortcode": ":innocent:"
+    },
+    {
+        "id": "067",
+        "file": "067.webp",
+        "ascii": [
+            ":blink:"
+        ],
+        "shortcode": ":blink:"
+    },
+    {
+        "id": "068",
+        "file": "068.webp",
+        "ascii": [
+            ":sleepy:"
+        ],
+        "shortcode": ":sleepy_2:"
+    },
+    {
+        "id": "069",
+        "file": "069.webp",
+        "ascii": [
+            ":-X"
+        ],
+        "shortcode": ":sealed_lips:"
+    },
+    {
+        "id": "070",
+        "file": "070.webp",
+        "ascii": [
+            ":yawn:"
+        ],
+        "shortcode": ":yawn_2:"
+    },
+    {
+        "id": "071",
+        "file": "071.webp",
+        "ascii": [
+            "_ _!"
+        ],
+        "shortcode": ":bow:"
+    },
+    {
+        "id": "072",
+        "file": "072.webp",
+        "ascii": [
+            ">:D"
+        ],
+        "shortcode": ":evil_grin:"
+    },
+    {
+        "id": "073",
+        "file": "073.webp",
+        "ascii": [
+            "zzz"
+        ],
+        "shortcode": ":sleeping:"
+    },
+    {
+        "id": "074",
+        "file": "074.webp",
+        "ascii": [
+            ":fever:"
+        ],
+        "shortcode": ":fever:"
+    },
+    {
+        "id": "075",
+        "file": "075.webp",
+        "ascii": [
+            ":drool:"
+        ],
+        "shortcode": ":drool:"
+    },
+    {
+        "id": "076",
+        "file": "076.webp",
+        "ascii": [
+            ":bubble:"
+        ],
+        "shortcode": ":bubble:"
+    },
+    {
+        "id": "077",
+        "file": "077.webp",
+        "ascii": [
+            ":slime:"
+        ],
+        "shortcode": ":slime:"
+    },
+    {
+        "id": "078",
+        "file": "078.webp",
+        "ascii": [
+            "X_X"
+        ],
+        "shortcode": ":dead_2:"
+    },
+    {
+        "id": "079",
+        "file": "079.webp",
+        "ascii": [
+            ":vomit:"
+        ],
+        "shortcode": ":vomit:"
+    },
+    {
+        "id": "080",
+        "file": "080.webp",
+        "ascii": [
+            ":burger:"
+        ],
+        "shortcode": ":burger:"
+    },
+    {
+        "id": "081",
+        "file": "081.webp",
+        "ascii": [
+            ":sick:"
+        ],
+        "shortcode": ":sick:"
+    },
+    {
+        "id": "082",
+        "file": "082.webp",
+        "ascii": [
+            ":vomit:"
+        ],
+        "shortcode": ":vomit_2:"
+    },
+    {
+        "id": "083",
+        "file": "083.webp",
+        "ascii": [
+            ":mask:"
+        ],
+        "shortcode": ":mask:"
+    },
+    {
+        "id": "084",
+        "file": "084.webp",
+        "ascii": [
+            ":tissue:"
+        ],
+        "shortcode": ":tissue:"
+    },
+    {
+        "id": "085",
+        "file": "085.webp",
+        "ascii": [
+            ":$"
+        ],
+        "shortcode": ":shy_money:"
+    },
+    {
+        "id": "086",
+        "file": "086.webp",
+        "ascii": [
+            ":injured:"
+        ],
+        "shortcode": ":injured:"
+    },
+    {
+        "id": "087",
+        "file": "087.webp",
+        "ascii": [
+            "$-)"
+        ],
+        "shortcode": ":rich:"
+    },
+    {
+        "id": "088",
+        "file": "088.webp",
+        "ascii": [
+            ">:)"
+        ],
+        "shortcode": ":evil_smile:"
+    },
+    {
+        "id": "089",
+        "file": "089.webp",
+        "ascii": [
+            ">:-("
+        ],
+        "shortcode": ":angry_devil_2:"
+    },
+    {
+        "id": "090",
+        "file": "090.webp",
+        "ascii": [
+            "<:-P"
+        ],
+        "shortcode": ":party:"
+    },
+    {
+        "id": "091",
+        "file": "091.webp",
+        "ascii": [
+            ":o)"
+        ],
+        "shortcode": ":clown:"
+    },
+    {
+        "id": "092",
+        "file": "092.webp",
+        "ascii": [
+            ":poop:"
+        ],
+        "shortcode": ":poop:"
+    },
+    {
+        "id": "093",
+        "file": "093.webp",
+        "ascii": [
+            ":ghost:"
+        ],
+        "shortcode": ":ghost:"
+    },
+    {
+        "id": "094",
+        "file": "094.webp",
+        "ascii": [
+            ":king:"
+        ],
+        "shortcode": ":king:"
+    },
+    {
+        "id": "095",
+        "file": "095.webp",
+        "ascii": [
+            ":cat:"
+        ],
+        "shortcode": ":cat:"
+    },
+    {
+        "id": "096",
+        "file": "096.webp",
+        "ascii": [
+            ":monkey1:"
+        ],
+        "shortcode": ":monkey_see:"
+    },
+    {
+        "id": "097",
+        "file": "097.webp",
+        "ascii": [
+            ":monkey2:"
+        ],
+        "shortcode": ":monkey_hear:"
+    },
+    {
+        "id": "098",
+        "file": "098.webp",
+        "ascii": [
+            ":monkey3:"
+        ],
+        "shortcode": ":monkey_speak:"
+    },
+    {
+        "id": "099",
+        "file": "099.webp",
+        "ascii": [
+            ":unicorn:"
+        ],
+        "shortcode": ":unicorn:"
+    },
+    {
+        "id": "100",
+        "file": "100.webp",
+        "ascii": [
+            "<3"
+        ],
+        "shortcode": ":heart:"
+    },
+    {
+        "id": "101",
+        "file": "101.webp",
+        "ascii": [
+            "(clap)"
+        ],
+        "shortcode": ":clap:"
+    },
+    {
+        "id": "102",
+        "file": "102.webp",
+        "ascii": [
+            ":handshake:"
+        ],
+        "shortcode": ":handshake:"
+    },
+    {
+        "id": "103",
+        "file": "103.webp",
+        "ascii": [
+            "(y)"
+        ],
+        "shortcode": ":thumbs_up:"
+    },
+    {
+        "id": "104",
+        "file": "104.webp",
+        "ascii": [
+            "(n)"
+        ],
+        "shortcode": ":thumbs_down:"
+    },
+    {
+        "id": "105",
+        "file": "105.webp",
+        "ascii": [
+            ":v:"
+        ],
+        "shortcode": ":victory:"
+    },
+    {
+        "id": "106",
+        "file": "106.webp",
+        "ascii": [
+            ":crossed:"
+        ],
+        "shortcode": ":crossed_fingers:"
+    },
+    {
+        "id": "107",
+        "file": "107.webp",
+        "ascii": [
+            "\\m/"
+        ],
+        "shortcode": ":rock:"
+    },
+    {
+        "id": "108",
+        "file": "108.webp",
+        "ascii": [
+            ":ok:"
+        ],
+        "shortcode": ":ok_hand:"
+    },
+    {
+        "id": "109",
+        "file": "109.webp",
+        "ascii": [
+            ":pinch:"
+        ],
+        "shortcode": ":pinch:"
+    },
+    {
+        "id": "110",
+        "file": "110.webp",
+        "ascii": [
+            ":point_up:"
+        ],
+        "shortcode": ":point_up:"
+    },
+    {
+        "id": "111",
+        "file": "111.webp",
+        "ascii": [
+            ":wave:"
+        ],
+        "shortcode": ":wave:"
+    },
+    {
+        "id": "112",
+        "file": "112.webp",
+        "ascii": [
+            ":beckon:"
+        ],
+        "shortcode": ":beckon:"
+    },
+    {
+        "id": "113",
+        "file": "113.webp",
+        "ascii": [
+            ":call_me:"
+        ],
+        "shortcode": ":call_me:"
+    },
+    {
+        "id": "114",
+        "file": "114.webp",
+        "ascii": [
+            ":muscle:"
+        ],
+        "shortcode": ":muscle:"
+    },
+    {
+        "id": "115",
+        "file": "115.webp",
+        "ascii": [
+            "_|_"
+        ],
+        "shortcode": ":middle_finger:"
+    },
+    {
+        "id": "116",
+        "file": "116.webp",
+        "ascii": [
+            ":punch:"
+        ],
+        "shortcode": ":punch:"
+    },
+    {
+        "id": "118",
+        "file": "118.webp",
+        "ascii": [
+            ":typing:"
+        ],
+        "shortcode": ":typing:"
+    },
+    {
+        "id": "119",
+        "file": "119.webp",
+        "ascii": [
+            "_()_"
+        ],
+        "shortcode": ":pray:"
+    }
+]
